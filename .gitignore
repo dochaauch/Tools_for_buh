@@ -1,4 +1,4 @@
 name.csv
 confid.py
-venv/
-.idea/
+/venv/
+/.idea/
