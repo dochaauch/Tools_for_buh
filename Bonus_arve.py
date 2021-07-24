@@ -1,3 +1,4 @@
+#чтение счетов Bonus из всей папки в таблицу
 #from tika import parser
 
 import datetime
@@ -18,7 +19,7 @@ import re
 
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2020-07/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2021-06/"
 
 pdf_files = []
 
@@ -28,10 +29,12 @@ for dirpath, _, filenames in os.walk(your_target_folder):
 
         file_full_path = os.path.abspath(os.path.join(dirpath, items))
 
+
         #if file_full_path.lower().endswith(".pdf"): #ищем все pdf файлы в папке
-        r1 = re.compile('\/\d{6}\.pdf$')  #вводим паттерн, который будем искать (название только 6 цифр)
-        if r1.search(file_full_path.lower()):  #ищем наш паттерн в полном пути файла
+        r1 = re.compile('\/\d{6}.*\.pdf$')  #  вводим паттерн, который будем искать (название только 6 цифр)
+        if r1.search(file_full_path.lower()):  #  ищем наш паттерн в полном пути файла
             pdf_files.append(file_full_path)
+
 
         else:
             pass
@@ -57,13 +60,14 @@ pdfWriter.write(pdfOutput)
 pdfOutput.close()
 
 
-raw = parser.from_file("/Users/docha/PycharmProjects/pdf_read/merged.pdf")
+raw = parser.from_file("/Users/docha/PycharmProjects/Tools_for_buh/merged.pdf")
 raw=raw['content']
 raw = str(raw)
 
 safe_text = raw.encode('ascii', errors='ignore')
+#safe_text = raw.encode('utf-8', errors='ignore').decode('utf-8')
 lists = str(safe_text).split("\\n")
-# print(lists)
+#print(lists)
 
 #работающий код
 # patterns = ['KLIENT',
@@ -91,6 +95,7 @@ Skokk = 0.00
 
 for l in lists:
     if 'KLIENT' in l:
+        #print(l)
         klient = l.split(':')[1].split(',')[0][0:20]
         klient = klient.lstrip().ljust(20)
 

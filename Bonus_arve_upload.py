@@ -1,10 +1,13 @@
+#создание файла для загрузки выставленных счетов Bonus
 import pandas as pd
 
 from simpledbf import Dbf5
 import re
 import numpy as np
+
 from icecream import ic
 from datetime import datetime
+from decimal import Decimal
 import time
 
 #"06.04.20","27.04.20","1P"
@@ -18,9 +21,9 @@ import time
 def change_to_float(i):
     uus_some = line.split('\t')[i]
     uus_some = uus_some.replace(',', '.')
-    uus_some = float(uus_some)
+    uus_some = Decimal(uus_some)
     uus_some = format(uus_some, '.2f')
-    uus_some = float(uus_some)
+    uus_some = Decimal(uus_some)
     return uus_some
 
 
@@ -30,10 +33,10 @@ def time_format():
 
 ic.configureOutput(prefix=time_format, includeContext=True)
 
-subkonto_yes = 1
+subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
 year_arve = '2021'
-period_arve = f'"01.04.21","30.04.21","1L"' + '\r\n'
+period_arve = f'"01.06.21","30.06.21","1L"' + '\r\n'
 
 
 dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
@@ -74,16 +77,16 @@ with open('output.txt', 'r') as f:
         uus_km = change_to_float(6)
         uus_kta = change_to_float(7)
 
-        if round(uus_kokku / 1.2, 2) != uus_kta or uus_kta + uus_km != uus_kokku:
-            ic('не сходится налог!', uus_nr_comb, round(uus_kokku / 1.2, 2), '<>', uus_kta)
+        if round(uus_kokku / Decimal(1.2), 2) != uus_kta or uus_kta + uus_km != uus_kokku:
+            ic('не сходится налог!', uus_nr_comb, round(uus_kokku / Decimal(1.2), 2), '<>', uus_kta)
         nimi_orig = line.split('\t')[3].strip()
         nimi_orig = re.sub(r'(^.+)\bO\b.+', r'\1', nimi_orig)  # ищем, где не стоит запятая перед адресом
         nimi_arve = nimi_orig.lower()
 
-
-        nimi_arve = nimi_arve.replace('as ', '').strip()
-        nimi_arve = nimi_arve.replace('o ', '').strip()
-        nimi_arve = nimi_arve.replace(' o', '').strip()
+        nimi_arve = re.sub(r'(^\bas\b)', r'', nimi_arve).strip()
+        nimi_arve = re.sub(r'(\bas\b)', r'', nimi_arve).strip()
+        nimi_arve = re.sub(r'(^o\s)', r'', nimi_arve).strip()
+        nimi_arve = re.sub(r'(\s\bo\b)', r'', nimi_arve).strip()
 
         nimi_my = nimi_df[nimi_df['SPSKIM'].str.lower().str.contains(nimi_arve)]  # находим строку с фирмой
 
@@ -173,6 +176,6 @@ with open('output.txt', 'r') as f:
 
 out = f"""{period_arve}{text_provodki}"""
 
-new_f = open('Bonus_arve_output.txt', 'w')
+new_f = open('/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
 new_f.write(out)
 new_f.close()
