@@ -6,8 +6,8 @@ import os
 import confid
 
 
-prefix = '2007'
-body = "Счет в приложении"
+prefix = '2106'
+body = "Arve on lisatud. Счет в приложении"
 
 # перебор файла
 with open('name.csv') as file:
