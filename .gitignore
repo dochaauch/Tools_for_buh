@@ -2,3 +2,10 @@ name.csv
 confid.py
 /venv/
 /.idea/
+output.txt
+aux.pdf
+**/venv/**
+**/.idea/**
+.gitignore
+.pdf
+/__pycache__/

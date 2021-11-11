@@ -1,0 +1,947 @@
+/Users/docha/PycharmProjects/Tools_for_buh/venv/bin/python /Users/docha/PycharmProjects/Tools_for_buh/proba_to_read_check.py
+/Users/docha/Google Диск/Metsa10/211106_0812_Файл_000.jpg
+*****
+kuupaev 25.10.21
+firma Bauhof Group AS
+*****
+BAUHOF Keila
+Paldiski nnt 35 76606 Keila, Tel +372 606 1444
+Bauhof Group AS
+J. Snuuli tee 41 11415 Tallinn
+KHKR EE100589638, Reg.kood 10636638
+ARVE NR 1130200368300
+KELL
+09:25
+KASSA
+P1302
+KUUPÄEV
+MUDJA
+25. 10.202!
+3561
+166301
+Klient:
+Aadress:
+KOOD
+NIMETUS
+KOGUS OHIK
+ALLAHINDLUS
+OHIKU HIND KM-ta
+KM%
+OKIKU HIND KH-ga
+KOKKU KH-ga
+KOKKU KM-ta
+L 088505 PLAATIMISSEGU CH11 25KG BALTI
+6,92
+9,15 20%
+8,30
+10,98
+2,00
+tk
+Allahindlus 33,86%
+KOKKU KH-ga
+10,98
+10,98
+KM
+KOKKU KM-ta
+9,15
+9,15
+KM %
+1,83
+1,83
+20,00%
+KOKKU EUR
+发**X* 1510
+0,52
+Kliendikaardi nunber:
+Boonuste jääk pärast ostu:
+Boonusraha reeglitega tutuu uuu.bauhof.ee/boonusaha
+SELLE OSTUGA SAÄSTSITE 5,62
+EUROT!
+Osta ka e-poest: www.bauhof.ee
+Bauhof Keila
+Paldiski ant 35,76606 Keila EST
+8398232
+Kaardinakse kuiitung
+HOOK
+Terninal
+NXV30750
+Kaupnees
+10636638 263
+088970
+25.10.2021 09:26:15
+不真*7483
+Debit Mastercard
+KU1. ung
+Kuupäeu ja kell
+HasterCard
+A000000041010
+TUR:0000008000 CUHR:440302 CID:40
+Autoriseerinine
+139277 T:1
+Sunna
+10.98 EUR
+TEHING TEOSTATUD
+PIN kontrollitud
+Sãilitage kuiitung
+väljavõtte kontrolliks
+3.0.20 0
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0813_Файл_000 (1).jpg
+*****
+kuupaev 27.10.21
+firma Bauhof Group AS
+*****
+BAUHOF Keila
+Paldiski nnt 35 76606 Keila, Tel +372 606 1444
+Bauhof Group AS
+J. Smuuli tee 41 11415 Tallinn
+KMKR EE100589638, Reg.kood 10636638
+KUUPÄEV
+27.10.2021
+ARVE NR 1130200368579
+KASSA
+P1302
+KELL
+15:37
+MOOJA
+3561
+Klient:
+166301
+Aadress:
+КОD
+NIMETUS
+KOGUS
+UHIK
+ALLAHINDLUS
+OHIKU HIND KM-ta
+KOKKU KN-ta KW%
+OHIKU HIND KM-ga
+KOKKU KH-ga
+606231 PATAREI PANASONIC ALKAL INE POVER AA LR6 4TK/PK
+1,00 tk
+Allahindlus 32,31%
+L 083505 PLAATIMISSEGU CH11 25KG BALTI
+4,00
+Allahindlus 33,86%
+2,71
+1,83 20%
+3,25
+2,20
+tk
+6,92
+18,30 20%
+8,30
+21,96
+KM %
+KOKKU KH-ta
+KOKKU KH-ga
+24,16
+24,16
+KM
+20,00%
+KOKKU EUR
+20,13
+20, 13
+4,03
+4,03
+Kliendikaardi nunber:
+Boonuste jääk pärast ostu:
+Boonusraha reeglitega tutuu uuu.bauhof.ee/boonusaha
+工*1510
+0,76
+SELLE OSTUGA SAASTSITE 12,29 EUROT!
+Osta ka e-poest: uuw.bauhof.ee
+Bauhof Keila
+Paldiski nnt 35,76606 Keila EST
+8398232
+Kaardimakse kuiitung
+MOOK
+Terninal
+NXV30750
+Kaupnees
+10636638 263
+Kuiitung
+Kuupäeu ja kell
+MasterCard
+A0000000041010
+089163
+27.10.2021 15:38:56
+京**高*7483
+Debit Mastercard
+TVR:000008000 CYMR:440302 CID:40
+Autoriseerinine
+894529 T:1
+Sunna
+24.16 EUR
+TEHING TEOSTATUD
+PIN kontrollitud
+Säilitage kuiitung
+väljavõtte kontrolliks
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0813_Файл_000 (2).jpg
+*****
+kuupaev 29.10.21
+firma ESPAK AS
+*****
+Tere tulemast !
+ESPAK KEILA KAUPLUS
+HARJUMAA, KEILA, POHJAKAARE 3
+Liikmenumber: 9565110
+Teenindaja
+HELI
+KAARDIMAKSE KVIITUNG
+MUOK
+Kviitung
+Aeg
+Terminal ID
+Kaupmehe ID
+SWEDBANKI MC
+AID:A0000000041010
+TVR:0000008000 TSI:E800 CVMR:440302
+CID2:40 TC2:020AE096CC83E844
+021700
+29.10.2021 09:55:57
+IDV32237
+10077564 029
+PAN:************7483
+AL:Debit Mastercard
+Summa:
+15,48 EUR
+T1
+Autoris. nr: 004587
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+Kohtumiseni!
+ESPAK AS
+Reg.kood 10077564
+KEILA, POHJAKAARE 3
+INFOTELEFON 730 1919
+KMKR: EE100298369
+Arve nr. 51160041
+Trükitud: 29.10.2021 9:56:07
+Teenindaja: Heli tel.7301919
+Kassa: 51
+Klient: VADIM SMIRNOV
+Kood: POS51 2552
+Espaki kliendikaart
+Nimetus
+Kogus Ohik
+Hind
+Summa
+METALLIP-E KOMPL.19-OSA 421920
+1 TK
+TOMBENEET VP 3,2x8 RR 33 (100)
+1 KOTT
+14,70
+13,23
+2,5000
+2,25
+Summa enne soodustusi
+Keskmine soodustus
+17,20
+10,00 %
+Summa käibemaksuta
+Käibemaks 20 %
+12,90
+2,58
+Kokku
+15,48
+15,48 EUR
+Pangakaart
+TANAME OSTU EEST, KULASTAGE MEID JÄLLE!
+$K
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0814_Файл_000 (3).jpg
+*****
+kuupaev 19.10.21
+firma ESPAK AS
+*****
+Tere tulemast!
+ESPAK KEILA KAUPLUS
+HARJUMAA, KEILA, POHJAKAARE 3
+Liikmenumber: 9565110
+Teeninda ja
+JANE
+KAARDIMAKSE KVIITUNG
+MUOK
+Kvlitung
+Aeg
+erminal ID
+Kaupmehe ID
+SWEDBANKI MC
+AID:A0000000041010
+TVR:0000008000 TSI:E800 CVMR:440302
+CID2:40 TC2:6E71568680F3945B
+054987
+19.10.2021 08:35:43
+IDV32238
+10077564 030
+PAN:************7483
+AL:Debit Mastercard
+Summa:
+Autoris. nr: 754526
+19,83 EUR
+T1
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+Kohtumiseni!
+ESPAK AS
+Reg.kood 10077564
+KEILA, POHJAKAARE 3
+INFOTELEFON 730 1919
+KMKR: EE100298369
+Arve nr. 52175591
+Trükitud: 19.10.2021 8:35:57
+Teenindaja: Jane tel.7301919
+Kassa: 52
+Klient: VADIM SMIRNOV
+Kood: POS51 2552
+Espaki kliendikaart
+Nimetus
+Kogus Ühik
+Hind
+Summa
+BITUUMENMASTIKS FIIBERKIUGA 1KG
+1 TK
+PROFIZOL FIBER MASTIC 1KG
+1 TK
+EETOKKEHERMEETIK PENOSIL 1L HALL
+1 TK
+4,37
+3,93
+4,49
+4,04
+15,81
+11,86
+Sma enne soodustusi
+K Kmine soodustus
+24,67
+20,00 %
+16,53
+3,30
+Suima käibemaksuta
+Käibemaks 20 %
+Kokku
+19,83
+Pargakaart
+19,83 EUR
+TÄNAME OSTU EEST, KÜLASTAGE MEID JALLE!
+$K
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0815_Файл_000 (4).jpg
+*****
+kuupaev 30.10.21
+firma Bauhof Group AS
+*****
+BAUHOF Keila
+Tel +372 606 1444
+Bauhof Group AS
+J. Smuuli tee 41 11415 Tallinn
+KHKR EE100589638, Reg.kood 10636638
+ARVE NR 1130100401174
+KELL
+KUUPÄEV
+30.10.2021
+KASSA
+P1301
+MUOJA
+09:59
+0741
+Klient:
+Aadress:
+166301
+KOOD
+KOGUS
+OH IK
+ALLAHINDLUS
+NIMETUS
+OHIKU HIND KH-ta
+KOKKU KM-ta KM%
+OHIKU HIND KM-ga
+KOKKU KH-ga
+497329 NEET 3,2X8 RR33 MUST 50TK
+pakk
+Allahindlus 9,55%
+1,83
+1,66 20%
+2,20
+1,99
+1,00
+KOKKU KM-ga
+1,99
+1,99
+KH
+KOKKU KH-ta
+1,66
+1,6
+KM %
+20,00%
+KOKKU EUR
+0,33
+0,33
+Kliendikaardi nunber:
+0,78
+Boonuste jääk pärast ostu:
+Boonusraha reeglitega tutuu uuu.bauhof.ee/boonusaha
+SELLE OSTUGA SAASTSITE 0,21
+EUROT!
+Osta ka e-poest: uww.bauhof.ee
+Bauhof Keila
+Paldiski mnt 35,76606 Keila EST
+8398232
+Kaardinakse kuiitung
+HOOK
+Terninal
+NXV30751
+Kaupnees
+10636638 264
+Kuiitung
+Kuupäeu ja kell
+MasterCard
+049206
+30.10.2021 10:00:15
+其术 7483
+Debit Mastercard
+A0000000041010
+TVR:0000008000 CUNR:440302 CID:40
+Autoriseerinine
+820148 T:1
+Sunna
+1.99 EUR
+TEHING TEOSTATUD
+PIN kontrollitud
+Säilitage kuiitung
+väljavötte kontrolliks
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0815_Файл_000 (5).jpg
+*****
+kuupaev 25.10.21
+firma ESPAK AS
+*****
+Tere tulemast!
+ESPAK KEILA KAUPLUS
+HARJUMAA, KEILA, POHJAKAARE 3
+Liikmenumber: 9565110
+Teenindaja
+JANE
+KAARDIMAKSE KVIITUNG
+MUOK
+Kviitung
+Aeg
+Terminal ID
+Kaupmehe ID
+SWEDBANKI MC
+AID:A0000000041010
+TVR:0000008000 TSI:E800 CVMR:440302
+CID2:40 TC2:6B971E61316FF5BD
+057694
+25.10.2021 09:09:27
+IDV32238
+10077564 030
+PAN:************7483
+AL:Debit Mastercard
+Summa:
+13,26 EUR
+T1
+Autoris. nr: 132342
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+Kohtumiseni!
+ESPAK AS
+Reg.kood 10077564
+KEILA, POHJAKAARE 3
+INFOTELEFON 730 1919
+KMKR: EE100298369
+Arve nr. 52177322
+Trükitud: 25.10.2021 9:09:42
+Teenindaja: Jane tel.7301919
+Kassa: 52
+Klient: VADIM SMIRNOV
+Kood: POS51_2552
+Espaki kliendikaart
+Nimetus
+Kogus ühik
+Hind
+Summa
+COM.KELLU KUMER 130*100 RV 620-00
+1 TK
+COM.KELLU TRAPETS 180 RV 623-00/01
+1 TK
+TÖÖKINNAS 6131 POLUAMIID PU HALL 11
+3 PAAR
+2,59
+2,33
+3,17
+2,85
+0,80
+2,16
+AER.VÄRV MASTON 100 HALL KRUNT 400ML
+1 TK
+6,58
+5,92
+Summa enne soodustusi
+Keskmine soodustus
+14,74
+10,00 %
+Summa käibemaksuta
+Käibemaks 20 %
+11,05
+2,21
+Kokku
+13,26
+Pangakaart
+13,26 EUR
+TÄNAME OSTU EEST, KÜLASTAGE MEID JALLE!
+$K
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0815_Файл_000 (6).jpg
+*****
+kuupaev 01.09.21
+firma Kaubad kuuluyad Realty Group OÜ-le kuni täieliku tasumiseni.
+*****
+Tere tulemast!
+KAARDIMAKSE KVIITUNG
+Terminal
+pod
+Arve-Saateleht nr.: 2116843
+Realty Group 00
+Puidupood / Realty Group 00
+Haapsalu mnt 57d,76606 Keila EST
+Reg:11576312 Kassa:101
+Terminal:ICT40136
+Kuupäev:
+01.09.2021
+Kliendi nr.:
+342
+Tingimused:
+Kaardimakse
+Maksekaart
+MasterCard
+AL:Debit Mastercard
+AID:A000000041010
+PAN:***********7483
+CID:40 TC:521FOE7B3CAOFA94
+TVR: 000000s000 TSI:E800 CVMR:448302
+MÜÜK
+Aeg:01.09.2021-09:00:50
+T1
+12,11 EUR etfix armeersegu 25kg
+Kauba nimetus
+Ühik Kogus
+Kviitung:026668
+Autoris. nr: 638019
+Summa:
+TEHING TE0STATUD
+Hind
+Ale%
+Summa
+tk
+5,94 15,0
+2
+10,09
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+Kohtumisenil
+Kaubad kuuluyad Realty Group OÜ-le kuni täieliku tasumiseni.
+Kokku ilma käibemaksuta:
+10,09
+Sumina sõnadega:
+Käibemaks 20%:
+2,02
+Kaksteist eurot ja 11 senti
+Kokku tasutud:
+12,11
+Andis ule:
+Hendry Merisaar
+Võttis vastu:
+A/a: EE691010220116705014
+Realty Group OÜ
+Haapsalu mnt 57d
+76606 KEILA
+Telefon: 5348 7421
+SEB AS
+401
+Reg.nr.: 11576312
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0816_Файл_000 (7).jpg
+*****
+kuupaev 06.08.21
+firma Reiy Group OÜ
+*****
+Keila Ehituspood
+Arve-Saateleht nr.: 2114936
+Kuupäev:
+06.08.2021
+Kliendi nr.:
+26
+Os ja:
+Eraisik - Kaardimakse
+Tingimused:
+Kaardimakse
+Maksja KMKR nr
+Kauba kood
+Kauba nimetus
+Ühik Kogus
+Hind
+Ale%
+Summa
+867011 vr.vahtkumm.standard d1SmmL1lcm
+0,45 10,0
+tk
+1
+0,40
+812870 pints.pun/valge L70mm
+812850 pints.pun/valge L50mm
+863610 vr.pun.triip põak d30mmL10cmK12
+860029 käepide prof L10cmP29cm
+1,60 10,0
+1,09 10,0
+0,99 10,0
+0,70 10,0
+0,70 10,0
+tk
+1
+1,44
+tk
+0,98
+0,89
+0,63
+0,63
+tk
+1
+tk
+1
+860029 käepide prof L10cmP29cm
+5701914530007 MIRA5300 Netfix armeersegu 25kg
+tk
+1
+tk
+5,94
+5,94
+RDIMAKSE KVIITUNG
+Terminal
+oup ol
+| Realty Group 0
+ant 57d,76686 Keila EST
+312 Kassa:182
+ICT48229
+Maksekaart
+Mastercard
+00004181A
+7483
+:957ADDACD87081BD
+88000 TSI:E800 CVHR:448302
+8CD TT:08 AIP:39e0 ATC:0820
+MÜÜK
+828383 Aeg:06.08.2021-09:23:58
+nr: 394900
+T1
+13,09 EUR
+EHING TEOSTATUD
+PIN KONTROLLITUD
+Group OU-le kuni taieliku tasumiseni
+Kokku ilma käibemaksuta:
+10,91
+Käibemaks 20%:
+2,18
+Kolmteist eurot ja 9 senti
+Kokku tasutud:
+13,09
+Võttis vastu:
+Andis üle
+Janis Andron
+Reiy Group OÜ
+Aaapsa u nint 57d
+76606 KEILA
+Telefon: 5348 7421
+A/a: EE691010220116705014
+Reg.nr.: 11576312
+KMKR nr: EEI01276940
+SEB AS
+401
+info@puidupood.ee
+www.puidupood.ee
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0816_Файл_000 (8).jpg
+*****
+kuupaev 22.10.21
+firma Opt imera Estonia AS
+*****
+Ehituse ABC /Kadaka tee
+Kadaka tee 65, 12915 Tallinn EST
+REG.NR.:11269030
+Term.: IDM26469
+Kuupäev: 22/10/2021
+Kassa:225
+Aeg : 17:18:57
+Kviitung: 3865
+A0000000041010 - Debit Mastercard
+Swed MC Business
+.7483
+KAARDIMAKSE KVIITUNG
+MÜÜK
+SUMMA :
+35.70 EUR
+Auto.kood: 475295 T:1
+TVR:0000008000 TSI:E800 AIP:3900
+TC: 953EA961AAC718CE CID:40 CVMR:440302
+Appl.:MultiPOINT 03.20.072.00690
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+Ehituse A C
+EhituseABC tee Kadaka kauplus
+Kadaka tee 65 Talllinn
+Opt imera Estonia AS
+Reg.nr: 11269030 KMKR: EE101069830
+88-327000459624
+Kviitung:
+Töötaja: Bogatõrjova
+Kuupäev: 22.10.21 17:18
+Kassa: 88-327
+Kirjeldus
+Summa
+Kauba nr.: A057033
+RK VEERENN KOGUJA HALL 400X400X60
+3 tk x 11,90
+35,70 A
+35,70
+-35,70
+Kokku EUR
+Maksekaart
+Swedbank MC krediitkaart
+7483
+3
+Kaupade arv:
+KM
+Summa
+KMX Netosumma
+29,75
+5,95
+35,70
+20
+Külastage meid jälle!
+Tel.: 6660170, 6660173
+Avatud: E-R 8-20 L9-20 P 9-18
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0816_Файл_000 (9).jpg
+*****
+kuupaev 30.10.21
+firma ESPAK AS
+*****
+Tere tulemast!
+ESPAK KEILA KAUPLUS
+HARJUMAA, KEILA, POHJAKAARE 3
+Liikmenumber: 9565110
+Teeninda ja
+JANE
+KAARDIMAKSE KVIITUNG
+MUOK
+Kviitung
+Aeg
+Terminal ID
+Kaupmehe ID
+SWEDBANKI MC
+AID:A0000000041010
+TVR:0000008000 TSI:E800 CVMR:440302
+CID2:40 TC2:06AC04FBE25D5DDB
+059745
+30.10.2021 09:39:07
+IDV32238
+10077564 030
+PAN:************7483
+AL:Debit Mastercard
+8,73 EUR
+T1
+Summa:
+Autoris. nr: 810774
+PIN KONTROLLITUD
+Säilitage kviitung väljavõtte kontrolliks
+
+Kohtumiseni!
+ESPAK AS
+Reg.kood 10077564
+KEILA, POHJAKAARE 3
+INFOTELEFON 730 1919
+KMKR: EE100298369
+Arve nr. 52178715
+Trükitud: 30.10.2021 9:39:22
+Teenindaja: Jane tel.7301919
+Kassa: 52
+Klient: VADIM SMIRNOV
+Kood: POS51 2552
+Espaki kliendikaart
+Nimetus
+Kogus Ühik
+Hind
+Summa
+AER.VARV RR33 KAT.MUST 400ML
+1 TK
+9,70
+8,73
+Summa enne soodustusi
+Keskmine soodustus
+9,70
+10,00 %
+Summa käibemaksuta
+Käibemaks 20 %
+7, 28
+1,45
+Коккu
+8,73
+Pangakaart
+8,73 EUR
+TÄNAME OSTU EEST, KÜLASTAGE MEID JÄLLE!
+$K
+
+++++
+/Users/docha/Google Диск/Metsa10/211106_0817_Файл_000 (10).jpg
+*****
+kuupaev 22.10.21
+firma KEILA BETOON OÜ
+*****
+KB
+ΒΕTOON
+ARVE-SAATELEHT 319578
+22.10.2021
+KEILA BETOON OÜ
+Tel: +3726099102
+Mob: +3725015679
+Reg.nr: 10075430
+Tõmmiku küla
+KMKR: EE100438967
+info@keilabetoon.ee
+Swedbank
+IBAN: EE172200001120241829
+76619 Lääne-Harju vald
+Maksja: LÄÄNE-HARJU VALD, KARJAKÜLA ALEVIK,
+Metsa 10
+76620 Lääne-Harju vald, Karjaküla
+Tähtaeg 22.10.2021
+Tasutud sularahas
+Kliendi transport.
+Nr. Nimetus
+Kogus
+Ühik
+Hind EUR
+Summa
+1
+Ehitusliiv jäme
+0,7 tonn
+7,00
+10,000
+12,000
+Killustik 04-16
+0,7 tonn
+8,40
+Maksumus käibemaksuta
+15,40
+Käibemaks 20%
+3,08
+Kokku (EUR)
+18,48
+Tasumisele kuulub
+kaheksateist eurot ja 48 senti
+Kassa sissetulek 299206 18,48
+Arve väljastas: Hannaliis Mägiste
+Võttis vastu:
+
+++++
+/Users/docha/Google Диск/Metsa10/file_001.jpg
+*****
+kuupaev 25.10.21
+firma Bauhof Group AS
+*****
+BAUHOF Keila
+Paldiski nnt 35 76606 Keila, Tel +372 606 1444
+Bauhof Group AS
+J. Snuuli tee 41 11415 Tallinn
+KHKR EE100589638, Reg.kood 10636638
+ARVE NR 1130200368300
+KELL
+09:25
+KASSA
+P1302
+KUUPÄEV
+MUDJA
+25. 10.202!
+3561
+166301
+Klient:
+Aadress:
+KOOD
+NIMETUS
+KOGUS OHIK
+ALLAHINDLUS
+OHIKU HIND KM-ta
+KM%
+OKIKU HIND KH-ga
+KOKKU KH-ga
+KOKKU KM-ta
+L 088505 PLAATIMISSEGU CH11 25KG BALTI
+6,92
+9,15 20%
+8,30
+10,98
+2,00
+tk
+Allahindlus 33,86%
+KOKKU KH-ga
+10,98
+10,98
+KM
+KOKKU KM-ta
+9,15
+9,15
+KM %
+1,83
+1,83
+20,00%
+KOKKU EUR
+发**X* 1510
+0,52
+Kliendikaardi nunber:
+Boonuste jääk pärast ostu:
+Boonusraha reeglitega tutuu uuu.bauhof.ee/boonusaha
+SELLE OSTUGA SAÄSTSITE 5,62
+EUROT!
+Osta ka e-poest: www.bauhof.ee
+Bauhof Keila
+Paldiski ant 35,76606 Keila EST
+8398232
+Kaardinakse kuiitung
+HOOK
+Terninal
+NXV30750
+Kaupnees
+10636638 263
+088970
+25.10.2021 09:26:15
+不真*7483
+Debit Mastercard
+KU1. ung
+Kuupäeu ja kell
+HasterCard
+A000000041010
+TUR:0000008000 CUHR:440302 CID:40
+Autoriseerinine
+139277 T:1
+Sunna
+10.98 EUR
+TEHING TEOSTATUD
+PIN kontrollitud
+Sãilitage kuiitung
+väljavõtte kontrolliks
+3.0.20 0
+
+++++
+
+Process finished with exit code 0

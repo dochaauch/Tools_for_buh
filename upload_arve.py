@@ -1,3 +1,5 @@
+#todo: нужно разобрать работающий код на отдельные функции, чтобы можно было
+#использовать для создания файла загрузки как исходящих так и входящих счетов
 #создание файла для загрузки выставленных счетов Bonus
 import pandas as pd
 
@@ -8,14 +10,6 @@ import numpy as np
 from icecream import ic
 from datetime import datetime
 from decimal import Decimal
-import time
-
-#"06.04.20","27.04.20","1P"
-#"Subconto", "6:107","Mediabrands Digital OU",,"16:1", "91:0"
-#"Subconto", "6:107:3","2021",,
-#"Subconto", "6:107:3:2","210226 150221",,"16:1","20:30","21:10.03.21","25:150221","26:26.02.21","30:26.02.21","100:25.00"
-#"1","26.02.21","62","1","46","02","25.00","Mediabrands Digital OU: teenus:1 tolkimine","6:107:3:2","2:4","","",""
-#"1","26.02.21","62","1","68","1","5.00","Mediabrands Digital OU: ARVE 21035  kaibemaks","6:107:3:2","15:1","","",""
 
 
 def change_to_float(i):
@@ -36,28 +30,29 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
 year_arve = '2021'
-period_arve = f'"01.10.21","31.10.21","1L"' + '\r\n'
+period_arve = f'"01.07.21","31.07.21","1L"' + '\r\n'
 
 
 dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 
+def read_db(dbf):
+    df = dbf.to_dataframe()
 
-df = dbf.to_dataframe()
-
-df_jur = df[df['SCHSKKOD'] == '6'].astype({'SPSKNO':'int64'})  # выбираем только юр.лица код 6
-df_jur.SPSKNO = df_jur.SPSKNO.astype('int64')
-
-
-nimi_df = df_jur.loc[df_jur['SPSKUP'].isnull()]  # база с названиями фирм
-df_sub = df_jur.loc[df_jur['SPSKUP'].notnull()]  # база с субконто второго и третьего уровня
+    df_jur = df[df['SCHSKKOD'] == '6'].astype({'SPSKNO':'int64'})  # выбираем только юр.лица код 6
+    df_jur.SPSKNO = df_jur.SPSKNO.astype('int64')
 
 
-#делим столбец 'SPSKUP' на 2 отдельных
-d = pd.DataFrame(df_sub['SPSKUP'].str.split().tolist(), columns=['year', 'arve'])
-df_sub = pd.concat([df_sub.reset_index(drop=True), d.reset_index(drop=True)], axis=1)
-df_sub['arve'] = df_sub['arve'].fillna(0)
-df_sub['year'] = df_sub['year'].astype('int64')
-df_sub['arve'] = df_sub['arve'].astype('int64')
+    nimi_df = df_jur.loc[df_jur['SPSKUP'].isnull()]  # база с названиями фирм
+    df_sub = df_jur.loc[df_jur['SPSKUP'].notnull()]  # база с субконто второго и третьего уровня
+
+
+    #делим столбец 'SPSKUP' на 2 отдельных
+    d = pd.DataFrame(df_sub['SPSKUP'].str.split().tolist(), columns=['year', 'arve'])
+    df_sub = pd.concat([df_sub.reset_index(drop=True), d.reset_index(drop=True)], axis=1)
+    df_sub['arve'] = df_sub['arve'].fillna(0)
+    df_sub['year'] = df_sub['year'].astype('int64')
+    df_sub['arve'] = df_sub['arve'].astype('int64')
+    return df_sub, nimi_df
 
 text_provodki = ''
 

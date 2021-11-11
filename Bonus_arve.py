@@ -17,9 +17,11 @@ from tika import parser
 import re
 
 
+def str_to_float(str):
+    return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2021-06/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2021-10/"
 
 pdf_files = []
 
@@ -61,13 +63,24 @@ pdfOutput.close()
 
 
 raw = parser.from_file("/Users/docha/PycharmProjects/Tools_for_buh/merged.pdf")
-raw=raw['content']
-raw = str(raw)
+raw = raw['content']
+
+special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
+                   ord('ž'): 'z', ord('š'): 's',
+                   ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
+                   ord('Z'): 'Z', ord('Š'): 's'}
+raw = raw.translate(special_char_map)
+
+raw = re.sub('\n+\s*\n*', '\n', raw.strip())
+
+raw = raw.replace('\\n', '\n')
+
+
 
 safe_text = raw.encode('ascii', errors='ignore')
-#safe_text = raw.encode('utf-8', errors='ignore').decode('utf-8')
-lists = str(safe_text).split("\\n")
-#print(lists)
+
+lists = re.split(r'\n', raw)
+
 
 #работающий код
 # patterns = ['KLIENT',
@@ -84,7 +97,7 @@ lists = str(safe_text).split("\\n")
 
 f = open('output.txt', 'w')
 first_row = ('D' + '\t' + 'kuupaev'.ljust(10) + '\t' + 'maksepaev' + '\t' + 'klient'.ljust(20)
-     + '\t' + 'arve'.center(8) + '\t' + 'kokku'.center(9) + '\t' + 'kibemaks'.center(7) + '\t' + 'KMta'.ljust(7) + '\n')
+     + '\t' + 'arve'.center(8) + '\t' + 'kokku'.center(9) + '\t' + 'kaibemaks'.center(7) + '\t' + 'KMta'.ljust(7) + '\n')
 f.write(first_row)
 print(first_row)
 
@@ -95,31 +108,39 @@ Skokk = 0.00
 
 for l in lists:
     if 'KLIENT' in l:
-        #print(l)
-        klient = l.split(':')[1].split(',')[0][0:20]
-        klient = klient.lstrip().ljust(20)
+        klient = l.split(':')[1]
+        if 'OU,' in klient or 'AS,' in klient or re.search(r'^KLIENT:\s((OU|AS)\s.*)', l):
+            klient = klient.split(',')[0]
+        elif re.search(r'\s{2,}', l):
+            l = re.search(r'KLIENT: (.*)', l).group(1)
+            klient = re.split(r'\s{2,}', l)[0]
+        else:
+            if re.search(r'^.*(OU|AS)', l):
+                klient = re.search(r'^KLIENT: (.*(OU|AS))', l).group(1)
+        klient = klient[0:24].lstrip().ljust(25)
+
 
     if 'ARVE' in l:
-        arve = l.strip()[-8:]
+        arve = re.search(r'(\d+)', l).group(1)
 
     if 'Summa KM-ta:' in l:
-        summaKMta = l.strip().replace(' ','')[11:]
+        summaKMta = re.search(r'(\d+,\d+)', l).group(1)
         summaKMta = summaKMta.rjust(9)
-        Skta = Skta + float(str(summaKMta).replace(',','.').strip())
+        Skta = Skta + str_to_float(summaKMta)
 
-    if 'Kibemaks 20%:'in l:
-        kibemaks = l.strip().replace(' ','')[12:]
+    if 'Kaibemaks 20%:' in l:
+        kibemaks = re.search(r'(\d+,\d+)', l).group(1)
         kibemaks = kibemaks.rjust(7)
-        Skm = Skm + float(str(kibemaks).replace(',','.').strip())
+        Skm = Skm + str_to_float(kibemaks)
 
     if 'Kokku:' in l:
-        kokku = l.strip().replace(' ', '')[6:]
+        kokku = re.search(r'(\d+,\d+)', l).group(1)
         kokku = kokku.rjust(9)
-        Skokk = Skokk + float(str(kokku).replace(',','.').strip())
+        Skokk = Skokk + str_to_float(kokku)
 
-    if 'Kuupev:' in l:
-        kuupaev = l.strip().replace(' ', '')[7:17]
-        maksepaev = l.strip().replace(' ','')[-13:-3]
+    if 'Kuupaev:' in l:
+        kuupaev = l.strip().replace(' ', '')[8:18]
+        maksepaev = l.strip().replace(' ', '')[-13:-3]
 
         d1 = datetime.datetime.strptime(kuupaev, '%d.%m.%Y')
         try:
