@@ -36,7 +36,7 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
 year_arve = '2021'
-period_arve = f'"01.10.21","31.10.21","1L"' + '\r\n'
+period_arve = f'"01.11.21","30.11.21","1L"' + '\r\n'
 
 
 dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')

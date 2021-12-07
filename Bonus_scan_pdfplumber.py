@@ -127,7 +127,7 @@ def parse_invoice_data(arve_content, template_dict):
                 kul_subk = template_dict.get(t_nimi).get('dkulud_subkonto')
 
                 kulud = template_dict.get(t_nimi).get('d_kulud')
-                komm = template_dict.get(t_nimi).get('komm')
+                komm = template_dict.get(t_nimi).get('d_komm')
 
                 arvedata = namedtuple('arvedata', ['arve_nr', 'arve_kuup', 'arve_maks_kuup', 'summa_kta', 'km', 'total',
                                                    'hank_k', 'hank_s', 'hank_subk', 'kul_k', 'kul_s', 'kul_subk',
@@ -221,13 +221,13 @@ def find_subkonto_in_db(hank_subk, df_sub,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2021-09/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2021-11/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2021'
-    period_arve = f'"01.10.21","31.10.21","6H"' + '\r\n'
+    period_arve = f'"01.11.21","30.11.21","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 
@@ -279,11 +279,11 @@ def main():
 
     out = f"""{period_arve}{text_provodki}"""
 
-    pprint.pprint(fd)
+    #pprint.pprint(fd)
     fd_ = defaultdict(list)
     for k, v in fd.items():
         fd_[v].append(k)
-    pprint.pprint(fd_)
+    #pprint.pprint(fd_)
 
     with open(new_f, 'w') as new_f:
         new_f.write(out)

@@ -1,3 +1,6 @@
 firma,d_total,d_arve,d_date,d_date_maks,d_days,d_konto,d_subschet,d_subkonto,dkulud_konto,dkulud_subschet,dkulud_subkonto,d_kulud,d_komm
-Eesti Energia,Arve summa:,Arve nr,Arve kuupäev:,Maksetähtaeg:,,76,,3:2,21,,8:6:31,energia vork,komm
-Elektrum,Summa \(EUR\),Arve number,Arve kuupäev,Maksetähtpäev,,76,,3:21,2,,8:6:31,energia,komm
+Eesti Energia,Arve summa:,Arve nr,Arve kuupäev:,Maksetähtaeg:,,76,,3:2,21,,5:5:1,energia vork,komm
+Elektrum,Summa \(EUR\),Arve number,Arve kuupäev,Maksetähtpäev,,76,,3:21,21,,5:5:1,energia,komm
+LAHEVESI,Kokku  \(EUR\),Arve nr\.,Kuupäev:,Maksetähtaeg:,,76,,3:1,22,,7:1:1,vesi,komm
+Eesti Keskkonnateenused,Kokku :,ARVE NR.,Arve kuupäev:,Maksetähtaeg:,,76,,3:13,22,,7:5:1,prügi,komm
+Realty Group,Kokku tasuda:,Arve-Saateleht nr\.:,Kuupäev:,Tähtaeg:,,76,,3:18,20,,6:8,materjalid,
