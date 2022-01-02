@@ -9,6 +9,7 @@ import datetime
 from simpledbf import Dbf5
 import pandas as pd
 import numpy as np
+import math
 
 
 
@@ -100,6 +101,8 @@ def find_template_date(v, str_, arve_kuup='', second_=''):
 
 
 def parse_invoice_data(arve_content, template_dict):
+    #print('arve_content')
+    #pprint.pprint(arve_content)
     arve_data = {}
     folder_dict = {}
     for k, v in arve_content.items():
@@ -129,13 +132,16 @@ def parse_invoice_data(arve_content, template_dict):
                 kulud = template_dict.get(t_nimi).get('d_kulud')
                 komm = template_dict.get(t_nimi).get('d_komm')
 
-                arvedata = namedtuple('arvedata', ['arve_nr', 'arve_kuup', 'arve_maks_kuup', 'summa_kta', 'km', 'total',
+                arvedata = namedtuple('arvedata', ['firma', 'arve_nr', 'arve_kuup', 'arve_maks_kuup', 'summa_kta', 'km', 'total',
                                                    'hank_k', 'hank_s', 'hank_subk', 'kul_k', 'kul_s', 'kul_subk',
                                                    'kulud', 'komm'])
-                arve_data[t_nimi] = arvedata(arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
+                #arve_data[t_nimi] = arvedata(arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
+                #                             hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm)
+                arve_data[k] = arvedata(t_nimi, arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
                                              hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm)
-                a = '*** обработано'
+                a = '*** обработано ' + arve_nr + ' ' + arve_kuup + ' ' + str(total)
         folder_dict[k] = a
+    pprint.pprint(folder_dict)
     return arve_data, folder_dict
 
 
@@ -154,23 +160,65 @@ def read_db(dbf):
     df_sub['arve'] = df_sub['arve'].fillna(0)
     df_sub['year'] = df_sub['year'].astype('int64')
     df_sub['arve'] = df_sub['arve'].astype('int64')
-    return df_sub
+    #print('nimi_df', nimi_df)
+    return df_sub, nimi_df
 
 
-def find_subkonto_in_db(hank_subk, df_sub,
+def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
               uus_nr_comb, uus_kokku, uus_maksedate, uus_arve, uus_date, uus_kta, uus_km,
-              nimi_orig, kulud, text_provodki, hank_k, hank_s, hank_subk_, kulud_k, kulud_s, kulud_subk,
-              subkonto_yes, year_arve):
-    nomer_subkonto = int(hank_subk.split(':')[1])
+              nimi_arve, kulud, text_provodki, hank_k, hank_s, hank_subk_, kulud_k, kulud_s, kulud_subk,
+              subkonto_yes, year_arve, komm):
+    nomer_subkonto = int(hank_subk.split(':')[1])  #берем из csv файла
+    nimi_arve_low = nimi_arve.lower()
+
     if uus_kta + uus_km != uus_kokku:
         print('***', uus_kta + uus_km != uus_kokku)
 
-    try:
-        max_nre_year = df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'].item()
-    except:  # в случае, если фирма старая, но этот год был еще не введен
+    nimi_my = nimi_df[nimi_df['SPSKIM'].str.lower().str.contains(nimi_arve_low)]  # находим строку с фирмой
+    # если такой фирмы еще не существует
+    if nimi_my.empty:
+        nimi_firma = nimi_df['SPSKNO'].max()
+        # создаем строку
+        if subkonto_yes == 1:
+            text_provodki_subk = f'"Subconto", "6:{nimi_firma + 1}","{nimi_arve.strip()}",,"16:1", "91:0"'
+        nf_df = pd.DataFrame([[nimi_firma + 1, '6', np.nan, nimi_arve.strip(), 1]],
+                             columns=['SPSKNO', 'SCHSKKOD', 'SPSKUP', 'SPSKIM', 'SPSKCENA'],
+                             index=[len(nimi_df) + 1])
+
+        # добавляем запись в базу с именами
+        nimi_df = nimi_df.append(nf_df, ignore_index=True)
+
+        nimi_my = nimi_df[nimi_df['SPSKIM'].str.lower().str.contains(nimi_arve_low)]  # находим строку с фирмой
+        if subkonto_yes == 1:
+           text_provodki += text_provodki_subk + '\r\n'
+
+    #print(nimi_arve, nimi_my['SPSKNO'], nimi_my['SPSKNO'].max())
+    nomer_subkonto = nimi_my['SPSKNO'].max()  # определяем из строки номер субконто
+    #print('proverka', year_arve, nomer_subkonto,
+    #          df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'])
+
+    mnr = df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'].max()
+    #print('mnr', mnr)
+    #if math.isnan(mnr):
+    #    print('mnr is nan')
+    #try:
+    max_nre_year = df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'].max()
+    #print('max_nre_year', max_nre_year)
+
+    if math.isnan(max_nre_year):
+    #except:  # в случае, если фирма старая, но этот год был еще не введен
+        #print('year_arve', year_arve, df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'])
+        #print('xxx', df_sub[(df_sub['arve'] == 0)]['SPSKNO'])
+        #print('check_', df_sub['year'], nomer_subkonto, nimi_arve)
         last_used_year = df_sub[(df_sub['year'] == nomer_subkonto) & (df_sub['arve'] == 0)]['SPSKNO'].max()
 
+        if math.isnan(last_used_year):
+            last_used_year = 0
+        #print('last_used_year', nimi_arve, last_used_year)
+
         if subkonto_yes == 1:
+            if last_used_year == 0:
+                text_provodki_subk = f'"Subconto", "6:{nomer_subkonto}","{nimi_arve.strip()}",,"15:1", "91:0"'
             text_provodki_year = f'"Subconto", "6:{nomer_subkonto}:{last_used_year + 1}","{year_arve}",,'
         year_df = pd.DataFrame([[last_used_year + 1, '6', int(nomer_subkonto), year_arve, 0.0, int(nomer_subkonto), 0]],
                                columns=['SPSKNO', 'SCHSKKOD', 'SPSKUP', 'SPSKIM', 'SPSKCENA',
@@ -208,26 +256,34 @@ def find_subkonto_in_db(hank_subk, df_sub,
 
     if uus_km > 0:
         text_km = (f'"6H","{uus_date}","68","1","{hank_k}","{hank_s}","{uus_km}",'
-                   f'"{nimi_orig.strip()}: {uus_nr_comb}  kaibemaks",'
+                   f'"{nimi_arve.strip()}: {uus_nr_comb}  kaibemaks",'
                    f'"15:11","6:{nomer_subkonto}:{max_nre_year}:{last_nr}","","",""') + '\r\n'
     else:
         text_km = ''
 
     text_summa = (f'"6H","{uus_date}","{kulud_k}","{kulud_s}","{hank_k}","{hank_s}","{uus_kta}",'
-                  f'"{nimi_orig.strip()} {uus_nr_comb}: {kulud}",'
-                  f'"{kulud_subk}","6:{nomer_subkonto}:{max_nre_year}:{last_nr}","","",""')
-    text_provodki += text_provodki_arve + text_km + text_summa + '\r\n'
-    return text_provodki
+                  f'"{nimi_arve.strip()} {uus_nr_comb}: {kulud}",'
+                  f'"{kulud_subk}","6:{nomer_subkonto}:{max_nre_year}:{last_nr}","","",""') + '\r\n'
+
+    #закрываем авансовые отчеты оплаты карточкой
+    if hank_k == '60' and hank_s == '12':
+        text_summa_ = (f'"6H","{uus_date}","{hank_k}","{hank_s}","71","03","{uus_kta + uus_km}",'
+                      f'"{nimi_arve.strip()} {uus_nr_comb}: {uus_kta}+{uus_km}",'
+                      f'"6:{nomer_subkonto}:{max_nre_year}:{last_nr}","4:1","","",""') + '\r\n'
+    else:
+        text_summa_ = ''
+    text_provodki += text_provodki_arve + text_km + text_summa + text_summa_
+    return nimi_df, df_sub, text_provodki
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2021-11/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2021-12/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2021'
-    period_arve = f'"01.11.21","30.11.21","6H"' + '\r\n'
+    period_arve = f'"01.12.21","31.12.21","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 
@@ -246,16 +302,15 @@ def main():
         print(os.path.basename(pdf_))
     #pprint.pprint(len(pdf_files))
 
-    df_sub = read_db(dbf)
+    df_sub, nimi_df = read_db(dbf)
     d, fd = parse_invoice_data(arve_content, template_dict)
-    #pprint.pprint(d)
 
     for firma, value in d.items():
         find_firma = d.get(firma)
         hank_k = find_firma.hank_k
         hank_s = find_firma.hank_s
         hank_subk_ = find_firma.hank_subk
-        nimi_orig = firma
+        nimi_arve = find_firma.firma
 
         uus_nr_comb = my_reverse_date(find_firma.arve_kuup) + ' ' + find_firma.arve_nr
         uus_kta = find_firma.summa_kta
@@ -271,12 +326,13 @@ def main():
 
         kulud = find_firma.kulud
 
-        text_provodki = find_subkonto_in_db(hank_subk_, df_sub,
-                  uus_nr_comb, uus_kokku, uus_maksedate, uus_arve, uus_date, uus_kta, uus_km, nimi_orig, kulud,
+        komm_ = find_firma.komm
+
+        nimi_df, df_sub, text_provodki = find_subkonto_in_db(hank_subk_, df_sub, nimi_df,
+                  uus_nr_comb, uus_kokku, uus_maksedate, uus_arve, uus_date, uus_kta, uus_km, nimi_arve, kulud,
                   text_provodki, hank_k, hank_s, hank_subk_, kulud_k, kulud_s, kulud_subk,
-                  subkonto_yes, year_arve)
-
-
+                  subkonto_yes, year_arve, komm_)
+    #print(df_sub)
     out = f"""{period_arve}{text_provodki}"""
 
     #pprint.pprint(fd)

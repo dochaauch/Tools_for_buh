@@ -792,13 +792,6 @@ Keskmine soodustus
 9,70
 10,00 %
 Summa käibemaksuta
-Käibemaks 20 %
-7, 28
-1,45
-Коккu
-8,73
-Pangakaart
-8,73 EUR
 TÄNAME OSTU EEST, KÜLASTAGE MEID JÄLLE!
 $K
 

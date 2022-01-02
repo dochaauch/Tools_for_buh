@@ -1,7 +1,7 @@
 import zipfile
 import os
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2021-11/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2021-12/"
 
 for file_ in os.listdir(your_target_folder):
     if file_.endswith('.zip'):

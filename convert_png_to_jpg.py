@@ -19,7 +19,7 @@ def search_all_png_files(your_target_folder):
 
 
 def main():
-    your_target_folder = '/Users/docha/Google Диск/Bonus/2021-11'
+    your_target_folder = '/Users/docha/Google Диск/Bonus/2021-12'
     file_dict = search_all_png_files(your_target_folder)
     for old_path, file_date in file_dict.items():
         old_name = os.path.basename(old_path).split('.')[0]
