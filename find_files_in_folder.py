@@ -1,6 +1,5 @@
 import os
 import pprint
-import datetime
 
 
 def search_all_special_files(your_target_folder, file_dict, exten):
@@ -24,8 +23,6 @@ def main():
     #  удаляем файлы
     #for file_ in file_dict.keys():
         #os.remove(file_)
-
-
 
 
 if __name__ == '__main__':

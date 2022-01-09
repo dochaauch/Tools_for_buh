@@ -4,6 +4,11 @@ import io
 import os
 import re
 
+#Save the credentials file, and set its path as an environment variable
+#export GOOGLE_APPLICATION_CREDENTIALS=”<path>”
+#Pycharm название файла без кавычек
+
+
 def find_all_jpg_files(your_target_folder):
     file_list = []
     for files_ in os.listdir(your_target_folder):
@@ -47,7 +52,7 @@ def date_in_reciept(text):
 
 def find_firm(text):
     firma_name = re.compile(r'''
-    (.*(AS|OÜ|MTÜ|UÜ).*)
+    (.*(AS|OÜ|MTÜ|UÜ|FIE).*)
     ''', re.VERBOSE)
     firma_nimetus = firma_name.search(text)
     if firma_nimetus:
@@ -67,7 +72,7 @@ def find_pattern_from_list(text, re_list):
 
 
 def main():
-    your_target_folder = '/Users/docha/Google Диск/Metsa10'
+    your_target_folder = '/Users/docha/Google Диск/Metsa10/_cheki'
     for file_name in find_all_jpg_files(your_target_folder):
         text = read_jpg_to_text(file_name)
 

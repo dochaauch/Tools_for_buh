@@ -35,31 +35,31 @@ def main():
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2021'
-    begin_date = '01.11.21'
-    end_date = '30.11.21'
+    begin_date = '01.12.21'
+    end_date = '31.12.21'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
     r1 = re.compile(r'/.*.pdf$')  # вводим паттерн, который будем искать (все pdf)
 
     #dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Metsa10_2011/1sbspsk.dbf', codec='cp866')
     text_provodki = ''
-    new_f = '/Volumes/[C] Windows 10/Dropbox/_N/Metsa10_2011/MA_output_.txt'
+    new_f = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/MA_output_.txt'
 
     pdf_files = find_all_files(your_target_folder)
     template_dict = read_csv_to_dict_template(path)
-    #pprint.pprint(template_dict)
+    pprint.pprint(template_dict)
     arve_content = read_pdf_to_text_in_folder(pdf_files)
 
     #pprint.pprint(arve_content)
 
-    pprint.pprint((parse_invoice_data(arve_content, template_dict)))
+    #pprint.pprint((parse_invoice_data(arve_content, template_dict)))
     for pdf_ in pdf_files:
         print(os.path.basename(pdf_))
     pprint.pprint(len(pdf_files))
 
     #df_sub = read_db(dbf)
     d, fd = parse_invoice_data(arve_content, template_dict)
-    # pprint.pprint(d)
+    pprint.pprint(d)
 
     for firma, value in d.items():
         find_firma = d.get(firma)
@@ -91,7 +91,7 @@ def main():
 
         nl = '\r\n'
         text_provodki_ = (f'"H1","{uus_date}","{kulud_k}","{kulud_s}","{hank_k}","{hank_s}","{uus_kokku}",'
-                  f'"{nimi_orig.strip()} {uus_nr_comb}: {kulud}",'
+                  f'"{find_firma.firma} {uus_nr_comb}: {kulud}",'
                   f'"{kulud_subk}","{hank_subk_}","","",""{nl}')
 
 
