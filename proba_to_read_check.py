@@ -3,6 +3,8 @@ from google.cloud import vision
 import io
 import os
 import re
+from decimal import Decimal
+
 
 #Save the credentials file, and set its path as an environment variable
 #export GOOGLE_APPLICATION_CREDENTIALS=”<path>”
@@ -71,6 +73,20 @@ def find_pattern_from_list(text, re_list):
             return result
 
 
+def my_str_to_float(str_):
+    # str_ '13,50' => float '13.5'
+    return Decimal(str_.replace(',', '.'))
+
+
+def my_short_date(str_):
+    # '21.05.2021' => '21.05.21'
+    return str_[:6] + str_[-2:]
+
+
+def my_reverse_date(str_):
+    # '21.05.2021' , '21.05.21' => 210521
+    return str_[-2:] + str_[3:5] + str_[:2]
+
 def main():
     your_target_folder = '/Users/docha/Google Диск/Metsa10/_cheki'
     for file_name in find_all_jpg_files(your_target_folder):
@@ -93,12 +109,19 @@ def main():
                          r'KMX Netosumma\n.*\n.*\n(\d+[,.]\d{1,2})',
                          r'Коккu\n(\d+[,.]\d{1,2})',
                          ]
+        re_sum_list = [r'Kokku ilma käibemaksuta:\n(\d+[,.]\d{1,2})',
+                       ]
+
+        re_km_list = [r'Käibemaks 20%:\n(\d+[,.]\d{1,2})',
+                      ]
 
         kuupaev = date_in_reciept(text)
         firma_nimetus = find_firm(text)
         reg_nr = find_pattern_from_list(text, re_reg_nr_list)
         arve_nr = find_pattern_from_list(text, re_arve_list)
         total_sum = find_pattern_from_list(text, re_total_list)
+        arve_sum = find_pattern_from_list(text, re_sum_list)
+        arve_km = find_pattern_from_list(text, re_km_list)
         print(file_name)
         print('*****')
         print('kuupaev', kuupaev)
