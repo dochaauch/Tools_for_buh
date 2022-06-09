@@ -14,6 +14,7 @@ from PIL import Image, ImageTk
 from tkinter import filedialog
 import tkinter.font as font
 import pandas as pd
+import datetime
 
 
 
@@ -26,6 +27,8 @@ list_of_files = [fn for fn in os.listdir(your_target_folder)
 
 system_text = ''
 km_rate = '0.2'
+#если для windows, то поставить w, иначе m
+which_os = 'm'
 
 def browse_button():
     # Allow user to select a directory and store it in global var
@@ -192,14 +195,28 @@ def read_jpg_to_text(file_name):
 
 def save_dict_to_file(output):
     global system_text
+    global list_of_files
     file_ = f'{your_target_folder}/{list_of_files[i_file]}'
     filename, file_extension = os.path.splitext(file_)
     dict_data = {}
     for line_ in output.splitlines():
         key, value = line_.split(': ')
         dict_data[key] = value
-    dict_file = f'{filename}.pkl'
-    system_text = f'Файл {filename}.pkl для изображения {i_file + 1} сохранен.'
+    if which_os == 'w':
+        file_date_ = os.path.getctime(file_)
+    else:
+        file_date_ = os.stat(file_).st_birthtime
+    file_date = datetime.datetime.fromtimestamp(file_date_).strftime('%y%m%d_%H%M')
+    new_filename = f"{my_reverse_date(dict_data['kuupaev'])}_{dict_data['firma']}_{dict_data['arve nr']}_{file_date}"
+
+    special_char_map = {ord('/'): '-', ord('"'): '', }
+    new_filename = new_filename.translate(special_char_map)
+
+    #print(new_filename)
+    list_of_files[i_file] = f'{new_filename}.jpg'
+    os.rename(file_, f'{your_target_folder}/{new_filename}.jpg')
+    dict_file = f'{your_target_folder}/{new_filename}.pkl'
+    system_text = f'Файл {your_target_folder}/{new_filename}.pkl для изображения {i_file + 1} сохранен.'
     with open(dict_file, 'wb') as pickle_file:
         pickle.dump(dict_data, pickle_file)
 
@@ -238,13 +255,22 @@ def processing_text(text):
     re_arve_list = [r'Arve nr\.\s(.*)',
                     r'SAATELEHT\s(.*)',
                     r'ARVE NR\s(.*)',
-                    r'Kviitung:\s(.*)',
+                    r'Arve\s*(.*)',
                     r'Arve-Saateleht nr.:\s(.*)',
+                    r'Kviitung:\s(.*)',
+                    r'Sularahaarve nr.\s(.*)',
+                    r'TSEKK/ARVE\s(.*)',
+                    r'Saateleht-arve nr. (.*)',
+                    r'Ceks (.*)',
+                    r'čeks (.*)',
                     ]
 
     re_reg_nr_list = [r'Reg.kood\s(\b\d{8}\b)',
                       r'Reg.\s*nr\.*:*\s(\b\d{8}\b)',
-                      r'Reg:(\d{8})']
+                      r'Reg:(\d{8})',
+                      r'REG.NR.:(\d{8})',
+                      r'Registrikood:\s*(\d{8})'
+                      ]
 
     re_total_list = [r'KOKKU K.-ga\n(\d+[,.]\d{1,2})',
                      r'Kokku \(EUR\)\n(\d+[,.]\d{1,2})',
@@ -252,15 +278,24 @@ def processing_text(text):
                      r'Kokku tasutud:\n(\d+[,.]\d{1,2})',
                      r'KMX Netosumma\n.*\n.*\n(\d+[,.]\d{1,2})',
                      r'Коккu\n(\d+[,.]\d{1,2})',
+                     r'Kokku € (\d+[,.]\d{1,2})',
+                     r'KOKKU EUR\n(\d+[,.]\d{1,2})',
+                     r'Summa kokku:\n(\d+[,.]\d{1,2})',
+                     r'KOKKU\n(\d+[,.]\d{1,2})',
                      ]
 
     re_sum_list = [r'Kokku ilma käibemaksuta:\n(\d+[,.]\d{1,2})',
                    r'KOKKU KM-ta\n(\d+[,.]\d{1,2})',
+                   r'KAIBEMAKSUTA\n(\d+[,.]\d{1,2})',
+                   r'Netosumma (20%) € (\d+[,.]\d{1,2})',
+                   r'KÄIBEMAKSUTA\n(\d+[,.]\d{1,2})',
                    ]
 
     re_km_list = [r'Käibemaks 20%:\n(\d+[,.]\d{1,2})',
                   r'Käibemaks 20 %\n(\d+[,.]\d{1,2})',
                   r'KM %\n(\d+[,.]\d{1,2})',
+                  r'Käibemaks (20%) (\d+[,.]\d{1,2})',
+                  r'Käibemaks kokku\n(\d+[,.]\d{1,2})',
                   ]
 
     kuupaev = date_in_reciept(text)
@@ -273,6 +308,8 @@ def processing_text(text):
     total_sum = find_pattern_from_list(text, re_total_list)
     if total_sum:
         total_sum = my_str_to_float(total_sum)
+    if not total_sum:
+        total_sum = 0
 
     arve_sum = find_pattern_from_list(text, re_sum_list)
     if arve_sum:
@@ -298,7 +335,8 @@ def processing_text(text):
              f'summa: {arve_sum}{nl}' \
              f'km: {arve_km}{nl}' \
              f'summa kokku: {total_sum}{nl}' \
-             f'kirjeldus: {nl}'
+             f'kirjeldus: {nl}' \
+             f'auto: {nl}'
     return output
 
 

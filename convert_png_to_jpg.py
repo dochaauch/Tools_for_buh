@@ -19,7 +19,8 @@ def search_all_png_files(your_target_folder):
 
 
 def main():
-    your_target_folder = '/Users/docha/Google Диск/Bonus/2021-12'
+    your_target_folder = '/Users/docha/Google Диск/Bonus/_cheki'
+    #your_target_folder = '/Users/docha/Google Диск/Metsa10/1'
     file_dict = search_all_png_files(your_target_folder)
     for old_path, file_date in file_dict.items():
         old_name = os.path.basename(old_path).split('.')[0]
@@ -27,6 +28,7 @@ def main():
         new_path = os.path.join(os.path.dirname(old_path), new_name)
         print(old_path, new_path)
         im1 = Image.open(old_path)
+        #im1 = im1.rotate(270, expand=True) #повернуть на 90 по часовой стрелке
         im1.save(new_path)
 
 

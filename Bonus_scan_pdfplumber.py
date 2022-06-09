@@ -50,6 +50,7 @@ def read_pdf_to_text_in_folder(pdf_files):
             text = page.extract_text()
             key = os.path.basename(ap)
             text_dict[key] = text
+    #pprint.pprint(text_dict)
     return text_dict
 
 
@@ -73,8 +74,10 @@ def find_in_template_dict(t_nimi, str_, template_dict):
 
 
 def find_template_sum(v, str_):
-    if re.findall(fr'{str_}\s*(\b\d+[,.]\d{{2}}\b)', v):
-        return re.findall(fr'{str_}\s*(\b\d+[,.]\d{{2}}\b)', v)[0]
+    #if re.findall(fr'{str_}\s*(\b\d+[,.]\d{{2}}\b)', v):
+    #    return re.findall(fr'{str_}\s*(\b\d+[,.]\d{{2}}\b)', v)[0]
+    if re.findall(fr'{str_}\s*(\d+[,.]\d{{2}})', v):
+        return re.findall(fr'{str_}\s*(\d+[,.]\d{{2}})', v)[0]
     else:
         return '0,00'
 
@@ -132,15 +135,22 @@ def parse_invoice_data(arve_content, template_dict):
                 kulud = template_dict.get(t_nimi).get('d_kulud')
                 komm = template_dict.get(t_nimi).get('d_komm')
 
+                if template_dict.get(t_nimi).get('d_vol', False):
+                    print(arve_nr, template_dict.get(t_nimi).get('d_vol', False))
+                    vol = my_str_to_float(find_template_sum(v, find_in_template_dict(t_nimi, 'd_vol', template_dict)))
+                else:
+                    vol = my_str_to_float('0.0')
+
                 arvedata = namedtuple('arvedata', ['firma', 'arve_nr', 'arve_kuup', 'arve_maks_kuup', 'summa_kta', 'km', 'total',
                                                    'hank_k', 'hank_s', 'hank_subk', 'kul_k', 'kul_s', 'kul_subk',
-                                                   'kulud', 'komm'])
+                                                   'kulud', 'komm', 'vol'])
                 #arve_data[t_nimi] = arvedata(arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
                 #                             hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm)
                 arve_data[k] = arvedata(t_nimi, arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
-                                             hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm)
-                a = '*** обработано ' + arve_nr + ' ' + arve_kuup + ' ' + str(total)
+                                             hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm, vol)
+                a = '*** обработано ' + arve_nr + ' ' + arve_kuup+ '/' + arve_maks_kuup + ' ' + str(total) + ' //' + str(summa_kta) + ' + ' + str(km)
         folder_dict[k] = a
+
     pprint.pprint(folder_dict)
     return arve_data, folder_dict
 
@@ -277,20 +287,20 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2021-12/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-05/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
-    year_arve = '2021'
-    period_arve = f'"01.12.21","31.12.21","6H"' + '\r\n'
+    year_arve = '2022'
+    period_arve = f'"01.05.22","31.05.22","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 
-    dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+    dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 
     text_provodki = ''
-    new_f = '/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/BA_output_.txt'
+    new_f = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/BA_output_.txt'
     pdf_files = find_all_files(your_target_folder, r1, in_or_out)
     template_dict = read_csv_to_dict_template(path)
     arve_content = read_pdf_to_text_in_folder(pdf_files)

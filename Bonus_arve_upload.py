@@ -35,11 +35,12 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
-year_arve = '2021'
-period_arve = f'"01.12.21","31.12.21","1L"' + '\r\n'
+year_arve = '2022'
+period_arve = f'"01.05.22","31.05.22","1L"' + '\r\n'
 
 
-dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+
 
 
 df = dbf.to_dataframe()
@@ -127,6 +128,7 @@ with open('output.txt', 'r') as f:
             max_nre_year = df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'].item()
         except:  # в случае, если фирма старая, но этот год был еще не введен
             last_used_year = df_sub[(df_sub['year'] == nomer_subkonto) & (df_sub['arve'] == 0)]['SPSKNO'].max()
+            print('ФИРМА старая, но вводим год - проверить', nimi_my)
 
             if subkonto_yes == 1:
                 text_provodki_year = f'"Subconto", "6:{nomer_subkonto}:{last_used_year + 1}","{year_arve}",,'
@@ -177,6 +179,6 @@ with open('output.txt', 'r') as f:
 
 out = f"""{period_arve}{text_provodki}"""
 
-new_f = open('/Volumes/[C] Windows 10/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
+new_f = open('/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
 new_f.write(out)
 new_f.close()

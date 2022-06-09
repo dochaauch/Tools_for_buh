@@ -6,11 +6,11 @@ import os
 import confid
 
 
-prefix = '2112'
+prefix = '2205'
 body = "Arve on lisatud. Счет в приложении"
 
 # перебор файла
-with open('name.csv') as file:
+with open('/Users/docha/Dropbox/python/Metsa10/name.csv') as file:
     reader = csv.DictReader(file, delimiter=',')
     for row in reader:
         receiver = row['email']

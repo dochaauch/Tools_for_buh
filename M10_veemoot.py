@@ -15,7 +15,7 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 #"30.04.21", "30.04.21". "VL"
 #"VL", "30.04.21","VE","K1","VE","0",0.00,"VE:2104: Metsa 10-1 K1","1:1:1:2","1:3",5
 
-lausendi_kuupaev = '31.12.21'
+lausendi_kuupaev = '31.05.22'
 nr = lausendi_kuupaev.split('.')[2] + lausendi_kuupaev.split('.')[1]
 
 first_row = f'"{lausendi_kuupaev}", "{lausendi_kuupaev}","VL"' + '\r\n'
@@ -52,5 +52,6 @@ out = first_row + text_provodki
 print()
 print(out)
 v = open('/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/veemotjad.txt', 'w')
+
 v.write(out)
 v.close()

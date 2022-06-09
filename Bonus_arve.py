@@ -21,7 +21,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2021-12/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2022-05/"
 
 pdf_files = []
 
@@ -68,7 +68,7 @@ raw = raw['content']
 special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
                    ord('ž'): 'z', ord('š'): 's',
                    ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
-                   ord('Z'): 'Z', ord('Š'): 's'}
+                   ord('Z'): 'Z', ord('Š'): 's', ord('’'): ''}
 raw = raw.translate(special_char_map)
 
 raw = re.sub('\n+\s*\n*', '\n', raw.strip())

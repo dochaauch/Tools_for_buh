@@ -41,6 +41,7 @@ def date_in_reciept(text):
     \.        # разделитель
     \d{2,4}  #год
     ''', re.VERBOSE)
+
     kuupaev = date_reciept.search(text)
     if kuupaev:
         kuupaev = kuupaev.group()
@@ -48,13 +49,30 @@ def date_in_reciept(text):
         if len(year_) == 4:
             kuupaev = f'{day_}.{month_}.{year_[2:4]}'
     else:
-        kuupaev = ''
+        # date_reciept2 = re.compile(r'''
+        # \d{2,4}  #год
+        # \-        # разделитель
+        # [01]\d  #месяц
+        # \-        # разделитель
+        # \[0123]\d  #день
+        # ''', re.VERBOSE)
+        date_reciept2 = re.compile(r'\d{2,4}-[01]\d-[0123]\d', re.VERBOSE)
+        kuupaev = date_reciept2.search(text)
+        if kuupaev:
+            kuupaev = kuupaev.group()
+            year_, month_, day_ = kuupaev.split('-')
+            if len(year_) == 4:
+                kuupaev = f'{day_}.{month_}.{year_[2:4]}'
+            else:
+                kuupaev = f'{day_}.{month_}.{year_}'
+        else:
+            kuupaev = ''
     return kuupaev
 
 
 def find_firm(text):
     firma_name = re.compile(r'''
-    (.*(AS|OÜ|MTÜ|UÜ|FIE).*)
+    (.*(AS|OÜ|MTÜ|UÜ|FIE|SIA).*)
     ''', re.VERBOSE)
     firma_nimetus = firma_name.search(text)
     if firma_nimetus:
@@ -100,7 +118,8 @@ def main():
 
         re_reg_nr_list = [r'Reg.kood\s(\b\d{8}\b)',
                 r'Reg.\s*nr\.*:*\s(\b\d{8}\b)',
-                r'Reg:(\d{8})']
+                r'Reg:(\d{8})',
+                          ]
 
         re_total_list = [r'KOKKU K.-ga\n(\d+[,.]\d{1,2})',
                          r'Kokku \(EUR\)\n(\d+[,.]\d{1,2})',
@@ -108,11 +127,14 @@ def main():
                          r'Kokku tasutud:\n(\d+[,.]\d{1,2})',
                          r'KMX Netosumma\n.*\n.*\n(\d+[,.]\d{1,2})',
                          r'Коккu\n(\d+[,.]\d{1,2})',
+                         r'BRUTO\n(\d+[,.]\d{1,2})',
                          ]
         re_sum_list = [r'Kokku ilma käibemaksuta:\n(\d+[,.]\d{1,2})',
+                       r'NETO\n(\d+[,.]\d{1,2})',
                        ]
 
         re_km_list = [r'Käibemaks 20%:\n(\d+[,.]\d{1,2})',
+                      r'KM\n(\d+[,.]\d{1,2})',
                       ]
 
         kuupaev = date_in_reciept(text)
