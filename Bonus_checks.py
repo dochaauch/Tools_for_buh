@@ -153,7 +153,7 @@ with open(file_, 'r') as csv_file:
         text_provodki_auto = ''
         subkonto_kulud = ''
         linie = l.split(',')
-        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, file_loc_1, file_loc2 = \
+        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, not_changed, change_log, file_loc_1, file_loc2 = \
             [s.strip() for s in linie]
         uus_nr_comb = my_reverse_date(kuupaev) + ' ' + arve_nr
         nr = kuupaev.split('.')[2] + kuupaev.split('.')[1]

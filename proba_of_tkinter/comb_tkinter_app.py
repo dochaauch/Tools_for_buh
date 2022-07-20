@@ -7,26 +7,43 @@ from google.cloud import vision
 import io
 import re
 import os
-from proba_to_read_check import date_in_reciept, find_firm, find_pattern_from_list, my_reverse_date, \
-    my_short_date, my_str_to_float
+
 
 from PIL import Image, ImageTk
 from tkinter import filedialog
 import tkinter.font as font
 import pandas as pd
 import datetime
+import csv
+
+import rule_arve
+import rule_reg
+import rule_total
+import rule_sum
+import rule_km
+from rule_template import (read_csv_to_dict_template, my_str_to_float, my_short_date, my_reverse_date,
+                           find_in_template_dict, find_template_sum, find_template_arve, find_template_date,
+                           parse_invoice_data,
+                           date_in_reciept, find_firm, find_pattern_from_list)
+
+from funct import create_toler_list, find_total_sum_km, find_km_no_sum, find_sum_no_km, take_only_total
 
 
 
-i_file = 0
+i_file = 0  #номер изображения
+jpg_nr = 0
 your_target_folder = r'/Users/docha/Google Диск/Metsa10/_cheki'
+template_path = r'/Users/docha/PycharmProjects/Tools_for_buh/proba_of_tkinter/rule_arve_template.csv'
 #file_ = r'/Users/docha/Google Диск/Metsa10/_cheki/211106_0812_Файл_000.jpg'
 
 list_of_files = [fn for fn in os.listdir(your_target_folder)
                   if any(fn.endswith(ext) for ext in ['.jpg',])]
 
 system_text = ''
-km_rate = '0.2'
+raw_text_output = ''
+output_text_first = ''
+
+km_rate_list = [0.2, 0.21, 0.09, 0.12]
 #если для windows, то поставить w, иначе m
 which_os = 'm'
 
@@ -36,8 +53,8 @@ def browse_button():
     global your_target_folder, list_of_files
     filename = filedialog.askdirectory()
     your_target_folder = filename
-    list_of_files = [fn for fn in os.listdir(your_target_folder)
-                  if any(fn.endswith(ext) for ext in ['.jpg',])]
+    list_of_files = sorted([fn for fn in os.listdir(your_target_folder)
+                  if any(fn.endswith(ext) for ext in ['.jpg',])])
     load_data(i_file, list_of_files, your_target_folder)
 
 
@@ -58,8 +75,10 @@ class PDFViewer(ScrolledText):
 
 
 def load_data(i_file, list_of_files, your_target_folder):
+    global raw_text_output
+    global system_text
+    global output_text_first
     file_ = f'{your_target_folder}/{list_of_files[i_file]}'
-
 
     # pdf field
     pdf1 = PDFViewer(root, width=70, height=25, spacing3=5, bg='blue')
@@ -67,7 +86,13 @@ def load_data(i_file, list_of_files, your_target_folder):
     pdf1.show(file_)
 
     # raw text field
-    raw_text_output = read_jpg_to_text(file_)
+    file_txt = f'{os.path.splitext(file_)[0]}.ocr'
+    nl = '\n\n'
+    if os.path.exists(file_txt):
+        raw_text_output, s_text = read_text_from_file(file_txt)
+        system_text += nl + s_text
+    else:
+        raw_text_output = read_jpg_to_text(file_)
     display_textbox(raw_text_output, 0, 1, root, 40, 70)
 
     # output text field label
@@ -78,11 +103,16 @@ def load_data(i_file, list_of_files, your_target_folder):
 
     # output text field
     file_pkl = f'{os.path.splitext(file_)[0]}.pkl'
+    nl = '\n\n'
     if os.path.exists(file_pkl):
-        output_text, system_text = read_dict_from_file(file_pkl)
+        output_text, s_text = read_dict_from_file(file_pkl)
+        nl = '\n\n'
+        system_text += nl + s_text
     else:
         output_text = processing_text(raw_text_output)
-        system_text = f'файл {file_} для изображения {i_file + 1} ТОЛЬКО ОТСКАНИРОВАН'
+        output_text_first = output_text
+        s_text = f'файл {file_} для изображения {i_file + 1} ТОЛЬКО ОТСКАНИРОВАН'
+        system_text += nl + s_text
     output_textbox = display_textbox(output_text, 3, 0, root, 8, 70)
 
     #system text
@@ -118,6 +148,20 @@ def load_data(i_file, list_of_files, your_target_folder):
     csv_text.set("save to csv")
     csv_btn.grid(column=2, row=4, sticky='nw', padx=50, columnspan=3)
 
+    # поле для ввода номера изображения
+    jpg_nr_textbox = display_textbox(i_file, 0, 4, root, 5, 5)
+
+    # button jpg nr
+    jpg_nr_text = tk.StringVar()
+    jpg_nr_btn = tk.Button(root, textvariable=jpg_nr_text,
+                           command=lambda:select_nr_jpg(select_nr_jpg(jpg_nr_textbox.get("1.0", "end-1c"))),
+                           font=myFont,
+                           highlightbackground='yellow', fg="blue", height=1,
+                           width=15, borderwidth=4, relief="ridge")
+    jpg_nr_text.set("select nr img")
+    jpg_nr_btn.grid(column=2, row=0, sticky='nw', padx=25, columnspan=2)
+
+
 
 def system_text_field(system_text, root):
     # system text field label
@@ -135,6 +179,12 @@ def load_dict_from_file(file_name):
     with open(file_name, 'rb') as file_dict:
         output_dict = pickle.load(file_dict)
         return output_dict
+
+
+def load_text_from_file(file_name):
+    with open(file_name, 'r') as file_text:
+        output_text = file_text.read()
+        return output_text
 
 
 def dict_to_csv(your_target_folder, exten):
@@ -161,24 +211,39 @@ def dict_to_csv(your_target_folder, exten):
     system_text_field(system_text, root)
 
 
+def select_nr_jpg(jpg_nr_):
+    global i_file
+    global system_text
+    global jpg_nr
+    i_file, jpg_nr = int(jpg_nr_), int(jpg_nr_)
+    system_text = ''
+    load_data(i_file, list_of_files, your_target_folder)
+    return i_file
+
+
 def right_arrow():
     global i_file
+    global system_text
     if i_file < len(list_of_files) - 1:
         i_file += 1
     else:
         i_file = 0
+    system_text = ''
     load_data(i_file, list_of_files, your_target_folder)
     return i_file
 
 
 def left_arrow():
     global i_file
+    global system_text
     if i_file == 0:
         i_file = len(list_of_files) - 1
     else:
         i_file -= 1
+    system_text = ''
     load_data(i_file, list_of_files, your_target_folder)
     return i_file
+
 
 
 def read_jpg_to_text(file_name):
@@ -196,12 +261,32 @@ def read_jpg_to_text(file_name):
 def save_dict_to_file(output):
     global system_text
     global list_of_files
+    global raw_text_output
+    global output_text_first
     file_ = f'{your_target_folder}/{list_of_files[i_file]}'
     filename, file_extension = os.path.splitext(file_)
+
     dict_data = {}
+    dict_of_changes = {}
     for line_ in output.splitlines():
         key, value = line_.split(': ')
         dict_data[key] = value
+    dict_data['not_changed'] = 'yes'
+    dict_data['change_log'] = dict_of_changes
+
+    first_dict = {}
+    needed_fields = ['kuupaev', 'firma', 'reg nr', 'arve nr', 'summa', 'km', 'summa kokku', ]
+    for line in output_text_first.splitlines():
+        k, v = line.split(': ')
+        if k in needed_fields:
+            first_dict[k] = v
+
+    #сверяем с первоначальным вводом
+    for k, v in first_dict.items():
+        if dict_data[k] != first_dict[k]:
+            dict_data['not_changed'] = 'no'
+            dict_of_changes[k] = [first_dict[k], dict_data[k]]
+
     if which_os == 'w':
         file_date_ = os.path.getctime(file_)
     else:
@@ -216,21 +301,34 @@ def save_dict_to_file(output):
     list_of_files[i_file] = f'{new_filename}.jpg'
     os.rename(file_, f'{your_target_folder}/{new_filename}.jpg')
     dict_file = f'{your_target_folder}/{new_filename}.pkl'
-    system_text = f'Файл {your_target_folder}/{new_filename}.pkl для изображения {i_file + 1} сохранен.'
+    text_file = f'{your_target_folder}/{new_filename}.ocr'
+    system_text = f'Файл {your_target_folder}/{new_filename}.pkl и файл ' \
+                  f'{your_target_folder}/{new_filename}.ocr для изображения {i_file + 1} сохранен.'
     with open(dict_file, 'wb') as pickle_file:
         pickle.dump(dict_data, pickle_file)
+
+    with open(text_file, 'w') as text_f:
+        text_f.writelines(raw_text_output)
 
     system_text_field(system_text, root)
 
 
 def read_dict_from_file(file_pkl):
-    global system_text
-    system_text = f'Файл {file_pkl} для изображения {i_file + 1} прочитан.'
-    system_text_field(system_text, root)
+    #global system_text
+    s_text = f'Файл {file_pkl} для изображения {i_file + 1} прочитан.'
+    #system_text_field(system_text, root)
     d = load_dict_from_file(file_pkl)
     d_list = [str(k) + ': ' + str(v) for k, v in d.items()]
     s_ = '\n'.join(d_list)
-    return s_, system_text
+    return s_, s_text
+
+
+def read_text_from_file(file_txt):
+    #global system_text
+    s_text = f'Файл {file_txt} для изображения {i_file + 1} загружен.'
+    #system_text_field(system_text, root)
+    s_ = load_text_from_file(file_txt)
+    return s_, s_text
 
 
 def display_textbox(content, ro, col, root, height, width):
@@ -251,81 +349,94 @@ def display_icon(url, row, column, stick, funct):
     icon_label.grid(column=column, row=row, sticky=stick)
 
 
+def check_if_template_or_regexp(text):
+    template_dict = read_csv_to_dict_template(template_path)
+    for templ_key in template_dict.keys():
+        if templ_key in text:
+            return 'template'
+        else:
+            return 'regexp'
+
+
 def processing_text(text):
-    re_arve_list = [r'Arve nr\.\s(.*)',
-                    r'SAATELEHT\s(.*)',
-                    r'ARVE NR\s(.*)',
-                    r'Arve\s*(.*)',
-                    r'Arve-Saateleht nr.:\s(.*)',
-                    r'Kviitung:\s(.*)',
-                    r'Sularahaarve nr.\s(.*)',
-                    r'TSEKK/ARVE\s(.*)',
-                    r'Saateleht-arve nr. (.*)',
-                    r'Ceks (.*)',
-                    r'čeks (.*)',
-                    ]
+    check_temp_reg = check_if_template_or_regexp(text)
+    if check_temp_reg == 'template':
+        template_dict = read_csv_to_dict_template(template_path)
+        arve_data = parse_invoice_data(text, template_dict)
+        nl = '\n'
+        output = f'kuupaev: {arve_data.arve_kuup}{nl}' \
+                 f'firma: {arve_data.firma}{nl}' \
+                 f'reg nr: {nl}' \
+                 f'arve nr: {arve_data.arve_nr}{nl}' \
+                 f'summa: {arve_data.summa_kta}{nl}' \
+                 f'km: {arve_data.km}{nl}' \
+                 f'summa kokku: {arve_data.total}{nl}' \
+                 f'kirjeldus: {nl}' \
+                 f'auto: {nl}'
+    else:
+        output = processing_text_regexp(text)
+    return output
 
-    re_reg_nr_list = [r'Reg.kood\s(\b\d{8}\b)',
-                      r'Reg.\s*nr\.*:*\s(\b\d{8}\b)',
-                      r'Reg:(\d{8})',
-                      r'REG.NR.:(\d{8})',
-                      r'Registrikood:\s*(\d{8})'
-                      ]
 
-    re_total_list = [r'KOKKU K.-ga\n(\d+[,.]\d{1,2})',
-                     r'Kokku \(EUR\)\n(\d+[,.]\d{1,2})',
-                     r'Kokku\n(\d+[,.]\d{1,2})',
-                     r'Kokku tasutud:\n(\d+[,.]\d{1,2})',
-                     r'KMX Netosumma\n.*\n.*\n(\d+[,.]\d{1,2})',
-                     r'Коккu\n(\d+[,.]\d{1,2})',
-                     r'Kokku € (\d+[,.]\d{1,2})',
-                     r'KOKKU EUR\n(\d+[,.]\d{1,2})',
-                     r'Summa kokku:\n(\d+[,.]\d{1,2})',
-                     r'KOKKU\n(\d+[,.]\d{1,2})',
-                     ]
+def processing_text_regexp(text):
+    #подключаем правила-списки для регулярных выражений
+    re_arve_list = rule_arve.re_arve_list
 
-    re_sum_list = [r'Kokku ilma käibemaksuta:\n(\d+[,.]\d{1,2})',
-                   r'KOKKU KM-ta\n(\d+[,.]\d{1,2})',
-                   r'KAIBEMAKSUTA\n(\d+[,.]\d{1,2})',
-                   r'Netosumma (20%) € (\d+[,.]\d{1,2})',
-                   r'KÄIBEMAKSUTA\n(\d+[,.]\d{1,2})',
-                   ]
+    re_reg_nr_list = rule_reg.re_reg_nr_list
 
-    re_km_list = [r'Käibemaks 20%:\n(\d+[,.]\d{1,2})',
-                  r'Käibemaks 20 %\n(\d+[,.]\d{1,2})',
-                  r'KM %\n(\d+[,.]\d{1,2})',
-                  r'Käibemaks (20%) (\d+[,.]\d{1,2})',
-                  r'Käibemaks kokku\n(\d+[,.]\d{1,2})',
-                  ]
+    #re_total_list = rule_total.re_total_list
+
+    #re_sum_list = rule_sum.re_sum_list
+
+    #re_km_list = rule_km.re_km_list
 
     kuupaev = date_in_reciept(text)
     if kuupaev:
         kuupaev = my_short_date(kuupaev)
+
     firma_nimetus = find_firm(text)
+    if firma_nimetus:
+        firma_nimetus = firma_nimetus.replace(':', ' ')
     reg_nr = find_pattern_from_list(text, re_reg_nr_list)
     arve_nr = find_pattern_from_list(text, re_arve_list)
+    if arve_nr:
+        arve_nr = arve_nr.replace(':', ' ')
 
-    total_sum = find_pattern_from_list(text, re_total_list)
-    if total_sum:
-        total_sum = my_str_to_float(total_sum)
-    if not total_sum:
-        total_sum = 0
+    a = re.findall(fr'(?<!\.)(?<!\d)([0-9]+\s?[,.]\d{{2}}(?!\.))', text)
+    # впереди нет точки и цифра (пытаемся исключить дату)
+    # (\d+[,.]\d{{2}} => одна или несколько цифр, запятая или точка, 2 цифры
+    # если после не идет точка (пытаемся исключить дату)
+    # собираем список всех цифр в нужном формате из текста
+    all_digits = sorted(list(map(lambda x: float(x.replace(',', '.').replace(' ', '')), a)), reverse=True)
+    print('all_digits', all_digits)
 
-    arve_sum = find_pattern_from_list(text, re_sum_list)
-    if arve_sum:
-        arve_sum = my_str_to_float(arve_sum)
-    if not arve_sum and total_sum:
-        arve_sum = round(total_sum / (1 + my_str_to_float(km_rate)), 2)
-    if arve_sum != round(total_sum / (1 + my_str_to_float(km_rate)), 2):
-        arve_sum = round(total_sum / (1 + my_str_to_float(km_rate)), 2)
+    flag_total = False
+    #пытаемсо нормально подобрать сумму и налог
+    total_sum, arve_sum, arve_km = find_total_sum_km(all_digits, km_rate_list)
+    #если не получилось - находим налог и общую сумму
+    if total_sum == 0:
+        total_sum, arve_sum, arve_km = find_km_no_sum(all_digits, km_rate_list)
+    #если не получилось - находим всего и высчитываем налог
+    if total_sum == 0:
+        total_sum, arve_sum, arve_km = find_sum_no_km(all_digits, km_rate_list)
+    #если ничего подобрать не получилось - считаем total максимальной суммой
+    if total_sum == 0:
+        total_sum = take_only_total(all_digits)
 
-    arve_km = find_pattern_from_list(text, re_km_list)
-    if arve_km:
-        arve_km = my_str_to_float(arve_km)
-    if not arve_km and total_sum:
-        arve_km = round(total_sum / (1 + my_str_to_float(km_rate)) * my_str_to_float(km_rate), 2)
-    if arve_km != round(total_sum / (1 + my_str_to_float(km_rate)) * my_str_to_float(km_rate), 2):
-        arve_km = round(total_sum / (1 + my_str_to_float(km_rate)) * my_str_to_float(km_rate), 2)
+    if total_sum != 0:
+        flag_total = True
+
+
+    if total_sum != arve_sum + arve_km and total_sum - (arve_sum + arve_km) < 0.02:
+        arve_sum += total_sum - (arve_sum + arve_km)
+        arve_sum = round(arve_sum, 2)
+
+    #если на счете только одна единственная сумма
+    if len(all_digits) < 2:
+        total_sum = all_digits[0]
+        flag_total = True
+
+
 
     nl = '\n'
     output = f'kuupaev: {kuupaev}{nl}' \

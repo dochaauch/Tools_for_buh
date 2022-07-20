@@ -1,0 +1,11 @@
+re_total_list = [r'KOKKU K.-ga\n(\d+[,.]\d{1,2})',
+                     r'Kokku \(EUR\)\n(\d+[,.]\d{1,2})',
+                     r'Kokku\n(\d+[,.]\d{1,2})',
+                     r'Kokku tasutud:\n(\d+[,.]\d{1,2})',
+                     r'KMX Netosumma\n.*\n.*\n(\d+[,.]\d{1,2})',
+                     r'Коккu\n(\d+[,.]\d{1,2})',
+                     r'Kokku € (\d+[,.]\d{1,2})',
+                     r'KOKKU EUR\n(\d+[,.]\d{1,2})',
+                     r'Summa kokku:\n(\d+[,.]\d{1,2})',
+                     r'KOKKU\n(\d+[,.]\d{1,2})',
+                     ]

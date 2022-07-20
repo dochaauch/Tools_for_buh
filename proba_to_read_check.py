@@ -84,7 +84,7 @@ def find_firm(text):
 
 def find_pattern_from_list(text, re_list):
     for re_l in re_list:
-        re_pattern = re.compile(f'{re_l}')
+        re_pattern = re.compile(f'{re_l}', flags=re.IGNORECASE)
         re_pattern_match_ = re_pattern.search(text)
         if re_pattern_match_:
             result = re_pattern_match_.group(1)

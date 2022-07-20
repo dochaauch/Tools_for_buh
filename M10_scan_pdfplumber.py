@@ -35,8 +35,8 @@ def main():
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2022'
-    begin_date = '01.05.22'
-    end_date = '31.05.22'
+    begin_date = '01.06.22'
+    end_date = '30.06.22'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 

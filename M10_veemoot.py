@@ -15,7 +15,7 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 #"30.04.21", "30.04.21". "VL"
 #"VL", "30.04.21","VE","K1","VE","0",0.00,"VE:2104: Metsa 10-1 K1","1:1:1:2","1:3",5
 
-lausendi_kuupaev = '31.05.22'
+lausendi_kuupaev = '30.06.22'
 nr = lausendi_kuupaev.split('.')[2] + lausendi_kuupaev.split('.')[1]
 
 first_row = f'"{lausendi_kuupaev}", "{lausendi_kuupaev}","VL"' + '\r\n'

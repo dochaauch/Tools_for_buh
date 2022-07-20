@@ -287,13 +287,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-05/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-06/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2022'
-    period_arve = f'"01.05.22","31.05.22","6H"' + '\r\n'
+    period_arve = f'"01.06.22","30.06.22","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 
