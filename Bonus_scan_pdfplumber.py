@@ -50,6 +50,7 @@ def read_pdf_to_text_in_folder(pdf_files):
             text = page.extract_text()
             key = os.path.basename(ap)
             text_dict[key] = text
+    #выводим текст прочитанного пдф
     #pprint.pprint(text_dict)
     return text_dict
 
@@ -92,7 +93,7 @@ def find_template_arve(v, str_):  # строка из словаря, возмо
 
 
 def find_template_date(v, str_, arve_kuup='', second_=''):
-    date_ = re.findall(fr'{str_}\s*(\d{{2}}\.\d{{2}}\.\d{{4}})', v)
+    date_ = re.findall(fr'{str_}\s*(\d{{2}}[\.|\/]\d{{2}}[\.|\/]\d{{2,4}})', v)
     if date_:
         date_ = date_[0]
     else:
@@ -100,11 +101,14 @@ def find_template_date(v, str_, arve_kuup='', second_=''):
         d1 = datetime.datetime.strptime(arve_kuup, '%d.%m.%y')
         date_ = d1 + datetime.timedelta(days=days_)
         date_ = date_.strftime('%d.%m.%y')
+    if not isinstance(date_, str):
+        date_ = next(item for item in date_ if item != "")
     return my_short_date(date_)
 
 
 def parse_invoice_data(arve_content, template_dict):
     #print('arve_content')
+    #вывести скан счета
     #pprint.pprint(arve_content)
     arve_data = {}
     folder_dict = {}
@@ -148,7 +152,8 @@ def parse_invoice_data(arve_content, template_dict):
                 #                             hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm)
                 arve_data[k] = arvedata(t_nimi, arve_nr, arve_kuup, arve_maks_kuup, summa_kta, km, total,
                                              hank_k, hank_s, hank_subk, kul_k, kul_s, kul_subk, kulud, komm, vol)
-                a = '*** обработано ' + arve_nr + ' ' + arve_kuup+ '/' + arve_maks_kuup + ' ' + str(total) + ' //' + str(summa_kta) + ' + ' + str(km)
+                #print("проверка", arve_nr, arve_kuup, arve_maks_kuup, str(total), str(summa_kta),  str(km))
+                a = '*** обработано ' + arve_nr + ' ' + arve_kuup + '/' + arve_maks_kuup + ' ' + str(total) + ' //' + str(summa_kta) + ' + ' + str(km)
         folder_dict[k] = a
 
     pprint.pprint(folder_dict)
@@ -287,13 +292,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-06/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-09/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2022'
-    period_arve = f'"01.06.22","30.06.22","6H"' + '\r\n'
+    period_arve = f'"01.09.22","30.09.22","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 

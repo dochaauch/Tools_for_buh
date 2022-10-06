@@ -1,27 +1,11 @@
-re_arve_list = [
-    r'(?:Saateleht|Arve|TSEKK|kviitung|Tšekk)'
-    r'(?! summa)\s?[-\/\\\s]?\s?(?:arve|saateleht)?\s?(?:nr|number)?\.?:?\s?#?(.*)',
-    #r'Arve-Saateleht nr.:\s(.*)',
-    #r'Arve nr\.\s(.*)',
-    #r'ARVE NR\s(.*)',
-    #r'Arve\s*(.*)',
+re_arve_name = ['Saateleht', 'Arve', 'TSEKK', 'Tšekk', 'Tšeki', 'kviitung', 'kviitungi',
+                'invoice',
+                'Izdruka', 'Dokuments', 'DOK', 'ceks', 'čeks', 'Rēķins', 'Kvits', 'Čeka', 'čekam',
+                ]
 
-    #r'Kviitung:\s(.*)',
+list_not_arve = ['väljastas', 'kuupäev', ]
 
-    #r'Saateleht-arve nr. (.*)',
-    #r'SAATELEHT\s(.*)',
-
-    #r'Sularahaarve nr.\s(.*)',
-    #r'TSEKK/ARVE\s(.*)',
-
-    r'(?:invoice)\s?(?:nr)?\.?:?\s?(.*)',
-
-    r'(?:Izdruka|ceks|čeks|Dokuments|DOK|Rēķins|Kvits)\b\.?\s?(?:nr)?\.?:?\s?#?(.*)',
-    #r'Ceks (.*)',
-    #r'čeks (.*)',
-    
-
-    ]
+arve_exclude_list = [r'\s\d{2,4}[.-]\d{2}[.-]\d{2,4}', ' Kase']
 
 
 '''
@@ -45,3 +29,26 @@ TSEKK/ARVE nr556
 DOK. #00009568
 
 '''
+
+re_arve_list = [
+    r'(?:Saateleht|Arve|TSEKK|kviitung|Tšekk)'
+    r'(?! summa)\s?[-\/\\\s]?\s?(?:arve|saateleht)?\s?(?:nr|number)?\.?:?\s?#?(.*)',
+    #r'Arve-Saateleht nr.:\s(.*)',
+    #r'Arve nr\.\s(.*)',
+    #r'ARVE NR\s(.*)',
+    #r'Arve\s*(.*)',
+
+    #r'Kviitung:\s(.*)',
+
+    #r'Saateleht-arve nr. (.*)',
+    #r'SAATELEHT\s(.*)',
+
+    #r'Sularahaarve nr.\s(.*)',
+    #r'TSEKK/ARVE\s(.*)',
+
+    r'(?:invoice)\s?(?:nr)?\.?:?\s?(.*)',
+
+    r'(?:Izdruka|ceks|čeks|Dokuments|DOK|Rēķins|Kvits)\b\.?\s?(?:nr)?\.?:?\s?#?(.*)',
+    #r'Ceks (.*)',
+    #r'čeks (.*)',
+    ]

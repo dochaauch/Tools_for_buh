@@ -14,7 +14,7 @@ with open(file_, 'r') as csv_file:
 
     for l in lines:
         linie = l.split(',')
-        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, not_changed, change_log, file_loc_1, file_loc2 =\
+        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, *oth =\
                 [s.strip() for s in linie]
         nr = kuupaev.split('.')[2] + kuupaev.split('.')[1]
         text_provodki_1 = (f'"AV", "{kuupaev}","21","","71","02",{summa},"{stamp} AV:{nr} {firma} {arve_nr} {kirjeldus}", '

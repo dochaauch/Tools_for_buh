@@ -1,0 +1,65 @@
+Class name	Teacher	Start	End	Link
+Введение	Ivan Chumak	13.09 09:30	13.09 12:45	Lesson is over
+Введение математика	Hayk Inanc	14.09 09:30	14.09 12:45	appear later
+Введение	Ivan Chumak	15.09 09:30	15.09 12:45	appear later
+Введение	Ivan Chumak	16.09 09:30	16.09 12:45	appear later
+Basic Java	Sukhanov Roman	19.09 09:30	19.09 12:45	appear later
+Linux	Ivan Chumak	19.09 13:00	19.09 14:30	appear later
+Basic FE		20.09 09:30	20.09 12:45	appear later
+Basic QA	Loginov Konstantin	20.09 13:00	20.09 14:30	appear later
+Basic Java	Sukhanov Roman	21.09 09:30	21.09 12:45	appear later
+Basic FE		22.09 09:30	22.09 12:45	appear later
+Basic QA	Loginov Konstantin	22.09 13:00	22.09 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	23.09 09:30	23.09 11:00	appear later
+Tasks FE	Anna Rusyaeva	23.09 11:15	23.09 12:45	appear later
+Tasks Java	Vedenin Viacheslav	23.09 13:00	23.09 14:30	appear later
+Basic Java	Sukhanov Roman	26.09 09:30	26.09 12:45	appear later
+Linux	Ivan Chumak	26.09 13:00	26.09 14:30	appear later
+Basic FE		27.09 09:30	27.09 12:45	appear later
+Basic QA	Loginov Konstantin	27.09 13:00	27.09 14:30	appear later
+Basic Java	Sukhanov Roman	28.09 09:30	28.09 12:45	appear later
+Basic FE		29.09 09:30	29.09 12:45	appear later
+Basic QA	Loginov Konstantin	29.09 13:00	29.09 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	30.09 09:30	30.09 11:00	appear later
+Tasks FE	Anna Rusyaeva	30.09 11:15	30.09 12:45	appear later
+Tasks Java	Vedenin Viacheslav	30.09 13:00	30.09 14:30	appear later
+Basic FE		04.10 09:30	04.10 12:45	appear later
+Basic QA	Loginov Konstantin	04.10 13:00	04.10 14:30	appear later
+Basic Java	Sukhanov Roman	05.10 09:30	05.10 12:45	appear later
+Basic FE		06.10 09:30	06.10 12:45	appear later
+Basic QA	Loginov Konstantin	06.10 13:00	06.10 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	07.10 09:30	07.10 11:00	appear later
+Tasks FE	Anna Rusyaeva	07.10 11:15	07.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	07.10 13:00	07.10 14:30	appear later
+Basic Java	Sukhanov Roman	10.10 09:30	10.10 12:45	appear later
+Linux	Ivan Chumak	10.10 13:00	10.10 14:30	appear later
+Basic FE		11.10 09:30	11.10 12:45	appear later
+Basic QA	Loginov Konstantin	11.10 13:00	11.10 14:30	appear later
+Basic Java	Sukhanov Roman	12.10 09:30	12.10 12:45	appear later
+Basic FE		13.10 09:30	13.10 12:45	appear later
+Basic QA	Loginov Konstantin	13.10 13:00	13.10 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	14.10 09:30	14.10 11:00	appear later
+Tasks FE	Anna Rusyaeva	14.10 11:15	14.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	14.10 13:00	14.10 14:30	appear later
+Basic Java	Sukhanov Roman	17.10 09:30	17.10 12:45	appear later
+Linux	Ivan Chumak	17.10 13:00	17.10 14:30	appear later
+Basic FE		18.10 09:30	18.10 12:45	appear later
+Basic QA	Loginov Konstantin	18.10 13:00	18.10 14:30	appear later
+Basic Java	Sukhanov Roman	19.10 09:30	19.10 12:45	appear later
+Basic FE		20.10 09:30	20.10 12:45	appear later
+Basic QA	Loginov Konstantin	20.10 13:00	20.10 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	21.10 09:30	21.10 11:00	appear later
+Tasks FE	Anna Rusyaeva	21.10 11:15	21.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	21.10 13:00	21.10 14:30	appear later
+Basic Java	Sukhanov Roman	24.10 09:30	24.10 12:45	appear later
+Linux	Ivan Chumak	24.10 13:00	24.10 14:30	appear later
+Basic FE		25.10 09:30	25.10 12:45	appear later
+Basic QA	Loginov Konstantin	25.10 13:00	25.10 14:30	appear later
+Basic Java	Sukhanov Roman	26.10 09:30	26.10 12:45	appear later
+Basic FE		27.10 09:30	27.10 12:45	appear later
+Basic QA	Loginov Konstantin	27.10 13:00	27.10 14:30	appear later
+Tasks Linux	Andrei Bakhtinov	28.10 09:30	28.10 11:00	appear later
+Tasks FE	Anna Rusyaeva	28.10 11:15	28.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	28.10 13:00	28.10 14:30	appear later
+Basic Java	Sukhanov Roman	31.10 09:30	31.10 12:45	appear later
+Linux	Ivan Chumak	31.10 13:00	31.10 14:30	appear later

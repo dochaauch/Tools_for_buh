@@ -21,7 +21,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2022-06    /"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2022-09/"
 
 pdf_files = []
 

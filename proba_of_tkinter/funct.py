@@ -15,6 +15,11 @@ def create_toler_list(digit, toler):
 
 
 def find_s_k_lists(i, km_rate):
+    '''
+    :param i: число из общего списка всех цифр на чеке
+    :param km_rate: ставка налога
+    :return: расчитываем в обратную сторону сумму без налога и налог
+    '''
     s = round(i / (1 + km_rate), 2)
     k = round(s * km_rate, 2)
     list_s = create_toler_list(s, 2)
@@ -40,13 +45,56 @@ def find_total_sum_km(all_digits, km_rate_list):
     return 0.0, 0.0, 0.0
 
 
-def find_km_no_sum(all_digits, km_rate_list):
+def find_km_no_sum(all_digits, i, list_k, s):
+    #for i in all_digits:
+    #    for km_rate in km_rate_list:
+            # если налог находит, но не находит сумму без налога
+    #        s, k, list_s, list_k = find_s_k_lists(i, km_rate)
     print('ищем налог без суммы', all_digits)
+    if i != 0.0 and i > 1 and any(k_ in list_k for k_ in all_digits):
+        total_sum = i
+        arve_km = [k_ for k_ in all_digits if k_ in list_k][0]
+        print('вариант с налогом', total_sum, arve_km)
+        if arve_km + s == i:
+            arve_sum = s
+        else:
+            arve_sum = i - arve_km
+        return total_sum, arve_sum, arve_km
+    return 0.0, 0.0, 0.0
+
+
+def find_sum_no_km(all_digits, i, list_s, k):
+
+    # for i in all_digits:
+    #     for km_rate in km_rate_list:
+    #         # если сумму находит, но не находит налог
+    #         s, k, list_s, list_k = find_s_k_lists(i, km_rate)
+    print('ищем сумму без налога', all_digits)
+    if i != 0.0 and i > 1 and any(s_ in list_s for s_ in all_digits):
+        total_sum = i
+        arve_sum = [s_ for s_ in all_digits if s_ in list_s][0]
+        print('вариант суммы, но нет налога', total_sum, arve_sum)
+        if arve_sum + k == i:
+            arve_km = k
+        else:
+            arve_km = i - arve_sum
+        return total_sum, arve_sum, arve_km
+    return 0.0, 0.0, 0.0
+
+
+def find_if_no_km_or_sum(all_digits, km_rate_list):
+    '''
+    :param all_digits: список всех чисел
+    :param km_rate_list: список ставки налога
+    :return:
+    '''
     for i in all_digits:
         for km_rate in km_rate_list:
             # если налог находит, но не находит сумму без налога
             s, k, list_s, list_k = find_s_k_lists(i, km_rate)
+
             if i != 0.0 and i > 1 and any(k_ in list_k for k_ in all_digits):
+                print('ищем налог без суммы', all_digits)
                 total_sum = i
                 arve_km = [k_ for k_ in all_digits if k_ in list_k][0]
                 print('вариант с налогом', total_sum, arve_km)
@@ -55,16 +103,9 @@ def find_km_no_sum(all_digits, km_rate_list):
                 else:
                     arve_sum = i - arve_km
                 return total_sum, arve_sum, arve_km
-    return 0.0, 0.0, 0.0
 
-
-def find_sum_no_km(all_digits, km_rate_list):
-    print('ищем сумму без налога', all_digits)
-    for i in all_digits:
-        for km_rate in km_rate_list:
-            # если сумму находит, но не находит налог
-            s, k, list_s, list_k = find_s_k_lists(i, km_rate)
             if i != 0.0 and i > 1 and any(s_ in list_s for s_ in all_digits):
+                print('ищем сумму без налога', all_digits)
                 total_sum = i
                 arve_sum = [s_ for s_ in all_digits if s_ in list_s][0]
                 print('вариант суммы, но нет налога', total_sum, arve_sum)
@@ -77,5 +118,11 @@ def find_sum_no_km(all_digits, km_rate_list):
 
 
 def take_only_total(all_digits):
-    return all_digits[0]
+    try:
+        return all_digits[0]
+    except:
+        return 0.0
+
+
+
 

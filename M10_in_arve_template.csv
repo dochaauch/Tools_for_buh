@@ -5,4 +5,7 @@ LAHEVESI,Kokku  \(EUR\),Arve nr\.,Kuupäev:,Maksetähtaeg:,,76,,3:1,22,,7:1:1,ve
 Lahevesi AS,Arve kokku: \(EUR\) ,Arve nr: ,Kuupäev: ,Maksekuupäev: ,,76,,3:1,22,,7:1:1,vesi,komm,kanalisatsioon,
 Eesti Keskkonnateenused,Kokku :,ARVE NR.,Arve kuupäev:,Maksetähtaeg:,,76,,3:13,22,,7:5:1,prügi,komm,,
 Realty Group,Kokku tasuda:,Arve-Saateleht nr\.:,Kuupäev:,Tähtaeg:,,76,,3:18,20,,6:8,materjalid,,,
-Ehitusvedu OÜ,Tasuda EUR ,Arve nr.:,Kuupäev:,Tähtaeg:,,76,,3:23,21,,5:1:40,koristus,,,
+Ehitusvedu OÜ,Tasuda EUR,unr.:,Kuupäev:,Tähtaeg:,,76,,3:23,21,,5:1:40,koristus,,,
+Gentor,Arve kokku  \(EUR\),Arve nr,Kuupäev,Maksetähtpäev ,,76,,3:24,21,,5:1:9,santehnilised tööd,,,
+ALBENSIS,Kokku EUR:,Arve nr.,"Arve nr.\s*\d*\s*(.*)",Maksetähtaeg: ,,76,,3:25,21,,5:1:41,väike remont,,,
+KEILA BETOON,Kokku \(EUR\) ,ARVE ,"ARVE\s*\d*\s*(.*)",Tähtaeg ,,76,,3:9,21,,5:1:25,killustik,,,

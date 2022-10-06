@@ -16,3 +16,4 @@ AVORON OÜ,Итого \(EUR\):,НДС:,"Итого\, включая НДС \(EUR
 EESTI KIIRTOIT OÜ,Итого \(EUR\):,НДС:,"Итого\, включая НДС \(EUR\):",Счет № ,Дата: ,Дата: ,,60,12,6:158,26,,8:6:34:1,Bolt,1
 Hobby Hall GROUP OÜ,Summa KM-ta,Käibemaks 20%,Kokku koos KM-ga,MÜÜGIARVE NR. ,Kuupäev: ,Kuupäev: ,,60,1,6:158,26,,8:6:26:5,muud,1
 Tele2 Eesti,ARVE KOKKU:,"ARVE KOKKU: \d+[.,]\d{2}","ARVE KOKKU: \d+[.,]\d{2}\s*\d+[.,]\d{2}",Arve nr: ,kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1
+TELE2 EESTI,Arve kokku:,"Arve kokku: \d+[.,]\d{2}\s€\s","Arve kokku: \d+[.,]\d{2}\s€\s\d+[.,]\d{2}\s€\s",Arve nr: ,Arve kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1

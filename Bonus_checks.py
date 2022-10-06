@@ -153,25 +153,28 @@ with open(file_, 'r') as csv_file:
         text_provodki_auto = ''
         subkonto_kulud = ''
         linie = l.split(',')
-        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, not_changed, change_log, file_loc_1, file_loc2 = \
+
+        n, kuupaev, firma, regnr, arve_nr, summa_ilma, km, summa, kirjeldus, auto, not_changed, *oth = \
             [s.strip() for s in linie]
+
         uus_nr_comb = my_reverse_date(kuupaev) + ' ' + arve_nr
         nr = kuupaev.split('.')[2] + kuupaev.split('.')[1]
         firma = umlaut_to_string(firma)
         firma_ = firma[:7].strip()
         kirjeldus = umlaut_to_string(kirjeldus)
-        kirjeldus_ = kirjeldus[:7].strip()
-        arve_nr = arve_nr[:10].strip()
+        kirjeldus_ = kirjeldus.split(' ')[-1]
+        arve_nr = arve_nr[-10:].strip()
 
-
-        if 'bensiin' in kirjeldus:
-            subkonto_kulud = '8:6:25:2'
-        if 'arvuti' in kirjeldus:
-            subkonto_kulud = '8:6:11:24'
-        if 'pesula' in kirjeldus:
-            subkonto_kulud = '8:6:25:6'
-        if 'auto' in kirjeldus:
-            subkonto_kulud = '8:6:25:7'
+        dict_for_subkonto = {'bensiin': '8:6:25:2',
+                             'arvuti': '8:6:11:24',
+                             'pesula': '8:6:25:6',
+                             'auto': '8:6:25:7',
+                             'puhastusvahend': '8:6:28:1',
+                             'ruum': '8:6:1:10'}
+        for k in dict_for_subkonto.keys():
+            if k in kirjeldus:
+                subkonto_kulud = dict_for_subkonto.get(k)
+                break
 
 
         if auto == '1':
@@ -186,6 +189,7 @@ with open(file_, 'r') as csv_file:
         nimi_df, df_sub, text_provodki_new_sub, subkonto_jur = find_subkonto_in_db(df_sub, nimi_df, uus_nr_comb, summa_, '',
                                                                            arve_nr,kuupaev, summa_ilma_, km_,
                                                                            firma, '', subkonto_yes, year_arve)
+
         if text_provodki_new_sub:
             text_provodki_new_sub = text_provodki_new_sub + '\r\n'
         text_provodki_1 = (

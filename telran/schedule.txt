@@ -1,0 +1,44 @@
+Class name	Teacher	Start	End	Link
+Java consultation	Sara Niiazakhunova	01.10 13:00	01.10 14:30	appear later
+FE consultation	Movsisyan Tigran	01.10 13:00	01.10 14:30	appear later
+Linux consultation	Andrei Bakhtinov	01.10 13:00	01.10 14:30	appear later
+Basic FE	Asatryan Roza	04.10 09:30	04.10 12:45	appear later
+Basic QA	Irina Baker	04.10 13:00	04.10 14:30	appear later
+Basic Java	Egorov Mikhail	05.10 09:30	05.10 12:45	appear later
+Tasks Linux	Andrei Bakhtinov	05.10 13:00	05.10 14:30	appear later
+Linux	Ivan Chumak	06.10 11:15	06.10 12:45	appear later
+Basic QA	Irina Baker	06.10 13:00	06.10 14:30	appear later
+Basic FE	Asatryan Roza	07.10 09:30	07.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	07.10 13:00	07.10 14:30	appear later
+Basic Java	Egorov Mikhail	10.10 09:30	10.10 12:45	appear later
+Tasks FE	Andrei Bakhtinov	10.10 13:00	10.10 14:30	appear later
+Basic FE	Asatryan Roza	11.10 09:30	11.10 12:45	appear later
+Basic QA	Irina Baker	11.10 13:00	11.10 14:30	appear later
+Basic Java	Egorov Mikhail	12.10 09:30	12.10 12:45	appear later
+Tasks Linux	Andrei Bakhtinov	12.10 13:00	12.10 14:30	appear later
+Linux	Ivan Chumak	13.10 11:15	13.10 12:45	appear later
+Basic QA	Irina Baker	13.10 13:00	13.10 14:30	appear later
+Basic FE	Asatryan Roza	14.10 09:30	14.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	14.10 13:00	14.10 14:30	appear later
+Basic Java	Egorov Mikhail	17.10 09:30	17.10 12:45	appear later
+Tasks FE	Andrei Bakhtinov	17.10 13:00	17.10 14:30	appear later
+Basic FE	Asatryan Roza	18.10 09:30	18.10 12:45	appear later
+Basic QA	Irina Baker	18.10 13:00	18.10 14:30	appear later
+Basic Java	Egorov Mikhail	19.10 09:30	19.10 12:45	appear later
+Tasks Linux	Andrei Bakhtinov	19.10 13:00	19.10 14:30	appear later
+Linux	Ivan Chumak	20.10 11:15	20.10 12:45	appear later
+Basic QA	Irina Baker	20.10 13:00	20.10 14:30	appear later
+Basic FE	Asatryan Roza	21.10 09:30	21.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	21.10 13:00	21.10 14:30	appear later
+Basic Java	Egorov Mikhail	24.10 09:30	24.10 12:45	appear later
+Tasks FE	Andrei Bakhtinov	24.10 13:00	24.10 14:30	appear later
+Basic FE	Asatryan Roza	25.10 09:30	25.10 12:45	appear later
+Basic QA	Irina Baker	25.10 13:00	25.10 14:30	appear later
+Basic Java	Egorov Mikhail	26.10 09:30	26.10 12:45	appear later
+Tasks Linux	Andrei Bakhtinov	26.10 13:00	26.10 14:30	appear later
+Linux	Ivan Chumak	27.10 11:15	27.10 12:45	appear later
+Basic QA	Irina Baker	27.10 13:00	27.10 14:30	appear later
+Basic FE	Asatryan Roza	28.10 09:30	28.10 12:45	appear later
+Tasks Java	Vedenin Viacheslav	28.10 13:00	28.10 14:30	appear later
+Basic Java	Egorov Mikhail	31.10 09:30	31.10 12:45	appear later
+Tasks FE	Andrei Bakhtinov	31.10 13:00	31.10 14:30	appear later

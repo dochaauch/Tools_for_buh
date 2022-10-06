@@ -4,6 +4,13 @@ import re
 import datetime
 import pprint
 from collections import namedtuple, defaultdict
+from icecream import ic
+
+def time_format():
+    return f'{datetime.datetime.now()}|> '
+ic.configureOutput(prefix=time_format, includeContext=True)
+
+
 
 
 def read_csv_to_dict_template(path):
@@ -64,6 +71,7 @@ def find_template_date(v, str_, arve_kuup='', second_=''):
     return my_short_date(date_)
 
 
+
 def parse_invoice_data(arve_content, template_dict):
     #print('arve_content')
     #pprint.pprint(arve_content)
@@ -116,6 +124,10 @@ def parse_invoice_data(arve_content, template_dict):
 
 
 def date_in_reciept(text):
+    day_, month_, year_ = '', '', ''
+    select_func = 0
+
+    # 02.12.22 или 02.12.2022
     date_reciept = re.compile(r'''
     \b
     [0123]\d  #день
@@ -124,34 +136,67 @@ def date_in_reciept(text):
     [\.\/\\-]        # разделитель
     \d{2,4}  #год
     ''', re.VERBOSE)
+    kuupaev_1 = date_reciept.search(text)
+    if kuupaev_1:
+        select_func = 1
+        print(1, kuupaev_1)
 
-    kuupaev = date_reciept.search(text)
-    if kuupaev:
-        kuupaev = kuupaev.group()
+    # 2022.12.22 или 22.12.31
+    # date_reciept2 = re.compile(r'''
+    # \d{2,4}  #год
+    # \-        # разделитель
+    # [01]\d  #месяц
+    # \-        # разделитель
+    # \[0123]\d\b  #день
+    # ''', re.VERBOSE)
+    date_reciept2 = re.compile(r'\b\d{2,4}[-\/\\][01]\d[-\/\\][0123]\d\b', re.VERBOSE)
+    kuupaev_2 = date_reciept2.search(text)
+    if kuupaev_2:
+        select_func = 2
+        print(2, kuupaev_2)
+
+    # 9. mai 2022
+    kuu_dict = {'jaanuar': '01',
+                'veebruar': '02',
+                'märts': '03',
+                'aprill': '04',
+                'mai': '05',
+                'juuni': '06',
+                'juuli': '07',
+                'august': '08',
+                'september': '09',
+                'oktoober': '10',
+                'november': '11',
+                'detsember': '12'}
+    for kuu in kuu_dict.keys():
+        date_reciept_est = re.compile(rf'\b\d{{1,2}}.?\s?{kuu}\s?\d{{2,4}}', re.VERBOSE)
+        kuupaev_3 = date_reciept_est.search(text)
+        if kuupaev_3:
+            select_func = 3
+            print(3, kuupaev_3)
+            break
+
+    if select_func == 1: #02.12.22 или 02.12.2022
+        kuupaev = kuupaev_1.group()
         day_, month_, year_ = re.split(r'[./\-]', kuupaev)
-        if len(year_) == 4:
-            kuupaev = f'{day_}.{month_}.{year_[2:4]}'
-        else:
-            kuupaev = f'{day_}.{month_}.{year_}'
+    elif select_func == 2: #2022.12.22 или 22.12.31
+        kuupaev = kuupaev_2.group()
+        year_, month_, day_ = re.split(r'[./\-]', kuupaev)
+    elif select_func == 3: #9. mai 2022
+        kuupaev_3 = kuupaev_3.group()
+
+        #day_, month_year = kuupaev_3.split('.')
+        day_, month_year = re.split('.|\s', kuupaev_3, 1)
+        month_ = kuu_dict.get(kuu)
+        year_ = month_year.split(' ')[-1]
+    if len(day_) == 1:
+        day_ = f'0{day_}'
+    if len(year_) == 4:
+        kuupaev = f'{day_}.{month_}.{year_[2:4]}'
     else:
-        # date_reciept2 = re.compile(r'''
-        # \d{2,4}  #год
-        # \-        # разделитель
-        # [01]\d  #месяц
-        # \-        # разделитель
-        # \[0123]\d  #день
-        # ''', re.VERBOSE)
-        date_reciept2 = re.compile(r'\b\d{2,4}[-\/\\][01]\d[-\/\\][0123]\d', re.VERBOSE)
-        kuupaev = date_reciept2.search(text)
-        if kuupaev:
-            kuupaev = kuupaev.group()
-            year_, month_, day_ = re.split(r'[./\-]', kuupaev)
-            if len(year_) == 4:
-                kuupaev = f'{day_}.{month_}.{year_[2:4]}'
-            else:
-                kuupaev = f'{day_}.{month_}.{year_}'
-        else:
-            kuupaev = ''
+        kuupaev = f'{day_}.{month_}.{year_}'
+    if not kuupaev:
+        kuupaev = ''
     return kuupaev
 
 
@@ -161,7 +206,7 @@ def find_firm(text):
     print(text)
     firma_name = re.compile(r'''
     (^(?:(?!Maksja: |Klient: |Ostja: ).)*
-    \b(Osaühing|AS|OÜ|MTÜ|UÜ|FIE|SIA|OU|Akciju|VAS|CÜ|QU|Ühistu|00|CU|DO)\b
+    \b(Osaühing|AS|OÜ|MTÜ|UÜ|FIE|SIA|OU|Akciju|VAS|CÜ|QU|Ühistu|00|CU|DO|OD|UO)\b
     .*(?<!omand)$)
     ''', flags=re.VERBOSE | re.MULTILINE )
     #(?<!,|:|.)
@@ -184,7 +229,7 @@ def find_firm(text):
                 break
 
     incorr_abbr = {'CÜ': 'OÜ', 'QU': 'OÜ', '00': 'OÜ', 'CU': 'OÜ', ':': '', 'OU': 'OÜ',
-                   'DO': 'OÜ'}
+                   'DO': 'OÜ', 'OD': 'OÜ', 'UO': 'UÜ'}
     for k, v in incorr_abbr.items():
         if firma_nimetus:
             if k in firma_nimetus:
@@ -197,6 +242,43 @@ def find_pattern_from_list(text, re_list):
         re_pattern = re.compile(f'{re_l}', flags=re.IGNORECASE | re.MULTILINE)
         re_pattern_match_ = re_pattern.search(text)
         if re_pattern_match_:
+            print('все найденные данные', re_pattern.findall(text))
             result = re_pattern_match_.group(1)
             return result
+
+
+def find_arve_pattern_from_list(text, re_arve_name, list_not_arve, arve_exclude_list):
+    dict_result = {}
+    result_process_list = []
+    for arve_name in re_arve_name:
+        arve_pattern = \
+            rf'(?:{arve_name})\b(?! summa)\s?[-\/\\\s]?\s?(?:arve|saateleht)?\.?\s?(?:nr|number|numurs)?\.?:?\s?#?(.*)'
+
+        re_pattern = re.compile(f'{arve_pattern}', flags=re.IGNORECASE | re.MULTILINE)
+        results = re_pattern.findall(text)
+
+        if results:
+            #убираем позиции, которые содержат следующие слова
+            #list_not_arve = ['väljastas', 'kuupäev', ]
+            filter_func = lambda s: not any(x in s for x in list_not_arve)
+            results = list(filter(filter_func, results))
+            dict_result[arve_name] = results
+    if len(dict_result) == 0:
+        result = ''
+    else:
+        try:
+            result = list(dict_result.values())[0][0]
+            #образаем даты, кассу из номера счета
+            #arve_exclude_list = [r'\s\d{2,4}[.-]\d{2}[.-]\d{2,4}', ' Kase']
+            for arve_excl in arve_exclude_list:
+                arve_excl_pattern = rf'(.*){arve_excl}'
+                re_result = re.compile(arve_excl_pattern)
+                if re_result.findall(result):
+                    result_ = re_result.findall(result)
+                    result_process_list.extend(result_)
+                    result = result_process_list[0]
+            ic(dict_result, dict_result.values(), list(dict_result.values()), list(dict_result.values())[0], ''.join(result))
+        except:
+            result = ''
+    return ''.join(result)
 

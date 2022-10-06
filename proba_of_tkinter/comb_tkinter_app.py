@@ -7,6 +7,8 @@ from google.cloud import vision
 import io
 import re
 import os
+from icecream import ic
+import json
 
 
 from PIL import Image, ImageTk
@@ -24,9 +26,9 @@ import rule_km
 from rule_template import (read_csv_to_dict_template, my_str_to_float, my_short_date, my_reverse_date,
                            find_in_template_dict, find_template_sum, find_template_arve, find_template_date,
                            parse_invoice_data,
-                           date_in_reciept, find_firm, find_pattern_from_list)
+                           date_in_reciept, find_firm, find_pattern_from_list, find_arve_pattern_from_list)
 
-from funct import create_toler_list, find_total_sum_km, find_km_no_sum, find_sum_no_km, take_only_total
+from funct import create_toler_list, find_total_sum_km, find_km_no_sum, find_sum_no_km, take_only_total, find_if_no_km_or_sum
 
 
 
@@ -36,6 +38,11 @@ your_target_folder = r'/Users/docha/Google Диск/Metsa10/_cheki'
 template_path = r'/Users/docha/PycharmProjects/Tools_for_buh/proba_of_tkinter/rule_arve_template.csv'
 #file_ = r'/Users/docha/Google Диск/Metsa10/_cheki/211106_0812_Файл_000.jpg'
 
+
+def time_format():
+    return f'{datetime.datetime.now()}|> '
+ic.configureOutput(prefix=time_format, includeContext=True)
+
 list_of_files = [fn for fn in os.listdir(your_target_folder)
                   if any(fn.endswith(ext) for ext in ['.jpg',])]
 
@@ -44,8 +51,7 @@ raw_text_output = ''
 output_text_first = ''
 
 km_rate_list = [0.2, 0.21, 0.09, 0.12]
-#если для windows, то поставить w, иначе m
-which_os = 'm'
+
 
 def browse_button():
     # Allow user to select a directory and store it in global var
@@ -107,12 +113,12 @@ def load_data(i_file, list_of_files, your_target_folder):
     if os.path.exists(file_pkl):
         output_text, s_text = read_dict_from_file(file_pkl)
         nl = '\n\n'
-        system_text += nl + s_text
     else:
         output_text = processing_text(raw_text_output)
-        output_text_first = output_text
+
         s_text = f'файл {file_} для изображения {i_file + 1} ТОЛЬКО ОТСКАНИРОВАН'
-        system_text += nl + s_text
+    output_text_first = output_text
+    system_text += nl + s_text
     output_textbox = display_textbox(output_text, 3, 0, root, 8, 70)
 
     #system text
@@ -177,14 +183,12 @@ def system_text_field(system_text, root):
 
 def load_dict_from_file(file_name):
     with open(file_name, 'rb') as file_dict:
-        output_dict = pickle.load(file_dict)
-        return output_dict
+        return pickle.load(file_dict)
 
 
 def load_text_from_file(file_name):
     with open(file_name, 'r') as file_text:
-        output_text = file_text.read()
-        return output_text
+        return file_text.read()
 
 
 def dict_to_csv(your_target_folder, exten):
@@ -253,9 +257,12 @@ def read_jpg_to_text(file_name):
     image = vision.Image(content=content)
     response = client.text_detection(image=image)
     #pprint.pprint(response)
-    output = response.text_annotations[0].description
     #print(response.text_annotations[0].description)
-    return output
+    return response.text_annotations[0].description
+
+
+def convert_timestamp_(time_, format_='%y%m%d_%H%M'):
+    return datetime.datetime.fromtimestamp(time_).strftime(format_)
 
 
 def save_dict_to_file(output):
@@ -265,19 +272,27 @@ def save_dict_to_file(output):
     global output_text_first
     file_ = f'{your_target_folder}/{list_of_files[i_file]}'
     filename, file_extension = os.path.splitext(file_)
+    ic(file_, filename, file_extension)
 
     dict_data = {}
     dict_of_changes = {}
-    for line_ in output.splitlines():
-        key, value = line_.split(': ')
-        dict_data[key] = value
-    dict_data['not_changed'] = 'yes'
-    dict_data['change_log'] = dict_of_changes
-
     first_dict = {}
+
+    for line_ in output.splitlines():
+        key, value = line_.split(': ', 1)
+        dict_data[key] = value
+    dict_data['not_changed'] = dict_data.get('not_changed', 'yes')
+    dict_data['change_log'] = dict_data.get('change_log', dict_of_changes)
+
+    if dict_data['change_log']:
+        dict_of_changes = json.loads(dict_data['change_log'].replace("'", '"'))
+    #dict_data['not_changed'] = 'yes'
+    #dict_data['change_log'] = dict_of_changes
+
+
     needed_fields = ['kuupaev', 'firma', 'reg nr', 'arve nr', 'summa', 'km', 'summa kokku', ]
     for line in output_text_first.splitlines():
-        k, v = line.split(': ')
+        k, v = line.split(': ', 1)
         if k in needed_fields:
             first_dict[k] = v
 
@@ -287,19 +302,27 @@ def save_dict_to_file(output):
             dict_data['not_changed'] = 'no'
             dict_of_changes[k] = [first_dict[k], dict_data[k]]
 
-    if which_os == 'w':
-        file_date_ = os.path.getctime(file_)
-    else:
-        file_date_ = os.stat(file_).st_birthtime
-    file_date = datetime.datetime.fromtimestamp(file_date_).strftime('%y%m%d_%H%M')
+
+    list_of_times = [os.path.getmtime(file_),
+                     os.path.getctime(file_),
+                     os.stat(file_).st_birthtime]
+    file_date = convert_timestamp_(min(filter(None, list_of_times)))
+
     new_filename = f"{my_reverse_date(dict_data['kuupaev'])}_{dict_data['firma']}_{dict_data['arve nr']}_{file_date}"
 
     special_char_map = {ord('/'): '-', ord('"'): '', }
     new_filename = new_filename.translate(special_char_map)
 
     #print(new_filename)
+    #ic(list_of_files)
     list_of_files[i_file] = f'{new_filename}.jpg'
     os.rename(file_, f'{your_target_folder}/{new_filename}.jpg')
+
+    if os.path.exists(f'{filename}.ocr'):
+        os.remove(f'{filename}.ocr')
+    if os.path.exists(f'{filename}.pkl'):
+        os.remove(f'{filename}.pkl')
+
     dict_file = f'{your_target_folder}/{new_filename}.pkl'
     text_file = f'{your_target_folder}/{new_filename}.ocr'
     system_text = f'Файл {your_target_folder}/{new_filename}.pkl и файл ' \
@@ -384,6 +407,8 @@ def processing_text_regexp(text):
 
     re_reg_nr_list = rule_reg.re_reg_nr_list
 
+    re_arve_name = rule_arve.re_arve_name
+
     #re_total_list = rule_total.re_total_list
 
     #re_sum_list = rule_sum.re_sum_list
@@ -398,7 +423,9 @@ def processing_text_regexp(text):
     if firma_nimetus:
         firma_nimetus = firma_nimetus.replace(':', ' ')
     reg_nr = find_pattern_from_list(text, re_reg_nr_list)
-    arve_nr = find_pattern_from_list(text, re_arve_list)
+    #arve_nr = find_pattern_from_list(text, re_arve_list)
+    arve_nr = find_arve_pattern_from_list(text, re_arve_name, rule_arve.list_not_arve,
+                                          rule_arve.arve_exclude_list)
     if arve_nr:
         arve_nr = arve_nr.replace(':', ' ')
 
@@ -411,14 +438,15 @@ def processing_text_regexp(text):
     print('all_digits', all_digits)
 
     flag_total = False
-    #пытаемсо нормально подобрать сумму и налог
+    #пытаемся нормально подобрать сумму и налог
     total_sum, arve_sum, arve_km = find_total_sum_km(all_digits, km_rate_list)
     #если не получилось - находим налог и общую сумму
     if total_sum == 0:
-        total_sum, arve_sum, arve_km = find_km_no_sum(all_digits, km_rate_list)
+        #total_sum, arve_sum, arve_km = find_km_no_sum(all_digits, km_rate_list)
+        total_sum, arve_sum, arve_km = find_if_no_km_or_sum(all_digits, km_rate_list)
     #если не получилось - находим всего и высчитываем налог
-    if total_sum == 0:
-        total_sum, arve_sum, arve_km = find_sum_no_km(all_digits, km_rate_list)
+    #if total_sum == 0:
+    #    total_sum, arve_sum, arve_km = find_sum_no_km(all_digits, km_rate_list)
     #если ничего подобрать не получилось - считаем total максимальной суммой
     if total_sum == 0:
         total_sum = take_only_total(all_digits)
@@ -433,8 +461,11 @@ def processing_text_regexp(text):
 
     #если на счете только одна единственная сумма
     if len(all_digits) < 2:
-        total_sum = all_digits[0]
-        flag_total = True
+        try:
+            total_sum = all_digits[0]
+            flag_total = True
+        except:
+            total_sum = 0.0
 
 
 
