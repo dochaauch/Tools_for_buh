@@ -1,9 +1,9 @@
-name.csv
+M10/name.csv
 confid.py
 /venv/
 /.idea/
 output.txt
-aux.pdf
+M10/aux.pdf
 **/venv/**
 **/.idea/**
 .gitignore
@@ -14,4 +14,6 @@ PythonMagick/
 z_*.py
 zzz_*.py
 proba_of_tkinter/__pycache__/
+./PythonMagick/
+Bonus/__pycache__/
 

@@ -1,44 +1,20 @@
 Subject,Start Date,Start Time,End Date,End Time,All day event,Description,Location,Private
-Java consultation / Sara Niiazakhunova,10/01/22,1:00 PM,10/01/22,2:30 PM,FALSE,Java consultation / Sara Niiazakhunova,TELRAN,FALSE
-FE consultation / Movsisyan Tigran,10/01/22,1:00 PM,10/01/22,2:30 PM,FALSE,FE consultation / Movsisyan Tigran,TELRAN,FALSE
-Linux consultation / Andrei Bakhtinov,10/01/22,1:00 PM,10/01/22,2:30 PM,FALSE,Linux consultation / Andrei Bakhtinov,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/04/22,9:30 AM,10/04/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,10/04/22,1:00 PM,10/04/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/05/22,9:30 AM,10/05/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks Linux / Andrei Bakhtinov,10/05/22,1:00 PM,10/05/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
-Linux / Ivan Chumak,10/06/22,11:15 AM,10/06/22,12:45 PM,FALSE,Linux / Ivan Chumak,TELRAN,FALSE
-Basic QA / Irina Baker,10/06/22,1:00 PM,10/06/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/07/22,9:30 AM,10/07/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,10/07/22,1:00 PM,10/07/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/10/22,9:30 AM,10/10/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks FE / Andrei Bakhtinov,10/10/22,1:00 PM,10/10/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/11/22,9:30 AM,10/11/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,10/11/22,1:00 PM,10/11/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/12/22,9:30 AM,10/12/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks Linux / Andrei Bakhtinov,10/12/22,1:00 PM,10/12/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
-Linux / Ivan Chumak,10/13/22,11:15 AM,10/13/22,12:45 PM,FALSE,Linux / Ivan Chumak,TELRAN,FALSE
-Basic QA / Irina Baker,10/13/22,1:00 PM,10/13/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/14/22,9:30 AM,10/14/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,10/14/22,1:00 PM,10/14/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/17/22,9:30 AM,10/17/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks FE / Andrei Bakhtinov,10/17/22,1:00 PM,10/17/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/18/22,9:30 AM,10/18/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,10/18/22,1:00 PM,10/18/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/19/22,9:30 AM,10/19/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks Linux / Andrei Bakhtinov,10/19/22,1:00 PM,10/19/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
-Linux / Ivan Chumak,10/20/22,11:15 AM,10/20/22,12:45 PM,FALSE,Linux / Ivan Chumak,TELRAN,FALSE
-Basic QA / Irina Baker,10/20/22,1:00 PM,10/20/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/21/22,9:30 AM,10/21/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,10/21/22,1:00 PM,10/21/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/24/22,9:30 AM,10/24/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks FE / Andrei Bakhtinov,10/24/22,1:00 PM,10/24/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/25/22,9:30 AM,10/25/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,10/25/22,1:00 PM,10/25/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/26/22,9:30 AM,10/26/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks Linux / Andrei Bakhtinov,10/26/22,1:00 PM,10/26/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
-Linux / Ivan Chumak,10/27/22,11:15 AM,10/27/22,12:45 PM,FALSE,Linux / Ivan Chumak,TELRAN,FALSE
-Basic QA / Irina Baker,10/27/22,1:00 PM,10/27/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic FE / Asatryan Roza,10/28/22,9:30 AM,10/28/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,10/28/22,1:00 PM,10/28/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
-Basic Java / Egorov Mikhail,10/31/22,9:30 AM,10/31/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks FE / Andrei Bakhtinov,10/31/22,1:00 PM,10/31/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
+Тестирование программ - почему это важно / Batyrev Maxim,10/31/22,3:00 PM,10/31/22,4:30 PM,FALSE,Тестирование программ - почему это важно / Batyrev Maxim,TELRAN,FALSE
+Basic FE / Asatryan Roza,11/01/22,9:00 AM,11/01/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
+Basic QA / Irina Baker,11/01/22,1:00 PM,11/01/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
+Нейронные сети и их применение / Vladislav Mozheiko,11/01/22,7:00 PM,11/01/22,8:30 PM,FALSE,Нейронные сети и их применение / Vladislav Mozheiko,TELRAN,FALSE
+Basic Java / Egorov Mikhail,11/02/22,9:30 AM,11/02/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Linux / Andrei Bakhtinov,11/02/22,1:00 PM,11/02/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
+Java & C memory / Yuli Reiri,11/02/22,7:00 PM,11/02/22,8:30 PM,FALSE,Java & C memory / Yuli Reiri,TELRAN,FALSE
+Basic QA / Irina Baker,11/03/22,1:00 PM,11/03/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
+JS fetch (get and post) / Mikhail Kuznetsov,11/03/22,7:00 PM,11/03/22,8:30 PM,FALSE,JS fetch (get and post) / Mikhail Kuznetsov,TELRAN,FALSE
+Basic FE / Asatryan Roza,11/04/22,9:00 AM,11/04/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
+Tasks Java / Vedenin Viacheslav,11/04/22,1:00 PM,11/04/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
+Basic Java / Egorov Mikhail,11/07/22,9:30 AM,11/07/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
+Tasks FE / Andrei Bakhtinov,11/07/22,1:00 PM,11/07/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
+Basic FE / Asatryan Roza,11/08/22,9:00 AM,11/08/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
+Basic QA / Irina Baker,11/08/22,1:00 PM,11/08/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
+Basic Java / Egorov Mikhail,11/09/22,9:30 AM,11/09/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
+Basic QA / Irina Baker,11/10/22,1:00 PM,11/10/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
+Basic FE / Asatryan Roza,11/11/22,9:30 AM,11/11/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
+Tasks Java / Vedenin Viacheslav,11/11/22,1:00 PM,11/11/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE

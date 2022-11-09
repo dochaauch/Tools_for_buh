@@ -3,7 +3,7 @@ Armina,Summa km-ta 20%,Käibemaks 20%,Arve kokku  \(EUR\),Arve nr,Kuupäev,Makse
 Oculus,Summa ilma käibemaksuta,Käibemaks 20%,Tasumisele kuulub,ARVE NR,Kuupäev:,Makse tähtpäev:,,60,1,6:89,26,,8:6:31,tolketeenused
 Elisa Teleteenused AS,Summa käibemaksuta,Käibemaks \(20%\),Arve summa,100130171,5a-13,maakond,,60,1,6:76,26,,8:6:11:14,internet
 Must Have,Kokku maksustatav summa \(EUR\):,Käibemaks \(20%\),Kokku maksustatav summa \(EUR\):,ARVE NR.,Kuupäev:,Maksetähtaeg:,,60,1,6:39,26,,8:6:31,tolketeenused
-Compic,Kokku \/ Всего,20.00% Käibemaks \/VAT,Summa \/ К Оплате,Arve \/ Счет: ,Kuupäev \/ Дата:,Maksetähtaeg / Срок оплаты:,,60,1,6:20,26,,8:6:11:1,bonus.ee
+Compic OÜ,Kokku \/ Всего,20.00% Käibemaks \/VAT,Summa \/ К Оплате,"(Ettemaksu)?[Aa]rve \/ (Предварительный)?\s?[Сс]чет: ",Kuupäev \/ Дата:,Maksetähtaeg / Срок оплаты:,,60,1,6:20,26,,8:6:11:1,bonus.ee,1
 WAVED STRIPES,KOGUSUMMA,Käibemaks \(20%\),KOGUSUMMA,ARVE - SAATELEHT Nr. ,MAKSETINGIMUSED\n,Maksetähtaeg,päeva,60,1,6:86,26,,8:6:31,tolketeenused
 Bolt Operations,Итого \(EUR\):,НДС 20%:,"Итого\, включая НДС \(EUR\):",Счёт № ,Дата: ,Дата: ,,60,12,6:154,26,,8:6:34:1,Bolt,1
 YULIA LEKHESOO FIE,Итого \(EUR\):,НДС:,"Итого\, включая НДС \(EUR\):",Счет № ,Дата: ,Дата: ,,60,12,6:155,26,,8:6:34:1,Bolt,1
@@ -17,3 +17,4 @@ EESTI KIIRTOIT OÜ,Итого \(EUR\):,НДС:,"Итого\, включая НД
 Hobby Hall GROUP OÜ,Summa KM-ta,Käibemaks 20%,Kokku koos KM-ga,MÜÜGIARVE NR. ,Kuupäev: ,Kuupäev: ,,60,1,6:158,26,,8:6:26:5,muud,1
 Tele2 Eesti,ARVE KOKKU:,"ARVE KOKKU: \d+[.,]\d{2}","ARVE KOKKU: \d+[.,]\d{2}\s*\d+[.,]\d{2}",Arve nr: ,kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1
 TELE2 EESTI,Arve kokku:,"Arve kokku: \d+[.,]\d{2}\s€\s","Arve kokku: \d+[.,]\d{2}\s€\s\d+[.,]\d{2}\s€\s",Arve nr: ,Arve kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1
+Eesti Gaas,Summa käibemaksuta 20%,Käibemaks 20%,Summa käibemaksuga,ARVE nr ,Kuupäev,Maksetähtaeg,,60,1,6:182,26,,8:6:1:9,gaasikatlaholdus,1

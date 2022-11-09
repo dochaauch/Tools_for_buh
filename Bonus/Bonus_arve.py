@@ -21,7 +21,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2022-09/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2022-10/"
 
 pdf_files = []
 
@@ -62,7 +62,7 @@ pdfWriter.write(pdfOutput)
 pdfOutput.close()
 
 
-raw = parser.from_file("/Users/docha/PycharmProjects/Tools_for_buh/merged.pdf")
+raw = parser.from_file("/merged.pdf")
 raw = raw['content']
 
 special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
@@ -95,7 +95,7 @@ lists = re.split(r'\n', raw)
 #         print(l)
 #конец работающего кода
 
-f = open('output.txt', 'w')
+f = open('../output.txt', 'w')
 first_row = ('D' + '\t' + 'kuupaev'.ljust(10) + '\t' + 'maksepaev' + '\t' + 'klient'.ljust(20)
      + '\t' + 'arve'.center(8) + '\t' + 'kokku'.center(9) + '\t' + 'kaibemaks'.center(7) + '\t' + 'KMta'.ljust(7) + '\n')
 f.write(first_row)

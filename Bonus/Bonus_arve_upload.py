@@ -36,7 +36,7 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
 year_arve = '2022'
-period_arve = f'"01.09.22","30.09.22","1L"' + '\r\n'
+period_arve = f'"01.10.22","31.10.22","1L"' + '\r\n'
 
 
 dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
@@ -62,7 +62,7 @@ df_sub['arve'] = df_sub['arve'].astype('int64')
 
 text_provodki = ''
 
-with open('output.txt', 'r') as f:
+with open('../output.txt', 'r') as f:
     lines = f.readlines()[1:-2]  # пропускаем строку с заголовками и 2 последние итоговые строки
     for line in lines:
         # собираем данные со счетов

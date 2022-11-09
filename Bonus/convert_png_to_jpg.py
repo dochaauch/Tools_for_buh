@@ -19,8 +19,8 @@ def search_all_png_files(your_target_folder):
 
 
 def main():
-    your_target_folder = '/Users/docha/Google Диск/Bonus/_cheki'
-    #your_target_folder = '/Users/docha/Google Диск/Metsa10/_cheki'
+    #your_target_folder = '/Users/docha/Google Диск/Bonus/_cheki'
+    your_target_folder = '/Users/docha/Google Диск/Metsa10/_cheki'
     file_dict = search_all_png_files(your_target_folder)
     for old_path, file_date in file_dict.items():
         old_name = os.path.basename(old_path).split('.')[0]

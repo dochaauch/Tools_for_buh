@@ -1,21 +1,11 @@
-import pdfplumber
-from collections import namedtuple, defaultdict
+from collections import defaultdict
 import re
 import os
 import pprint
-from decimal import Decimal
-import csv
 import datetime
-from simpledbf import Dbf5
-import pandas as pd
-import numpy as np
-import datetime
-from Bonus_scan_pdfplumber import (read_csv_to_dict_template, find_all_files,
-                                   read_pdf_to_text_in_folder, my_str_to_float,
-                                   my_short_date, my_reverse_date,
-                                   find_in_template_dict, find_template_sum,
-                                   find_template_arve, find_template_date,
-                                   parse_invoice_data)
+from Bonus.Bonus_scan_pdfplumber import (read_csv_to_dict_template, find_all_files,
+                                         read_pdf_to_text_in_folder, my_reverse_date,
+                                         parse_invoice_data)
 
 
 def find_all_files(your_target_folder):
@@ -35,8 +25,8 @@ def main():
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2022'
-    begin_date = '01.08.22'
-    end_date = '31.08.22'
+    begin_date = '01.10.22'
+    end_date = '31.10.22'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 
