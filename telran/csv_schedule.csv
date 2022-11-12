@@ -1,20 +1,58 @@
 Subject,Start Date,Start Time,End Date,End Time,All day event,Description,Location,Private
-Тестирование программ - почему это важно / Batyrev Maxim,10/31/22,3:00 PM,10/31/22,4:30 PM,FALSE,Тестирование программ - почему это важно / Batyrev Maxim,TELRAN,FALSE
-Basic FE / Asatryan Roza,11/01/22,9:00 AM,11/01/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,11/01/22,1:00 PM,11/01/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Нейронные сети и их применение / Vladislav Mozheiko,11/01/22,7:00 PM,11/01/22,8:30 PM,FALSE,Нейронные сети и их применение / Vladislav Mozheiko,TELRAN,FALSE
-Basic Java / Egorov Mikhail,11/02/22,9:30 AM,11/02/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks Linux / Andrei Bakhtinov,11/02/22,1:00 PM,11/02/22,2:30 PM,FALSE,Tasks Linux / Andrei Bakhtinov,TELRAN,FALSE
-Java & C memory / Yuli Reiri,11/02/22,7:00 PM,11/02/22,8:30 PM,FALSE,Java & C memory / Yuli Reiri,TELRAN,FALSE
-Basic QA / Irina Baker,11/03/22,1:00 PM,11/03/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-JS fetch (get and post) / Mikhail Kuznetsov,11/03/22,7:00 PM,11/03/22,8:30 PM,FALSE,JS fetch (get and post) / Mikhail Kuznetsov,TELRAN,FALSE
-Basic FE / Asatryan Roza,11/04/22,9:00 AM,11/04/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,11/04/22,1:00 PM,11/04/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
-Basic Java / Egorov Mikhail,11/07/22,9:30 AM,11/07/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Tasks FE / Andrei Bakhtinov,11/07/22,1:00 PM,11/07/22,2:30 PM,FALSE,Tasks FE / Andrei Bakhtinov,TELRAN,FALSE
-Basic FE / Asatryan Roza,11/08/22,9:00 AM,11/08/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Basic QA / Irina Baker,11/08/22,1:00 PM,11/08/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic Java / Egorov Mikhail,11/09/22,9:30 AM,11/09/22,12:45 PM,FALSE,Basic Java / Egorov Mikhail,TELRAN,FALSE
-Basic QA / Irina Baker,11/10/22,1:00 PM,11/10/22,2:30 PM,FALSE,Basic QA / Irina Baker,TELRAN,FALSE
-Basic FE / Asatryan Roza,11/11/22,9:30 AM,11/11/22,12:45 PM,FALSE,Basic FE / Asatryan Roza,TELRAN,FALSE
-Tasks Java / Vedenin Viacheslav,11/11/22,1:00 PM,11/11/22,2:30 PM,FALSE,Tasks Java / Vedenin Viacheslav,TELRAN,FALSE
+Java consultation / Egorov Mikhail,11/12/22,1:00 PM,11/12/22,2:30 PM,FALSE,Java consultation / Egorov Mikhail,TELRAN,FALSE
+FE consultation / Movsisyan Tigran,11/12/22,1:00 PM,11/12/22,2:30 PM,FALSE,FE consultation / Movsisyan Tigran,TELRAN,FALSE
+Linux consultation / Andrei Bakhtinov,11/12/22,3:00 PM,11/12/22,4:30 PM,FALSE,Linux consultation / Andrei Bakhtinov,TELRAN,FALSE
+Java / Egorov Mikhail,11/14/22,9:30 AM,11/14/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/14/22,1:00 PM,11/14/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Обзор инструментов для тестирования программного обеспечения / Palekhov Vladislav,11/14/22,3:00 PM,11/14/22,4:30 PM,FALSE,Обзор инструментов для тестирования программного обеспечения / Palekhov Vladislav,TELRAN,FALSE
+git / Luchnikov Vladimir,11/15/22,9:30 AM,11/15/22,12:45 PM,FALSE,git / Luchnikov Vladimir,TELRAN,FALSE
+Docker и его место в CI/CD workflow / Dzhaunat Garipov,11/15/22,3:00 PM,11/15/22,4:30 PM,FALSE,Docker и его место в CI/CD workflow / Dzhaunat Garipov,TELRAN,FALSE
+Java / Egorov Mikhail,11/16/22,9:30 AM,11/16/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/16/22,1:00 PM,11/16/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,11/17/22,9:30 AM,11/17/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Работа fetch - встроенной утилиты для асинхронной загрузки данных / Mikhail Kuznetsov,11/17/22,7:00 PM,11/17/22,8:30 PM,FALSE,Работа fetch - встроенной утилиты для асинхронной загрузки данных / Mikhail Kuznetsov,TELRAN,FALSE
+Consultations Java / Yuli Reiri,11/18/22,9:30 AM,11/18/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Java consultation / Egorov Mikhail,11/19/22,1:00 PM,11/19/22,2:30 PM,FALSE,Java consultation / Egorov Mikhail,TELRAN,FALSE
+FE consultation / Movsisyan Tigran,11/19/22,1:00 PM,11/19/22,2:30 PM,FALSE,FE consultation / Movsisyan Tigran,TELRAN,FALSE
+Linux consultation / Andrei Bakhtinov,11/19/22,3:00 PM,11/19/22,4:30 PM,FALSE,Linux consultation / Andrei Bakhtinov,TELRAN,FALSE
+Java / Egorov Mikhail,11/21/22,9:30 AM,11/21/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/21/22,1:00 PM,11/21/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+git / Luchnikov Vladimir,11/22/22,9:30 AM,11/22/22,12:45 PM,FALSE,git / Luchnikov Vladimir,TELRAN,FALSE
+Java / Egorov Mikhail,11/23/22,9:30 AM,11/23/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/23/22,1:00 PM,11/23/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,11/24/22,9:30 AM,11/24/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Consultations Java / Yuli Reiri,11/25/22,9:30 AM,11/25/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Java consultation / Egorov Mikhail,11/26/22,1:00 PM,11/26/22,2:30 PM,FALSE,Java consultation / Egorov Mikhail,TELRAN,FALSE
+FE consultation / Movsisyan Tigran,11/26/22,1:00 PM,11/26/22,2:30 PM,FALSE,FE consultation / Movsisyan Tigran,TELRAN,FALSE
+Linux consultation / Andrei Bakhtinov,11/26/22,3:00 PM,11/26/22,4:30 PM,FALSE,Linux consultation / Andrei Bakhtinov,TELRAN,FALSE
+Java / Egorov Mikhail,11/28/22,9:30 AM,11/28/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/28/22,1:00 PM,11/28/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+git / Luchnikov Vladimir,11/29/22,9:30 AM,11/29/22,12:45 PM,FALSE,git / Luchnikov Vladimir,TELRAN,FALSE
+Java / Egorov Mikhail,11/30/22,9:30 AM,11/30/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,11/30/22,1:00 PM,11/30/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,12/01/22,9:30 AM,12/01/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Consultations Java / Yuli Reiri,12/02/22,9:30 AM,12/02/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Java / Egorov Mikhail,12/05/22,9:30 AM,12/05/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/05/22,1:00 PM,12/05/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+General Technologies / ,12/06/22,9:30 AM,12/06/22,12:45 PM,FALSE,General Technologies / ,TELRAN,FALSE
+Java / Egorov Mikhail,12/07/22,9:30 AM,12/07/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/07/22,1:00 PM,12/07/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,12/08/22,9:30 AM,12/08/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Consultations Java / Yuli Reiri,12/09/22,9:30 AM,12/09/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Tasks GenTech / ,12/09/22,1:00 PM,12/09/22,2:30 PM,FALSE,Tasks GenTech / ,TELRAN,FALSE
+Java / Egorov Mikhail,12/12/22,9:30 AM,12/12/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/12/22,1:00 PM,12/12/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+General Technologies / ,12/13/22,9:30 AM,12/13/22,12:45 PM,FALSE,General Technologies / ,TELRAN,FALSE
+Java / Egorov Mikhail,12/14/22,9:30 AM,12/14/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/14/22,1:00 PM,12/14/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,12/15/22,9:30 AM,12/15/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Consultations Java / Yuli Reiri,12/16/22,9:30 AM,12/16/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Tasks GenTech / ,12/16/22,1:00 PM,12/16/22,2:30 PM,FALSE,Tasks GenTech / ,TELRAN,FALSE
+Java / Egorov Mikhail,12/19/22,9:30 AM,12/19/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/19/22,1:00 PM,12/19/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+General Technologies / ,12/20/22,9:30 AM,12/20/22,12:45 PM,FALSE,General Technologies / ,TELRAN,FALSE
+Java / Egorov Mikhail,12/21/22,9:30 AM,12/21/22,12:45 PM,FALSE,Java / Egorov Mikhail,TELRAN,FALSE
+Tasks Java / Grigorev Aleksander,12/21/22,1:00 PM,12/21/22,2:30 PM,FALSE,Tasks Java / Grigorev Aleksander,TELRAN,FALSE
+Algorithms / Batyrev Maxim,12/22/22,9:30 AM,12/22/22,12:45 PM,FALSE,Algorithms / Batyrev Maxim,TELRAN,FALSE
+Consultations Java / Yuli Reiri,12/23/22,9:30 AM,12/23/22,12:45 PM,FALSE,Consultations Java / Yuli Reiri,TELRAN,FALSE
+Tasks GenTech / ,12/23/22,1:00 PM,12/23/22,2:30 PM,FALSE,Tasks GenTech / ,TELRAN,FALSE

@@ -1,20 +1,58 @@
 Class name	Teacher	Start	End	Link
-Тестирование программ - почему это важно	Batyrev Maxim	31.10 15:00	31.10 16:30	appear later
-Basic FE	Asatryan Roza	01.11 09:00	01.11 12:45	appear later
-Basic QA	Irina Baker	01.11 13:00	01.11 14:30	appear later
-Нейронные сети и их применение	Vladislav Mozheiko	01.11 19:00	01.11 20:30	appear later
-Basic Java	Egorov Mikhail	02.11 09:30	02.11 12:45	appear later
-Tasks Linux	Andrei Bakhtinov	02.11 13:00	02.11 14:30	appear later
-Java & C memory	Yuli Reiri	02.11 19:00	02.11 20:30	appear later
-Basic QA	Irina Baker	03.11 13:00	03.11 14:30	appear later
-JS fetch (get and post)	Mikhail Kuznetsov	03.11 19:00	03.11 20:30	appear later
-Basic FE	Asatryan Roza	04.11 09:00	04.11 12:45	appear later
-Tasks Java	Vedenin Viacheslav	04.11 13:00	04.11 14:30	appear later
-Basic Java	Egorov Mikhail	07.11 09:30	07.11 12:45	appear later
-Tasks FE	Andrei Bakhtinov	07.11 13:00	07.11 14:30	appear later
-Basic FE	Asatryan Roza	08.11 09:00	08.11 12:45	appear later
-Basic QA	Irina Baker	08.11 13:00	08.11 14:30	appear later
-Basic Java	Egorov Mikhail	09.11 09:30	09.11 12:45	appear later
-Basic QA	Irina Baker	10.11 13:00	10.11 14:30	appear later
-Basic FE	Asatryan Roza	11.11 09:30	11.11 12:45	appear later
-Tasks Java	Vedenin Viacheslav	11.11 13:00	11.11 14:30	appear later
+Java consultation	Egorov Mikhail	12.11 13:00	12.11 14:30	appear later
+FE consultation	Movsisyan Tigran	12.11 13:00	12.11 14:30	appear later
+Linux consultation	Andrei Bakhtinov	12.11 15:00	12.11 16:30	appear later
+Java	Egorov Mikhail	14.11 09:30	14.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	14.11 13:00	14.11 14:30	appear later
+Обзор инструментов для тестирования программного обеспечения	Palekhov Vladislav	14.11 15:00	14.11 16:30	appear later
+git	Luchnikov Vladimir	15.11 09:30	15.11 12:45	appear later
+Docker и его место в CI/CD workflow	Dzhaunat Garipov	15.11 15:00	15.11 16:30	appear later
+Java	Egorov Mikhail	16.11 09:30	16.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	16.11 13:00	16.11 14:30	appear later
+Algorithms	Batyrev Maxim	17.11 09:30	17.11 12:45	appear later
+Работа fetch - встроенной утилиты для асинхронной загрузки данных	Mikhail Kuznetsov	17.11 19:00	17.11 20:30	appear later
+Consultations Java	Yuli Reiri	18.11 09:30	18.11 12:45	appear later
+Java consultation	Egorov Mikhail	19.11 13:00	19.11 14:30	appear later
+FE consultation	Movsisyan Tigran	19.11 13:00	19.11 14:30	appear later
+Linux consultation	Andrei Bakhtinov	19.11 15:00	19.11 16:30	appear later
+Java	Egorov Mikhail	21.11 09:30	21.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	21.11 13:00	21.11 14:30	appear later
+git	Luchnikov Vladimir	22.11 09:30	22.11 12:45	appear later
+Java	Egorov Mikhail	23.11 09:30	23.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	23.11 13:00	23.11 14:30	appear later
+Algorithms	Batyrev Maxim	24.11 09:30	24.11 12:45	appear later
+Consultations Java	Yuli Reiri	25.11 09:30	25.11 12:45	appear later
+Java consultation	Egorov Mikhail	26.11 13:00	26.11 14:30	appear later
+FE consultation	Movsisyan Tigran	26.11 13:00	26.11 14:30	appear later
+Linux consultation	Andrei Bakhtinov	26.11 15:00	26.11 16:30	appear later
+Java	Egorov Mikhail	28.11 09:30	28.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	28.11 13:00	28.11 14:30	appear later
+git	Luchnikov Vladimir	29.11 09:30	29.11 12:45	appear later
+Java	Egorov Mikhail	30.11 09:30	30.11 12:45	appear later
+Tasks Java	Grigorev Aleksander	30.11 13:00	30.11 14:30	appear later
+Algorithms	Batyrev Maxim	01.12 09:30	01.12 12:45	appear later
+Consultations Java	Yuli Reiri	02.12 09:30	02.12 12:45	appear later
+Java	Egorov Mikhail	05.12 09:30	05.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	05.12 13:00	05.12 14:30	appear later
+General Technologies		06.12 09:30	06.12 12:45	appear later
+Java	Egorov Mikhail	07.12 09:30	07.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	07.12 13:00	07.12 14:30	appear later
+Algorithms	Batyrev Maxim	08.12 09:30	08.12 12:45	appear later
+Consultations Java	Yuli Reiri	09.12 09:30	09.12 12:45	appear later
+Tasks GenTech		09.12 13:00	09.12 14:30	appear later
+Java	Egorov Mikhail	12.12 09:30	12.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	12.12 13:00	12.12 14:30	appear later
+General Technologies		13.12 09:30	13.12 12:45	appear later
+Java	Egorov Mikhail	14.12 09:30	14.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	14.12 13:00	14.12 14:30	appear later
+Algorithms	Batyrev Maxim	15.12 09:30	15.12 12:45	appear later
+Consultations Java	Yuli Reiri	16.12 09:30	16.12 12:45	appear later
+Tasks GenTech		16.12 13:00	16.12 14:30	appear later
+Java	Egorov Mikhail	19.12 09:30	19.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	19.12 13:00	19.12 14:30	appear later
+General Technologies		20.12 09:30	20.12 12:45	appear later
+Java	Egorov Mikhail	21.12 09:30	21.12 12:45	appear later
+Tasks Java	Grigorev Aleksander	21.12 13:00	21.12 14:30	appear later
+Algorithms	Batyrev Maxim	22.12 09:30	22.12 12:45	appear later
+Consultations Java	Yuli Reiri	23.12 09:30	23.12 12:45	appear later
+Tasks GenTech		23.12 13:00	23.12 14:30	appear later

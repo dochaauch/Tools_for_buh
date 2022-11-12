@@ -15,6 +15,7 @@ from PIL import Image, ImageTk
 from tkinter import filedialog
 import tkinter.font as font
 import pandas as pd
+from tabulate import tabulate
 import datetime
 import csv
 
@@ -50,7 +51,7 @@ system_text = ''
 raw_text_output = ''
 output_text_first = ''
 
-km_rate_list = [0.2, 0.21, 0.09, 0.12]
+km_rate_list = [0.2, 0.21, 0.09, 0.12, 0.19]
 
 
 def browse_button():
@@ -205,9 +206,12 @@ def dict_to_csv(your_target_folder, exten):
         list_of_dict.append(a)
 
     df = pd.DataFrame(list_of_dict)
+    print("Вывод не обработанной таблицы,без перевода в числовые значения")
+    print(tabulate(df))
     df["summa kokku"] = pd.to_numeric(df["summa kokku"])
     df["summa"] = pd.to_numeric(df["summa"])
     df["km"] = pd.to_numeric(df["km"])
+    print("Вывод того,что сохраняется в csv, уже обработанный")
     print(df.to_string())
     df.to_excel(f'{your_target_folder}/combine.xlsx')
     df.to_csv(f'{your_target_folder}/combine.csv')
