@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
+import chardet
 
 start_date = "13.09.22"
-end_date = "30.09.22"
+end_date = "22.02.23"
 
 s_date_object = datetime.strptime(start_date, '%d.%m.%y')
 e_date_object = datetime.strptime(end_date, '%d.%m.%y')
@@ -13,8 +14,13 @@ for i in range(days_ + 1):
     current_date_string = current_date.strftime('%Y%m%d')
     list_of_date.append(current_date_string)
 
+with open("my_file.ics", "rb") as fin:
+    rawdata = fin.read()
+    result = chardet.detect(rawdata)
+    encoding = result['encoding']
+    print(encoding)
 
-with open("my_file.ics", "r") as fin:
+with open("my_file.ics", "r", encoding=encoding) as fin:
     with open("changed.ics", "w") as fout:
         delete_event_flag = 0
         for line in fin:

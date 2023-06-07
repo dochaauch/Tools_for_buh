@@ -206,7 +206,7 @@ def find_firm(text):
     print(text)
     firma_name = re.compile(r'''
     (^(?:(?!Maksja: |Klient: |Ostja: ).)*
-    \b(Osaühing|AS|OÜ|MTÜ|UÜ|FIE|SIA|OU|Akciju|VAS|CÜ|QU|Ühistu|00|CU|DO|OD|UO)\b
+    \b(Osaühing|AS|OÜ|MTÜ|UÜ|FIE|SIA|OU|Akciju|VAS|CÜ|QU|Ühistu|00|CU|DO|OD|UO|s.r.o.)\b
     .*(?<!omand)$)
     ''', flags=re.VERBOSE | re.MULTILINE )
     #(?<!,|:|.)

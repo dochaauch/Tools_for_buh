@@ -67,6 +67,7 @@ def browse_button():
 
 class PDFViewer(ScrolledText):
     def show(self, pdf_file):
+        print(pdf_file)
         self.delete('1.0', 'end') # clear current content
         pdf = fitz.open(pdf_file) # open the PDF file
         self.images = []   # for storing the page images

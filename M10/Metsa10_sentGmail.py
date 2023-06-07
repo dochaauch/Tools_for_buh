@@ -6,7 +6,7 @@ import os
 import confid
 
 
-prefix = '2210'
+prefix = '2304'
 body = "Arve on lisatud. Счет в приложении"
 
 # перебор файла

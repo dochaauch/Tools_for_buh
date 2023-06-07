@@ -1,7 +1,7 @@
 from datetime import datetime
 import csv
 
-year = '22'
+year = '23'
 with open('csv_schedule.csv', 'w') as f:
     writer = csv.writer(f)
     csv_head = ['Subject', 'Start Date',  'Start Time', 'End Date', 'End Time', 'All day event',
@@ -17,8 +17,8 @@ with open('csv_schedule.csv', 'w') as f:
             start_obj = datetime.strptime(l.split('\t')[2], '%d.%m %H:%M')
             print(start_obj)
             end_obj = datetime.strptime(l.split('\t')[3].strip(), '%d.%m %H:%M')
-            start_date = start_obj.strftime('%m/%d/%y').replace('00', '22')
-            end_date = end_obj.strftime('%m/%d/%y').replace('00', '22')
+            start_date = start_obj.strftime('%m/%d/%y').replace('00', year)
+            end_date = end_obj.strftime('%m/%d/%y').replace('00', year)
             start_time = start_obj.strftime('%-I:%M %p')
             end_time = end_obj.strftime('%-I:%M %p')
             private = 'FALSE'

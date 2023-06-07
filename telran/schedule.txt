@@ -1,58 +1,38 @@
-Class name	Teacher	Start	End	Link
-Java consultation	Egorov Mikhail	12.11 13:00	12.11 14:30	appear later
-FE consultation	Movsisyan Tigran	12.11 13:00	12.11 14:30	appear later
-Linux consultation	Andrei Bakhtinov	12.11 15:00	12.11 16:30	appear later
-Java	Egorov Mikhail	14.11 09:30	14.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	14.11 13:00	14.11 14:30	appear later
-Обзор инструментов для тестирования программного обеспечения	Palekhov Vladislav	14.11 15:00	14.11 16:30	appear later
-git	Luchnikov Vladimir	15.11 09:30	15.11 12:45	appear later
-Docker и его место в CI/CD workflow	Dzhaunat Garipov	15.11 15:00	15.11 16:30	appear later
-Java	Egorov Mikhail	16.11 09:30	16.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	16.11 13:00	16.11 14:30	appear later
-Algorithms	Batyrev Maxim	17.11 09:30	17.11 12:45	appear later
-Работа fetch - встроенной утилиты для асинхронной загрузки данных	Mikhail Kuznetsov	17.11 19:00	17.11 20:30	appear later
-Consultations Java	Yuli Reiri	18.11 09:30	18.11 12:45	appear later
-Java consultation	Egorov Mikhail	19.11 13:00	19.11 14:30	appear later
-FE consultation	Movsisyan Tigran	19.11 13:00	19.11 14:30	appear later
-Linux consultation	Andrei Bakhtinov	19.11 15:00	19.11 16:30	appear later
-Java	Egorov Mikhail	21.11 09:30	21.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	21.11 13:00	21.11 14:30	appear later
-git	Luchnikov Vladimir	22.11 09:30	22.11 12:45	appear later
-Java	Egorov Mikhail	23.11 09:30	23.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	23.11 13:00	23.11 14:30	appear later
-Algorithms	Batyrev Maxim	24.11 09:30	24.11 12:45	appear later
-Consultations Java	Yuli Reiri	25.11 09:30	25.11 12:45	appear later
-Java consultation	Egorov Mikhail	26.11 13:00	26.11 14:30	appear later
-FE consultation	Movsisyan Tigran	26.11 13:00	26.11 14:30	appear later
-Linux consultation	Andrei Bakhtinov	26.11 15:00	26.11 16:30	appear later
-Java	Egorov Mikhail	28.11 09:30	28.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	28.11 13:00	28.11 14:30	appear later
-git	Luchnikov Vladimir	29.11 09:30	29.11 12:45	appear later
-Java	Egorov Mikhail	30.11 09:30	30.11 12:45	appear later
-Tasks Java	Grigorev Aleksander	30.11 13:00	30.11 14:30	appear later
-Algorithms	Batyrev Maxim	01.12 09:30	01.12 12:45	appear later
-Consultations Java	Yuli Reiri	02.12 09:30	02.12 12:45	appear later
-Java	Egorov Mikhail	05.12 09:30	05.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	05.12 13:00	05.12 14:30	appear later
-General Technologies		06.12 09:30	06.12 12:45	appear later
-Java	Egorov Mikhail	07.12 09:30	07.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	07.12 13:00	07.12 14:30	appear later
-Algorithms	Batyrev Maxim	08.12 09:30	08.12 12:45	appear later
-Consultations Java	Yuli Reiri	09.12 09:30	09.12 12:45	appear later
-Tasks GenTech		09.12 13:00	09.12 14:30	appear later
-Java	Egorov Mikhail	12.12 09:30	12.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	12.12 13:00	12.12 14:30	appear later
-General Technologies		13.12 09:30	13.12 12:45	appear later
-Java	Egorov Mikhail	14.12 09:30	14.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	14.12 13:00	14.12 14:30	appear later
-Algorithms	Batyrev Maxim	15.12 09:30	15.12 12:45	appear later
-Consultations Java	Yuli Reiri	16.12 09:30	16.12 12:45	appear later
-Tasks GenTech		16.12 13:00	16.12 14:30	appear later
-Java	Egorov Mikhail	19.12 09:30	19.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	19.12 13:00	19.12 14:30	appear later
-General Technologies		20.12 09:30	20.12 12:45	appear later
-Java	Egorov Mikhail	21.12 09:30	21.12 12:45	appear later
-Tasks Java	Grigorev Aleksander	21.12 13:00	21.12 14:30	appear later
-Algorithms	Batyrev Maxim	22.12 09:30	22.12 12:45	appear later
-Consultations Java	Yuli Reiri	23.12 09:30	23.12 12:45	appear later
-Tasks GenTech		23.12 13:00	23.12 14:30	appear later
+Class name	Teacher	Start	End	Type	Link
+Project	Egorov Mikhail	17.05 09:30	17.05 12:45	Required	appear later
+Summary session: Java Pro	Reiri Yuli	19.05 09:30	19.05 12:45	Required	appear later
+practice: Java Pro	Grigorev Aleksander	19.05 13:00	19.05 14:30	Required	appear later
+Обзор по playwright	Sheikh Artur	19.05 15:00	19.05 16:30	Optional	appear later
+Consultation: FE	Movsisyan Tigran	20.05 13:00	20.05 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	20.05 13:00	20.05 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	20.05 15:00	20.05 16:30	Optional	appear later
+Project	Egorov Mikhail	22.05 09:30	22.05 12:45	Required	appear later
+Git	Andreev Vyacheslav	22.05 13:00	22.05 14:30	Required	appear later
+Qr-коды. Их создание и применение	Efimov Nikolai	22.05 19:00	22.05 20:30	Optional	appear later
+Project	Egorov Mikhail	24.05 09:30	24.05 12:45	Required	appear later
+PM	Sorokin Stepan	25.05 13:00	25.05 14:30	Required	appear later
+Main сlass: Java Pro	Egorov Mikhail	26.05 09:30	26.05 12:45	Required	appear later
+Consultation: FE	Movsisyan Tigran	27.05 13:00	27.05 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	27.05 13:00	27.05 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	27.05 15:00	27.05 16:30	Optional	appear later
+Project	Egorov Mikhail	31.05 09:30	31.05 12:45	Required	appear later
+Consultation: FE	Movsisyan Tigran	03.06 13:00	03.06 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	03.06 13:00	03.06 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	03.06 15:00	03.06 16:30	Optional	appear later
+Project	Egorov Mikhail	05.06 09:30	05.06 12:45	Required	appear later
+Project	Egorov Mikhail	07.06 09:30	07.06 12:45	Required	appear later
+Consultation: FE	Movsisyan Tigran	10.06 13:00	10.06 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	10.06 13:00	10.06 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	10.06 15:00	10.06 16:30	Optional	appear later
+Project	Egorov Mikhail	12.06 09:30	12.06 12:45	Required	appear later
+Project	Egorov Mikhail	14.06 09:30	14.06 12:45	Required	appear later
+Consultation: FE	Movsisyan Tigran	17.06 13:00	17.06 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	17.06 13:00	17.06 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	17.06 15:00	17.06 16:30	Optional	appear later
+Project	Egorov Mikhail	19.06 09:30	19.06 12:45	Required	appear later
+Project	Egorov Mikhail	21.06 09:30	21.06 12:45	Required	appear later
+Consultation: FE	Movsisyan Tigran	24.06 13:00	24.06 14:30	Optional	appear later
+Consultation: Java	Egorov Mikhail	24.06 13:00	24.06 14:30	Optional	appear later
+Consultation: Linux - Git	Bakhtinov Andrei	24.06 15:00	24.06 16:30	Optional	appear later
+Project	Egorov Mikhail	26.06 09:30	26.06 12:45	Required	appear later
+Project	Egorov Mikhail	28.06 09:30	28.06 12:45	Required	appear later

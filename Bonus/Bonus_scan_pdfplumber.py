@@ -27,7 +27,7 @@ def find_all_files(your_target_folder, r1, in_or_out):
     for dirpath, _, filenames in os.walk(your_target_folder):
         for items in filenames:
             file_full_path = os.path.abspath(os.path.join(dirpath, items))
-            if file_full_path.endswith('.pdf'):
+            if file_full_path.endswith('.pdf') and not items.startswith('._'):
                 full_list.append(file_full_path)
             if r1.search(file_full_path.lower()): #  ищем наш паттерн в полном пути файла
                 pdf_files.append(file_full_path)
@@ -93,16 +93,28 @@ def find_template_arve(v, str_):  # строка из словаря, возмо
 
 
 def find_template_date(v, str_, arve_kuup='', second_=''):
-    date_ = re.findall(fr'{str_}\s*(\d{{1,2}}[\.|\/]\d{{1,2}}[\.|\/]\d{{2,4}})', v)
-    if date_:
-        date_ = date_[0]
+    #дата с короткими анг.месяцами
+    date0 = re.findall(fr'{str_}\s*(\d{{1,2}}\s*\w{{3}}\s*\d{{2,4}})', v)
+    if date0:
+        date0_l = date0[0].split()
+        if len(date0_l[0]) < 2:
+            date0_l[0] = "0"+date0_l[0]
+        kuu_list = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        if date0_l[1] in kuu_list:
+            date0_l[1] = kuu_list.index(date0_l[1])+1
+        date_ = f'{date0_l[0]}.{date0_l[1]}.{date0_l[2]}'
+        print("text_date ", date0_l, date_)
     else:
-        days_ = int(re.findall(fr'(\d)+\s*{second_}', v)[0])
-        d1 = datetime.datetime.strptime(arve_kuup, '%d.%m.%y')
-        date_ = d1 + datetime.timedelta(days=days_)
-        date_ = date_.strftime('%d.%m.%y')
-    if not isinstance(date_, str):
-        date_ = next(item for item in date_ if item != "").replace('/', '.')
+        date_ = re.findall(fr'{str_}\s*(\d{{1,2}}[\.|\/]\d{{1,2}}[\.|\/]\d{{2,4}})', v)
+        if date_:
+            date_ = date_[0]
+        else:
+            days_ = int(re.findall(fr'(\d)+\s*{second_}', v)[0])
+            d1 = datetime.datetime.strptime(arve_kuup, '%d.%m.%y')
+            date_ = d1 + datetime.timedelta(days=days_)
+            date_ = date_.strftime('%d.%m.%y')
+        if not isinstance(date_, str):
+            date_ = next(item for item in date_ if item != "").replace('/', '.')
     return my_short_date(date_)
 
 
@@ -121,9 +133,13 @@ def parse_invoice_data(arve_content, template_dict):
                     arve_nr = next(s for s in arve_nr if s)
                 arve_kuup = my_short_date(find_template_date(v,
                                         find_in_template_dict(t_nimi, 'd_date', template_dict)))
-                arve_maks_kuup = my_short_date(find_template_date(
-                    v, find_in_template_dict(t_nimi, 'd_date_maks', template_dict),
-                    arve_kuup, find_in_template_dict(t_nimi, 'd_days', template_dict)))
+                try:
+                    arve_maks_kuup = my_short_date(find_template_date(
+                        v, find_in_template_dict(t_nimi, 'd_date_maks', template_dict),
+                        arve_kuup, find_in_template_dict(t_nimi, 'd_days', template_dict)))
+                except:
+                    arve_maks_kuup = arve_kuup
+                    print("++++++ не стоит дата оплаты счета!!!")
 
                 summa_kta = my_str_to_float(find_template_sum(v, find_in_template_dict(t_nimi,
                                                                                        'd_summa_k-ta', template_dict)))
@@ -158,7 +174,7 @@ def parse_invoice_data(arve_content, template_dict):
                 a = '*** обработано ' + arve_nr + ' ' + arve_kuup + '/' + arve_maks_kuup + ' ' + str(total) + ' //' + str(summa_kta) + ' + ' + str(km)
         folder_dict[k] = a
 
-    pprint.pprint(folder_dict)
+    #pprint.pprint(folder_dict)
     return arve_data, folder_dict
 
 
@@ -186,6 +202,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
               nimi_arve, kulud, text_provodki, hank_k, hank_s, hank_subk_, kulud_k, kulud_s, kulud_subk,
               subkonto_yes, year_arve, komm):
     nomer_subkonto = int(hank_subk.split(':')[1])  #берем из csv файла
+
+    special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
+                        ord('ž'): 'z', ord('š'): 's',
+                        ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
+                        ord('Z'): 'Z', ord('Š'): 's', ord('’'): ''}
+    nimi_arve = nimi_arve.translate(special_char_map)
+
     nimi_arve_low = nimi_arve.lower()
 
     if uus_kta + uus_km != uus_kokku:
@@ -294,13 +317,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2022-10/"
+    your_target_folder = "/Users/docha/Google Диск/Bonus/2023-05/"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
-    year_arve = '2022'
-    period_arve = f'"01.10.22","31.10.22","6H"' + '\r\n'
+    year_arve = '2023'
+    period_arve = f'"01.05.23","31.05.23","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 

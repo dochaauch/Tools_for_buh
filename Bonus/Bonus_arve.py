@@ -5,11 +5,13 @@ import datetime
 
 
 import os
+import pprint
 import re
 import codecs
 import PyPDF2
+import pdfplumber
 
-os.environ['TIKA_SERVER_JAR'] = 'https://repo1.maven.org/maven2/org/apache/tika/tika-server/1.19/tika-server-1.19.jar'
+#os.environ['TIKA_SERVER_JAR'] = 'https://repo1.maven.org/maven2/org/apache/tika/tika-server/1.19/tika-server-1.19.jar'
 
 import tika
 from tika import parser
@@ -21,7 +23,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Google Диск/Bonus/2022-10/"
+your_target_folder = "/Users/docha/Google Диск/Bonus/2023-05/"
 
 pdf_files = []
 
@@ -49,10 +51,11 @@ for files_address in pdf_files:
     pdfFileObj = open(files_address, 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 
-    for pageNum in range(0, pdfReader.numPages):
-        pageObj = pdfReader.getPage(pageNum)
+    for pageNum in range(0, len(pdfReader.pages)):
+        pageObj = pdfReader.pages[pageNum]
 
 
+        #pdfWriter.add_page(pageObj)
         pdfWriter.addPage(pageObj)
 
 
@@ -62,13 +65,19 @@ pdfWriter.write(pdfOutput)
 pdfOutput.close()
 
 
-raw = parser.from_file("/merged.pdf")
+raw = parser.from_file("merged.pdf")
 raw = raw['content']
 
 special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
                    ord('ž'): 'z', ord('š'): 's',
                    ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
-                   ord('Z'): 'Z', ord('Š'): 's', ord('’'): ''}
+                   ord('Z'): 'Z', ord('Š'): 's', ord('’'): '',
+                   }
+
+# raw = ''
+# with pdfplumber.open("merged.pdf") as pdf:
+#     for pdf_reader in pdf.pages:
+#         raw += pdf_reader.extract_text()
 raw = raw.translate(special_char_map)
 
 raw = re.sub('\n+\s*\n*', '\n', raw.strip())
@@ -80,7 +89,7 @@ raw = raw.replace('\\n', '\n')
 safe_text = raw.encode('ascii', errors='ignore')
 
 lists = re.split(r'\n', raw)
-
+pprint.pprint(lists)
 
 #работающий код
 # patterns = ['KLIENT',
@@ -101,12 +110,21 @@ first_row = ('D' + '\t' + 'kuupaev'.ljust(10) + '\t' + 'maksepaev' + '\t' + 'kli
 f.write(first_row)
 print(first_row)
 
+
 Skta = 0.00
 Skm = 0.00
 Skokk = 0.00
 
+diffDate = ''
+klient = ''
+summaKMta = 0.00
+kibemaks = 0.00
+kokku = 0.00
+kuupaev = ''
+maksepaev = ''
 
 for l in lists:
+
     if 'KLIENT' in l:
         klient = l.split(':')[1]
         if 'OU,' in klient or 'AS,' in klient or re.search(r'^KLIENT:\s((OU|AS)\s.*)', l):
@@ -128,7 +146,7 @@ for l in lists:
         summaKMta = summaKMta.rjust(9)
         Skta = Skta + str_to_float(summaKMta)
 
-    if 'Kaibemaks 20%:' in l:
+    if ('Kaibemaks 20%:' in l) or ('Käibemaks 20%:' in l):
         kibemaks = re.search(r'(\d+,\d+)', l).group(1)
         kibemaks = kibemaks.rjust(7)
         Skm = Skm + str_to_float(kibemaks)
@@ -149,18 +167,27 @@ for l in lists:
         except ValueError:
             diffDate = ''
             klient = ''
-            summaKMta = ''
-            kibemaks = ''
-            kokku = ''
+            summaKMta = 0.00
+            kibemaks = 0.00
+            kokku = 0.00
             kuupaev = ''
             maksepaev = ''
 
-        # print(diffDate)
+        #print(diffDate)
+
 
         tt = str(diffDate) + '\t' + kuupaev + '\t' + maksepaev + '\t' + klient +\
-             '\t' + arve + '\t'  + kokku + '\t' + kibemaks + '\t'  + summaKMta
+                 '\t' + arve + '\t'  + kokku + '\t' + kibemaks + '\t'  + summaKMta
 
         print(tt)
+
+        diffDate = ''
+        klient = ''
+        summaKMta = ''
+        kibemaks = ''
+        kokku = ''
+        kuupaev = ''
+        maksepaev = ''
 
         f.write(tt + '\n')
 

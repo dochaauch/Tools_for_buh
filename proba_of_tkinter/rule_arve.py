@@ -1,10 +1,12 @@
 re_arve_name = ['Saateleht', 'Arve', 'TSEKK', 'Tšekk', 'Tšeki', 'kviitung', 'kviitungi',
                 'invoice',
                 'Izdruka', 'Dokuments', 'DOK', 'ceks', 'čeks', 'Rēķins', 'Kvits', 'Čeka', 'čekam', 'Rēķina',
-                'Pileti',
-                'Номер заказа', 'QR number', 'Номер билета',
+                'Pileti', 'Faktūrrēķins Nr.',
+                'Номер заказа', 'QR number', 'Номер билета', '№ билета',
                 'Biļetes',
-                'Beleg-Nr.', ]
+                'Beleg-Nr.',
+                'KUITTI NO ',
+                ]
 
 list_not_arve = ['väljastas', 'kuupäev', ]
 

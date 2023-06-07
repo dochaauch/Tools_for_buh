@@ -24,10 +24,11 @@ def main():
     in_or_out = 0  # 1 - входящие, 0 - исходящие; тут только как в образце r1
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
-    year_arve = '2022'
-    begin_date = '01.10.22'
-    end_date = '31.10.22'
+    year_arve = '2023'
+    begin_date = '01.04.23'
+    end_date = '30.04.23'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
+
 
 
     r1 = re.compile(r'/.*.pdf$')  # вводим паттерн, который будем искать (все pdf)
@@ -42,7 +43,7 @@ def main():
     arve_content = read_pdf_to_text_in_folder(pdf_files)
 
 
-    #pprint.pprint(arve_content)
+    pprint.pprint(arve_content)
 
     #pprint.pprint((parse_invoice_data(arve_content, template_dict)))
     for pdf_ in pdf_files:
