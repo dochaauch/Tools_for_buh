@@ -1,5 +1,5 @@
 M10/name.csv
-confid.py
+M10/confid.py
 /venv/
 /.idea/
 output.txt
@@ -16,4 +16,6 @@ zzz_*.py
 proba_of_tkinter/__pycache__/
 ./PythonMagick/
 Bonus/__pycache__/
+trello/confidence.py
+github_json/confidence.py
 

@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 import math
 
-file_ = '/Users/docha/Google Диск/Bonus/_cheki/combine.csv'
-dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+file_ = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/_cheki/combine.csv'
+dbf = Dbf5(r'/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 subkonto_yes = 1
 year_arve = '2023'
 
@@ -228,6 +228,6 @@ with open(file_, 'r') as csv_file:
     out = first_row + text_provodki
     print()
     print(out)
-    v = open('/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/avanss.txt', 'w')
+    v = open('/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/avanss.txt', 'w')
     v.write(out)
     v.close()

@@ -1,7 +1,6 @@
 from datetime import datetime
 
-file_ = '/Users/docha/Google Диск/Metsa10/_cheki/combine.csv'
-#file_ = '/Users/docha/Google Диск/Metsa10/1/combine.csv'
+file_ = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Metsa10/_cheki/combine.csv'
 
 today = datetime.now()
 stamp = today.strftime('%y%m%d')
@@ -39,7 +38,8 @@ special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): '
 out = out.translate(special_char_map)
 print()
 print(out)
-v = open('/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/avanss.txt', 'w')
+
+v = open('/Users/docha/Library/CloudStorage/Dropbox/_N/Metsa10_2011/avanss.txt', 'w')
 
 
 v.write(out)

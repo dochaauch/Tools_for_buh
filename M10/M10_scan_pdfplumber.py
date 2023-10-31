@@ -19,14 +19,14 @@ def find_all_files(your_target_folder):
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Metsa10/"
+    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Metsa10"
     path = 'M10_in_arve_template.csv'
     in_or_out = 0  # 1 - входящие, 0 - исходящие; тут только как в образце r1
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2023'
-    begin_date = '01.04.23'
-    end_date = '30.04.23'
+    begin_date = '01.09.23'
+    end_date = '30.09.23'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 
@@ -35,7 +35,8 @@ def main():
 
     #dbf = Dbf5(r'/Volumes/[C] Windows 10/Dropbox/_N/Metsa10_2011/1sbspsk.dbf', codec='cp866')
     text_provodki = ''
-    new_f = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/MA_output_.txt'
+    #new_f = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/MA_output_.txt'
+    new_f = '/Users/docha/Library/CloudStorage/Dropbox/_N/Metsa10_2011/MA_output_.txt'
 
     pdf_files = find_all_files(your_target_folder)
     template_dict = read_csv_to_dict_template(path)

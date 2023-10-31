@@ -3,10 +3,9 @@ import yagmail
 import csv
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
-import confid
+from M10 import confid
 
-
-prefix = '2304'
+prefix = '2309'
 body = "Arve on lisatud. Счет в приложении"
 
 # перебор файла

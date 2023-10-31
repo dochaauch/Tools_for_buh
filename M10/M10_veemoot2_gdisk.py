@@ -59,9 +59,10 @@ def write_to_txt(out, file_output):
 
 
 def main():
-    lausendi_kuupaev = '31.05.23'
-    sheet_name = "MAY23"
-    file_output = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/veemotjad.txt'
+    lausendi_kuupaev = '30.09.23'
+    sheet_name = "SEP23"
+    #file_output = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/veemotjad.txt'
+    file_output = '/Users/docha/Library/CloudStorage/Dropbox/_N/Metsa10_2011/veemotjad.txt'
     df = read_gsheet_to_pandas(sheet_name)
     first_row, nr = create_first_row(lausendi_kuupaev)
     text_provodki = processing_df(df, lausendi_kuupaev, nr)

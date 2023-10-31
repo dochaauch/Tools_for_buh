@@ -317,20 +317,20 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Google Диск/Bonus/2023-05/"
+    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2023-09"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2023'
-    period_arve = f'"01.05.23","31.05.23","6H"' + '\r\n'
+    period_arve = f'"01.09.23","30.09.23","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 
-    dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+    dbf = Dbf5(r'/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 
     text_provodki = ''
-    new_f = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/BA_output_.txt'
+    new_f = '/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/BA_output_.txt'
     pdf_files = find_all_files(your_target_folder, r1, in_or_out)
     template_dict = read_csv_to_dict_template(path)
     arve_content = read_pdf_to_text_in_folder(pdf_files)

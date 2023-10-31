@@ -36,6 +36,7 @@ from funct import create_toler_list, find_total_sum_km, find_km_no_sum, find_sum
 i_file = 0  #номер изображения
 jpg_nr = 0
 your_target_folder = r'/Users/docha/Google Диск/Metsa10/_cheki'
+your_target_folder = r'/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Metsa10/_cheki'
 template_path = r'/Users/docha/PycharmProjects/Tools_for_buh/proba_of_tkinter/rule_arve_template.csv'
 #file_ = r'/Users/docha/Google Диск/Metsa10/_cheki/211106_0812_Файл_000.jpg'
 
@@ -66,6 +67,7 @@ def browse_button():
 
 
 class PDFViewer(ScrolledText):
+
     def show(self, pdf_file):
         print(pdf_file)
         self.delete('1.0', 'end') # clear current content
@@ -439,7 +441,10 @@ def processing_text_regexp(text):
     # (\d+[,.]\d{{2}} => одна или несколько цифр, запятая или точка, 2 цифры
     # если после не идет точка (пытаемся исключить дату)
     # собираем список всех цифр в нужном формате из текста
-    all_digits = sorted(list(map(lambda x: float(x.replace(',', '.').replace(' ', '')), a)), reverse=True)
+    try:
+        all_digits = sorted(list(map(lambda x: float(x.replace(',', '.').replace(' ', '')), a)), reverse=True)
+    except:
+        all_digits = list()
     print('all_digits', all_digits)
 
     flag_total = False

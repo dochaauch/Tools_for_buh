@@ -36,10 +36,10 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
 year_arve = '2023'
-period_arve = f'"01.05.23","31.05.23","1L"' + '\r\n'
+period_arve = f'"01.09.23","30.09.23","1L"' + '\r\n'
 
 
-dbf = Dbf5(r'/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
+dbf = Dbf5(r'/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 
 
 
@@ -179,6 +179,6 @@ with open('../output.txt', 'r') as f:
 
 out = f"""{period_arve}{text_provodki}"""
 
-new_f = open('/Volumes/[C] Windows 10 (1)/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
+new_f = open('/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
 new_f.write(out)
 new_f.close()

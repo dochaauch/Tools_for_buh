@@ -6,6 +6,7 @@ re_arve_name = ['Saateleht', 'Arve', 'TSEKK', 'Tšekk', 'Tšeki', 'kviitung', 'k
                 'Biļetes',
                 'Beleg-Nr.',
                 'KUITTI NO ',
+                'Kvitas Nr.',
                 ]
 
 list_not_arve = ['väljastas', 'kuupäev', ]
