@@ -103,7 +103,7 @@ def load_data(i_file, list_of_files, your_target_folder):
         system_text += nl + s_text
     else:
         raw_text_output = read_jpg_to_text(file_)
-    display_textbox(raw_text_output, 0, 1, root, 40, 70)
+    text_box = display_textbox(raw_text_output, 0, 1, root, 40, 70)
 
     # output text field label
     output_text = tk.StringVar()
@@ -170,6 +170,36 @@ def load_data(i_file, list_of_files, your_target_folder):
                            width=15, borderwidth=4, relief="ridge")
     jpg_nr_text.set("select nr img")
     jpg_nr_btn.grid(column=2, row=0, sticky='nw', padx=25, columnspan=2)
+
+    # create an Entry widget for the search key
+    search_entry = tk.Entry(root)
+    search_entry.grid(row=1, column=1, sticky='nw')  # adjust the position as needed
+
+    # bind the Entry widget to the search function
+    search_entry.bind('<Return>', lambda event: search_text(event, text_box, search_entry))
+
+
+def search_text(event, text_box, search_entry):
+    # remove any existing tags from previous searches
+    text_box.tag_remove('found', '1.0', tk.END)
+
+    # get the search key
+    s = search_entry.get()
+
+    if s:
+        idx = '1.0'
+        while True:
+            idx = text_box.search(s, idx, nocase=1, stopindex=tk.END)
+            if not idx: break
+
+            lastidx = '%s+%dc' % (idx, len(s))
+
+            # tag the found text
+            text_box.tag_add('found', idx, lastidx)
+            idx = lastidx
+
+        # configure the tag
+        text_box.tag_config('found', foreground='red')
 
 
 
