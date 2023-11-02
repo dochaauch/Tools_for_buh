@@ -63,10 +63,16 @@ def browse_button():
     your_target_folder = filename
     list_of_files = sorted([fn for fn in os.listdir(your_target_folder)
                   if any(fn.endswith(ext) for ext in ['.jpg',])])
-    load_data(i_file, list_of_files, your_target_folder)
+    load_data(i_file, list_of_files, your_target_folder, root)
 
 
 class PDFViewer(ScrolledText):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.images = []
+        self.original_images = []  # for storing the original images
+        self.zoom_level = 100  # initial zoom level in percentage
+
 
     def show(self, pdf_file):
         print(pdf_file)
@@ -82,9 +88,42 @@ class PDFViewer(ScrolledText):
             self.insert('end', '\n')
             # save the image to avoid garbage collected
             self.images.append(photo)
+            self.original_images.append((photo, pix1.tobytes('ppm')))  # Save the original image data
+
+    def zoom_in(self):
+        self.zoom_level += 10
+        print("zoom in", self.zoom_level)
+        self.update_zoom()
+
+    def zoom_out(self):
+        self.zoom_level -= 10
+        print("zoom out", self.zoom_level)
+        self.update_zoom()
+
+    def update_zoom(self):
+        self.delete('1.0', 'end')  # clear current content
+        self.images = []  # clear current images
+        for photo, data in self.original_images:
+            # Get the image from the original data
+            img = Image.open(io.BytesIO(data))
+            img = img.resize((int(img.width * self.zoom_level / 100), int(img.height * self.zoom_level / 100)))
+            photo = ImageTk.PhotoImage(img)
+            # insert into the text box
+            self.image_create('end', image=photo)
+            self.insert('end', '\n')
+            # save the image to avoid garbage collected
+            self.images.append(photo)
+
+    def on_key_press(self, event):
+        if event.keysym == "plus":
+            self.zoom_in()
+        elif event.keysym == "minus":
+            self.zoom_out()
+        # Call the superclass method to handle other key events
+        super().event_generate("<<KeyPress>>", when="tail")
 
 
-def load_data(i_file, list_of_files, your_target_folder):
+def load_data(i_file, list_of_files, your_target_folder, root):
     global raw_text_output
     global system_text
     global output_text_first
@@ -94,6 +133,15 @@ def load_data(i_file, list_of_files, your_target_folder):
     pdf1 = PDFViewer(root, width=70, height=25, spacing3=5, bg='blue')
     pdf1.grid(row=0, column=0, sticky='nsew')
     pdf1.show(file_)
+
+    def zoom_in(event):
+        pdf1.zoom_in()
+
+    def zoom_out(event):
+        pdf1.zoom_out()
+
+    root.bind('<KeyPress-plus>', zoom_in)
+    root.bind('<KeyPress-minus>', zoom_out)
 
     # raw text field
     file_txt = f'{os.path.splitext(file_)[0]}.ocr'
@@ -537,7 +585,6 @@ browse_btn = tk.Button(root, textvariable=browse_text, command=lambda:browse_but
                        font=myFont, highlightbackground='yellow', fg="blue", height=1, width=15,)
 browse_text.set("Browse")
 browse_btn.grid(column=2, row=1, sticky='nw', padx=50, columnspan=3)
-
 
 
 root.mainloop()
