@@ -306,7 +306,7 @@ def select_nr_jpg(jpg_nr_):
     global jpg_nr
     i_file, jpg_nr = int(jpg_nr_), int(jpg_nr_)
     system_text = ''
-    load_data(i_file, list_of_files, your_target_folder)
+    load_data(i_file, list_of_files, your_target_folder, root)
     return i_file
 
 
@@ -318,7 +318,7 @@ def right_arrow():
     else:
         i_file = 0
     system_text = ''
-    load_data(i_file, list_of_files, your_target_folder)
+    load_data(i_file, list_of_files, your_target_folder, root)
     return i_file
 
 
@@ -330,7 +330,7 @@ def left_arrow():
     else:
         i_file -= 1
     system_text = ''
-    load_data(i_file, list_of_files, your_target_folder)
+    load_data(i_file, list_of_files, your_target_folder, root)
     return i_file
 
 
