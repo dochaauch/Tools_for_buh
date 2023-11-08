@@ -179,6 +179,7 @@ with open('../output.txt', 'r') as f:
 
 out = f"""{period_arve}{text_provodki}"""
 
+
 new_f = open('/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/BA_output.txt', 'w')
 new_f.write(out)
 new_f.close()

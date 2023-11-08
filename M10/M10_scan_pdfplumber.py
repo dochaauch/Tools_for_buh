@@ -7,6 +7,8 @@ from Bonus.Bonus_scan_pdfplumber import (read_csv_to_dict_template, find_all_fil
                                          read_pdf_to_text_in_folder, my_reverse_date,
                                          parse_invoice_data)
 
+import Bonus.without_umlaut
+
 
 def find_all_files(your_target_folder):
     file_list = []
@@ -25,8 +27,8 @@ def main():
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2023'
-    begin_date = '01.09.23'
-    end_date = '30.09.23'
+    begin_date = '01.10.23'
+    end_date = '31.10.23'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 
@@ -103,6 +105,7 @@ def main():
 
 
     out = f"""{period_arve}{raamat_arve}{text_provodki}"""
+    out = Bonus.translate_string.translateString(out)
 
     #pprint.pprint(fd)
     fd_ = defaultdict(list)

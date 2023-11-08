@@ -23,7 +23,7 @@ def main():
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/_cheki'
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-talleke.kakkumae@gmail.com/Мой диск/Talleke/_cheki'
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/231013'
-    your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-09'
+    #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-09'
     file_dict = search_all_png_files(your_target_folder)
     for old_path, file_date in file_dict.items():
         old_name = os.path.basename(old_path).split('.')[0]
