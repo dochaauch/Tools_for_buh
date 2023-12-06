@@ -123,6 +123,29 @@ class PDFViewer(ScrolledText):
         super().event_generate("<<KeyPress>>", when="tail")
 
 
+
+def merge_data(azr, output_text_processing):
+    def parse_data(text):
+        data = {}
+        for line in text.strip().split('\n'):
+            parts = line.split(': ', 1)
+            if len(parts) == 2:
+                data[parts[0]] = parts[1]
+            else:
+                data[parts[0]] = ''  # Пустая строка для ключей без значения
+        return data
+
+    azr_data = parse_data(azr)
+    output_data = parse_data(output_text_processing)
+
+    # Объединяем данные, приоритет у данных из azr, если они не '0', 'None' или пустые
+    merged_data = {key: azr_data.get(key, value) if azr_data.get(key) not in ['0', 'None', ''] else value
+                   for key, value in output_data.items()}
+
+    # Формируем строку, добавляя двоеточие даже если значение ключа пустое
+    merged_string = '\n'.join([f"{key}: {value if value != '' else ''}" for key, value in merged_data.items()])
+    return merged_string
+
 def load_data(i_file, list_of_files, your_target_folder, root):
     global raw_text_output
     global system_text
@@ -160,17 +183,34 @@ def load_data(i_file, list_of_files, your_target_folder, root):
     output_img.grid(row=2, column=0)
 
     # output text field
+    file_azr = f'{os.path.splitext(file_)[0]}.azr'
     file_pkl = f'{os.path.splitext(file_)[0]}.pkl'
     nl = '\n\n'
     if os.path.exists(file_pkl):
         output_text, s_text = read_dict_from_file(file_pkl)
         nl = '\n\n'
+    elif os.path.exists(file_azr):
+        data_azr, file_azr = read_dict_from_azr(file_azr)
+        output_text_azr, s_text_azr = format_azr_data_to_our_dict(data_azr, file_azr)
+        output_text_processing = processing_text(raw_text_output)
+        print("azr", type(output_text_azr))
+        print(output_text_azr)
+        print("output_text_processing", type(output_text_processing))
+        print(output_text_processing)
+
+        output_text = merge_data(output_text_azr, output_text_processing)
+        nl = '\n\n'
+        s_text = f'Файл {file_azr} для изображения {i_file + 1} прочитан.'
+        s_text += f'\nДанные были обновлены из обработанных данных, где не было данных в файле azr.'
+
     else:
         output_text = processing_text(raw_text_output)
 
         s_text = f'файл {file_} для изображения {i_file + 1} ТОЛЬКО ОТСКАНИРОВАН'
     output_text_first = output_text
     system_text += nl + s_text
+    print("проверяем output_text")
+    print(output_text)
     output_textbox = display_textbox(output_text, 3, 0, root, 8, 70)
 
     #system text
@@ -407,9 +447,15 @@ def save_dict_to_file(output):
         os.remove(f'{filename}.ocr')
     if os.path.exists(f'{filename}.pkl'):
         os.remove(f'{filename}.pkl')
+    if os.path.exists(f'{filename}.azr'):
+        file_path = f'{filename}.azr'
+        with open(file_path, 'r') as file:
+            file_azr_content = file.read()
+            os.remove(f'{filename}.azr')
 
     dict_file = f'{your_target_folder}/{new_filename}.pkl'
     text_file = f'{your_target_folder}/{new_filename}.ocr'
+    azr_file = f'{your_target_folder}/{new_filename}.azr'
     system_text = f'Файл {your_target_folder}/{new_filename}.pkl и файл ' \
                   f'{your_target_folder}/{new_filename}.ocr для изображения {i_file + 1} сохранен.'
     with open(dict_file, 'wb') as pickle_file:
@@ -417,6 +463,9 @@ def save_dict_to_file(output):
 
     with open(text_file, 'w') as text_f:
         text_f.writelines(raw_text_output)
+
+    with open(azr_file, 'w') as text_f:
+        text_f.writelines(file_azr_content)
 
     system_text_field(system_text, root)
 
@@ -429,6 +478,66 @@ def read_dict_from_file(file_pkl):
     d_list = [str(k) + ': ' + str(v) for k, v in d.items()]
     s_ = '\n'.join(d_list)
     return s_, s_text
+
+def read_dict_from_azr(file_azr):
+    data = {}
+    try:
+        with open(file_azr, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                line = line.strip()
+                if ':' in line:
+                    key, value = line.split(':', 1)
+                    data[key.strip()] = value.strip()
+    except FileNotFoundError:
+        print(f"File {file_azr} not found.")
+    return data, file_azr
+
+def convert_date_format(date_string):
+    try:
+        # Преобразование строки с датой в объект datetime
+        date_obj = datetime.datetime.strptime(date_string, '%Y-%m-%d')
+        # Форматирование даты в требуемый вид
+        formatted_date = date_obj.strftime('%d.%m.%y')
+        return formatted_date
+    except ValueError as e:
+        print(f"Ошибка при конвертации даты: {e}")
+        return ''
+
+
+def extract_numeric_value(value):
+    # Если значение не является строкой, возвращаем его как есть
+    if not isinstance(value, str):
+        return value
+
+    # Удаляем символы, не являющиеся цифрами, десятичной точкой или знаком минуса
+    cleaned_value = ''.join(filter(lambda x: x.isdigit() or x in ['.', '-'], value))
+
+    # Пробуем преобразовать оставшееся значение в число с плавающей точкой
+    try:
+        numeric_value = float(cleaned_value)
+        return numeric_value
+    except ValueError:
+        return None  # В случае ошибки преобразования возвращаем None
+
+def format_azr_data_to_our_dict(data, file_azr):
+    invoice_date = data.get('InvoiceDate', '')
+    formatted_invoice_date = convert_date_format(invoice_date)
+    subtotal = extract_numeric_value(data.get('SubTotal', 0))
+    total_tax = extract_numeric_value(data.get('TotalTax', 0))
+    invoice_total = extract_numeric_value(data.get('InvoiceTotal', 0))
+    nl = '\n'
+    output = f"kuupaev: {formatted_invoice_date}{nl}" \
+             f"firma: {data.get('VendorName', '')}{nl}" \
+             f"reg nr: {nl}" \
+             f"arve nr: {data.get('InvoiceId', '')}{nl}" \
+             f"summa: {subtotal}{nl}" \
+             f"km: {total_tax}{nl}" \
+             f"summa kokku: {invoice_total}{nl}" \
+             f"kirjeldus: {nl}" \
+             f"auto: {nl}"
+    s_text = f'Файл {file_azr} для изображения {i_file + 1} прочитан.'
+    return output, s_text
 
 
 def read_text_from_file(file_txt):
