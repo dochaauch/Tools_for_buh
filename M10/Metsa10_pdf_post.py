@@ -30,6 +30,6 @@ def scale_to_size(reader, unit_size):
     with open("aux.pdf", "wb") as f:
         writer.write(f)
 
-reader = PdfFileReader(open('/Users/docha/Dropbox/arhiiv_arve_byuh/Metsa10/2310_Metsa10.pdf', 'rb'))
+reader = PdfFileReader(open('/Users/docha/Dropbox/arhiiv_arve_byuh/Metsa10/2311_Metsa10.pdf', 'rb'))
 
 scale_to_size(reader, unit_size=reader.pages[3].mediaBox.upperRight)

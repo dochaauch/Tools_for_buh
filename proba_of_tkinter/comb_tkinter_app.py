@@ -435,7 +435,9 @@ def save_dict_to_file(output):
 
     new_filename = f"{my_reverse_date(dict_data['kuupaev'])}_{dict_data['firma']}_{dict_data['arve nr']}_{file_date}"
 
-    special_char_map = {ord('/'): '-', ord('"'): '', }
+    special_char_map = {ord('/'): '-',
+                        ord('"'): '',
+                        ord('*'): '', }
     new_filename = new_filename.translate(special_char_map)
 
     #print(new_filename)

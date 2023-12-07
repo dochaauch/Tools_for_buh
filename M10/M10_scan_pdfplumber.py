@@ -27,8 +27,8 @@ def main():
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2023'
-    begin_date = '01.10.23'
-    end_date = '31.10.23'
+    begin_date = '01.11.23'
+    end_date = '30.11.23'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 
@@ -105,7 +105,7 @@ def main():
 
 
     out = f"""{period_arve}{raamat_arve}{text_provodki}"""
-    out = Bonus.translate_string.translateString(out)
+    out = Bonus.without_umlaut.translateString(out)
 
     #pprint.pprint(fd)
     fd_ = defaultdict(list)
