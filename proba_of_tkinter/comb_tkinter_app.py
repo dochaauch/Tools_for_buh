@@ -466,8 +466,13 @@ def save_dict_to_file(output):
     with open(text_file, 'w') as text_f:
         text_f.writelines(raw_text_output)
 
-    with open(azr_file, 'w') as text_f:
-        text_f.writelines(file_azr_content)
+    try:
+        with open(azr_file, 'w') as text_f:
+            text_f.writelines(file_azr_content)
+    except:
+        FileNotFoundError
+    #with open(azr_file, 'w') as text_f:
+    #    text_f.writelines(file_azr_content)
 
     system_text_field(system_text, root)
 
