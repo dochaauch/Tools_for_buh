@@ -1,5 +1,3 @@
-import pprint
-
 import openpyxl
 
 
@@ -182,10 +180,9 @@ if __name__ == '__main__':
     } # Соответствия заголовков столбцов 1С и их имен в исходном файле
 
     data = read_excel(file_path, sheet_name)
-    #pprint.pprint(data)
 
     create_new_sheet_with_headers(file_path, new_sheet_name, headers)
 
     processed_data = process_sheet_data_for_new_sheet(data, column_mappings,headers, kaibemaks, kaibemaksuta_desc)
-    #pprint.pprint(processed_data)
+    
     write_data_to_sheet(file_path, new_sheet_name, processed_data, headers)
