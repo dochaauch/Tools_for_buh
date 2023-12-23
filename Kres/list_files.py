@@ -11,8 +11,9 @@ def list_files(directory, extensions):
         print(file)  # Выводим отсортированные названия файлов
 
 # Замените 'your_directory_path' на путь к вашей папке.
-directory_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-12'
-extensions = ('.jpg', '.pdf')
-list_files(directory_path, extensions)
+if __name__ == "__main__":
+    directory_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-12'
+    extensions = ('.jpg', '.pdf')
+    list_files(directory_path, extensions)
 
 
