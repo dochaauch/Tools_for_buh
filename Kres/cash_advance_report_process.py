@@ -72,13 +72,13 @@ def process_sheet_data_for_new_sheet(svod_data, column_mappings, headers, kaibem
             zagruzka_data.append(new_row)
 
         if km_o_total_for_row != round(row.get('km', 0), 2):
-            correct_km_o_values(zagruzka_data, document_start_index, km_o_total_for_row, row)
+            correct_values(zagruzka_data, document_start_index, km_o_total_for_row, row, 'Сумма НСО', 'km', "Старый налог")
 
         #Пересчитываем общую сумму после корректировки НСО
         recalculated_total_sum = sum(float(r['Сумма с НСО']) for r in zagruzka_data[document_start_index:])
 
         if round(recalculated_total_sum,2) != round(row.get('summa kokku', 0), 2):
-            correct_total_sum(zagruzka_data, document_start_index, recalculated_total_sum, row)
+            correct_values(zagruzka_data, document_start_index, recalculated_total_sum, row, 'Сумма с НСО', 'summa kokku', "Старая сумма")
 
         document_start_index = len(zagruzka_data)
 
@@ -106,39 +106,18 @@ def create_row_for_zagruzka(row, account, account_desc, sum_value, kaibemaks, ka
     return new_row, km_o_value, summa_total
 
 
-def correct_km_o_values(zagruzka_data, document_start_index, km_o_total_for_row, row):
+def correct_values(zagruzka_data, document_start_index, total_for_row, row, value_key, total_key, message):
     document_id = row.get('arve nr', '')
-    km_value = round(row.get('km', 0), 2)
+    total_value = round(row.get(total_key, 0), 2)
 
     for correction_row in reversed(zagruzka_data[document_start_index:]):
-        existing_km_o_value = float(correction_row['Сумма НСО']) if correction_row['Сумма НСО'] else 0
-        if existing_km_o_value != 0:
-            correction = km_value - km_o_total_for_row
-            corrected_km_o_value = existing_km_o_value + correction
-            correction_row['Сумма НСО'] = f"{corrected_km_o_value:.2f}"
-            correction_row['Сумма с НСО'] = f"{float(correction_row['Сумма с НСО']) + correction:.2f}"
-            print(f"Документ {document_id}, {row.get('firma', )}: Старый налог {existing_km_o_value:.2f},"
-                  f" новый налог {corrected_km_o_value:.2f}, "
-                  f"сумма с НСО старая {float(correction_row['Сумма с НСО']):.2f},"
-                  f" сумма с НСО новая {float(correction_row['Сумма с НСО']) + correction:.2f}")
+        existing_value = float(correction_row[value_key]) if correction_row[value_key] else 0
+        if existing_value != 0:
+            correction = total_value - total_for_row
+            corrected_value = existing_value + correction
+            correction_row[value_key] = f"{corrected_value:.2f}"
+            print(f"Документ {document_id}, {row.get('firma', )}: {message} {existing_value:.2f}, новое значение {corrected_value:.2f}")
             break
-
-
-def correct_total_sum(zagruzka_data, document_start_index, total_sum_for_document, row):
-    document_id = row.get('arve nr', '')
-    summa_kokku = round(row.get('summa kokku', 0), 2)
-
-    for correction_row in reversed(zagruzka_data[document_start_index:]):
-        existing_sum = float(correction_row['Сумма с НСО']) if correction_row['Сумма с НСО'] else 0
-        if existing_sum != 0 and correction_row['Ставка НСО'] != 'Нет':
-            correction = summa_kokku - total_sum_for_document
-            corrected_sum = existing_sum + correction
-            correction_row['Сумма с НСО'] = f"{corrected_sum:.2f}"
-            print(f"Документ {document_id}, {row.get('firma', )}: "
-                  f"Старая сумма {existing_sum:.2f}, новая сумма {corrected_sum:.2f}, "
-                  f"коррекция {correction:.2f}")
-            break
-
 
 
 def write_data_to_sheet(file_name, sheet_name, data, headers):
