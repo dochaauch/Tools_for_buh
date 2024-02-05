@@ -46,13 +46,13 @@ def time_format():
 ic.configureOutput(prefix=time_format, includeContext=True)
 
 list_of_files = [fn for fn in os.listdir(your_target_folder)
-                  if any(fn.endswith(ext) for ext in ['.jpg',])]
+                  if any(fn.endswith(ext) for ext in ['.jpg', ])]
 
 system_text = ''
 raw_text_output = ''
 output_text_first = ''
 
-km_rate_list = [0.2, 0.21, 0.09, 0.12, 0.19]
+km_rate_list = [0.2, 0.21, 0.09, 0.12, 0.19, 0.22]
 
 
 def browse_button():
@@ -62,7 +62,7 @@ def browse_button():
     filename = filedialog.askdirectory()
     your_target_folder = filename
     list_of_files = sorted([fn for fn in os.listdir(your_target_folder)
-                  if any(fn.endswith(ext) for ext in ['.jpg',])])
+                  if any(fn.endswith(ext) for ext in ['.jpg', ])])
     load_data(i_file, list_of_files, your_target_folder, root)
 
 

@@ -23,7 +23,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2023-11"
+your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-01"
 
 pdf_files = []
 
@@ -104,7 +104,7 @@ pprint.pprint(lists)
 #         print(l)
 #конец работающего кода
 
-f = open('../output.txt', 'w')
+f = open('output.txt', 'w')
 first_row = ('D' + '\t' + 'kuupaev'.ljust(10) + '\t' + 'maksepaev' + '\t' + 'klient'.ljust(20)
      + '\t' + 'arve'.center(8) + '\t' + 'kokku'.center(9) + '\t' + 'kaibemaks'.center(7) + '\t' + 'KMta'.ljust(7) + '\n')
 f.write(first_row)
@@ -146,7 +146,7 @@ for l in lists:
         summaKMta = summaKMta.rjust(9)
         Skta = Skta + str_to_float(summaKMta)
 
-    if ('Kaibemaks 20%:' in l) or ('Käibemaks 20%:' in l):
+    if ('Kaibemaks 20%:' in l) or ('Käibemaks 20%:' in l) or ('Käibemaks 22%:' in l) or ('Kaibemaks 22%:' in l):
         kibemaks = re.search(r'(\d+,\d+)', l).group(1)
         kibemaks = kibemaks.rjust(7)
         Skm = Skm + str_to_float(kibemaks)

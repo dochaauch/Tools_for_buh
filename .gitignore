@@ -2,7 +2,7 @@ M10/name.csv
 M10/confid.py
 /venv/
 /.idea/
-output.txt
+Bonus/output.txt
 M10/aux.pdf
 **/venv/**
 **/.idea/**
@@ -21,3 +21,6 @@ github_json/confidence.py
 proba_of_tkinter/__pycache__/
 Kres/__init__.py
 Kres/__pycache__/
+Bonus/bilanss.xlsx
+Bonus/output.xlsx
+Bonus/~$bilanss.xlsx

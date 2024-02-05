@@ -8,7 +8,7 @@ import math
 file_ = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/_cheki/combine.csv'
 dbf = Dbf5(r'/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
 subkonto_yes = 1
-year_arve = '2023'
+year_arve = '2024'
 
 today = datetime.now()
 stamp = today.strftime('%m%d')
@@ -170,11 +170,13 @@ with open(file_, 'r') as csv_file:
                              'pesula': '8:6:25:6',
                              'auto': '8:6:25:7',
                              'autoremont': '8:6:25:7',
+                             'autoteenindus': '8:6:25:7',
                              'puhastusvahend': '8:6:28:1',
                              'ruum': '8:6:1:10',
                              'lamp': '8:6:1:10',
                              'rehvivatehus': '8:6:25:7',
-                             'rehvid': '8:6:25:7',}
+                             'rehvid': '8:6:25:7',
+                             'majapidamistarbed': '8:6:28:1',}
         for k in dict_for_subkonto.keys():
             if k in kirjeldus:
                 subkonto_kulud = dict_for_subkonto.get(k)

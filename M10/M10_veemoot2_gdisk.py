@@ -59,8 +59,8 @@ def write_to_txt(out, file_output):
 
 
 def main():
-    lausendi_kuupaev = '30.11.23'
-    sheet_name = "NOV23"
+    lausendi_kuupaev = '31.12.23'
+    sheet_name = "DEC23"
     #file_output = '/Volumes/[C] Windows 10 (1)/Dropbox/_N/Metsa10_2011/veemotjad.txt'
     file_output = '/Users/docha/Library/CloudStorage/Dropbox/_N/Metsa10_2011/veemotjad.txt'
     df = read_gsheet_to_pandas(sheet_name)

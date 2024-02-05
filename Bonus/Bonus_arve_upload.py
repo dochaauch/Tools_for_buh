@@ -35,8 +35,8 @@ ic.configureOutput(prefix=time_format, includeContext=True)
 
 subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
 
-year_arve = '2023'
-period_arve = f'"01.11.23","30.11.23","1L"' + '\r\n'
+year_arve = '2024'
+period_arve = f'"01.01.24","31.01.24","1L"' + '\r\n'
 
 
 dbf = Dbf5(r'/Users/docha/Library/CloudStorage/Dropbox/_N/Bonus_2011/1sbspsk.dbf', codec='cp866')
@@ -61,8 +61,9 @@ df_sub['year'] = df_sub['year'].astype('int64')
 df_sub['arve'] = df_sub['arve'].astype('int64')
 
 text_provodki = ''
+km_const = 1.22
 
-with open('../output.txt', 'r') as f:
+with open('output.txt', 'r') as f:
     lines = f.readlines()[1:-2]  # пропускаем строку с заголовками и 2 последние итоговые строки
     for line in lines:
         # собираем данные со счетов
@@ -78,8 +79,8 @@ with open('../output.txt', 'r') as f:
         uus_km = change_to_float(6)
         uus_kta = change_to_float(7)
 
-        if round(uus_kokku / Decimal(1.2), 2) != uus_kta or uus_kta + uus_km != uus_kokku:
-            ic('не сходится налог!', uus_nr_comb, round(uus_kokku / Decimal(1.2), 2), '<>', uus_kta)
+        if round(uus_kokku / Decimal(km_const), 2) != uus_kta or uus_kta + uus_km != uus_kokku:
+            ic('не сходится налог!', uus_nr_comb, round(uus_kokku / Decimal(km_const), 2), '<>', uus_kta)
         nimi_orig = line.split('\t')[3].strip()
         nimi_orig = re.sub(r'(^.+)\bOU\b.+', r'\1', nimi_orig)  # ищем, где не стоит запятая перед адресом
         nimi_arve = nimi_orig.lower()

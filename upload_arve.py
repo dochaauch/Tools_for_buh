@@ -56,7 +56,7 @@ def read_db(dbf):
 
 text_provodki = ''
 
-with open('output.txt', 'r') as f:
+with open('Bonus/output.txt', 'r') as f:
     lines = f.readlines()[1:-2]  # пропускаем строку с заголовками и 2 последние итоговые строки
     for line in lines:
         # собираем данные со счетов

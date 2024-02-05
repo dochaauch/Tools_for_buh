@@ -3,6 +3,7 @@ import os
 import re
 import codecs
 import PyPDF2
+import pdfplumber
 
 from tika import parser
 
@@ -41,18 +42,26 @@ def merge_pdfs(pdf_files):
         pdf_writer.write(pdf_output)
 
 
-def read_pdf_content(file_path):
-    raw = parser.from_file(file_path)
-    raw = raw['content']
+# def read_pdf_content(file_path):
+#     raw = parser.from_file(file_path)
+#     raw = raw['content']
+#
+#     special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
+#                         ord('ž'): 'z', ord('š'): 's',
+#                         ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
+#                         ord('Z'): 'Z', ord('Š'): 's', ord('’'): ''}
+#     raw = raw.translate(special_char_map)
+#     raw = re.sub(r'\n+\s*\n*', '\n', raw.strip())
+#     raw = raw.replace('\\n', '\n')
+#     return raw
 
-    special_char_map = {ord('ä'): 'a', ord('ü'): 'u', ord('ö'): 'o', ord('õ'): 'o',
-                        ord('ž'): 'z', ord('š'): 's',
-                        ord('Ä'): 'A', ord('Ü'): 'U', ord('Ö'): 'O', ord('Õ'): 'O',
-                        ord('Z'): 'Z', ord('Š'): 's', ord('’'): ''}
-    raw = raw.translate(special_char_map)
-    raw = re.sub(r'\n+\s*\n*', '\n', raw.strip())
-    raw = raw.replace('\\n', '\n')
-    return raw
+def read_pdf_content(file_path):
+    text = ""
+    with pdfplumber.open(file_path) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text()
+    return text
+
 
 
 def write_output(lists, file_path):
@@ -63,16 +72,14 @@ def write_output(lists, file_path):
         f.write(first_row)
         print(first_row)
 
-        skta = 0.00
-        skm = 0.00
-        skokk = 0.00
-        skbm = 0.00
-
-        patterns = ['KLIENT', 'ARVE', 'Summa KM-ta:', 'Kibemaks 20%:', 'Kokku:', 'Kuupev:', 'Maksethtaeg:']
-        payment_date = ""
+        # Инициализация переменных до цикла
+        client = ""
+        invoice = ""
         amount = 0.00
         percentage = 0.00
         total = 0.00
+        payment_date = ""
+
         for l in lists:
             if "KLIENT:" in l:
                 client = l.replace("KLIENT:", "").strip()
@@ -86,21 +93,26 @@ def write_output(lists, file_path):
                 total = str_to_float(l.replace("Kokku:", "").strip())
             if "Maksethtaeg:" in l:
                 payment_date = l.replace("Maksethtaeg:", "").strip()
+
+            # Проверка наличия всех данных перед формированием строки
             if payment_date and client and invoice:
                 row = ('D' + '\t' + payment_date.ljust(10) + '\t' + client.ljust(20)
                        + '\t' + invoice.ljust(20) + '\t' + "{:.2f}".format(amount).rjust(10)
                        + '\t' + "{:.2f}".format(percentage).rjust(10) + '\t'
                        + "{:.2f}".format(total).rjust(10) + '\n')
-        #out_file.write(row)
-        f.write(row)
-        #out_file.close()
-        print("Data written to " + f)
+                f.write(row)
+                payment_date = ""
+                client = ""
+                invoice = ""
+
+        print("Data written to " + file_path)
 
 
 def main():
-    target_folder = "/Users/docha/Google Диск/Bonus/2023-01/"
+    target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2023-11"
     pdf_files = collect_list_of_files(target_folder)
     merge_pdfs(pdf_files)
+    write_output(read_pdf_content('merged.pdf'), 'output.txt')
 
 if __name__ == '__main__':
         main()

@@ -12,3 +12,4 @@ KEILA BETOON,Kokku \(EUR\) ,ARVE ,"ARVE\s*\d*\s*(.*)",Tähtaeg ,,76,,3:9,21,,5:1
 ELEKTRO OÜ,Tasuda EUR ,Arve nr. ,Kuupäev: ,Tasumistähtaeg: ,,76,,3:26,21,,5:1:21,elektritood,,,
 Keila Haldus OÜ,Tasuda EUR: ,Arve nr.: ,Kuupäev: ,Tähtaeg: ,,76,,3:17,20,,6:6,püstikukraanide vahetus,,,
 Tarmo & Co.,Arve kokku \(EUR\)\s*,Arve nr ,Kuupäev ,Maksetähtpäev ,,76,,3:27,21,,5:7:4,konsultatsioon,,,
+AKNAPLEKK,Arve\s*kokku\s*\(EUR\)\s*,Arve nr ,Kuupäev ,Maksetähtpäev ,,76,,3:22,20,,6:9,katuselukk,,,
