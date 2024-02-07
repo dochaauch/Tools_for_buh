@@ -3,6 +3,8 @@ from openpyxl import Workbook, load_workbook
 import os
 import re
 from datetime import datetime
+from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.table import Table, TableStyleInfo
 
 
 def read_highlighted_texts_and_comments(pdf_path):
@@ -92,11 +94,24 @@ def reverse_date_format(date_str):
 
 
 def parse_sum_to_float(value):
-    # Извлекаем числа, пробелы (для тысяч) и запятую (как десятичный разделитель)
-    numeric_value = re.sub(r"[^\d, ]", "", value)
-    # Удаляем пробелы и заменяем запятую на точку для формата float
-    normalized_value = numeric_value.replace(" ", "").replace(",", ".")
-    return float(normalized_value)
+    # Извлекаем числа, пробелы (для тысяч), точку и запятую (как десятичные разделители)
+    numeric_value = re.sub(r"[^\d,. ]", "", value)
+    # Удаляем пробелы
+    numeric_value_without_spaces = numeric_value.replace(" ", "")
+    # Определяем, используется ли точка или запятая в качестве десятичного разделителя
+    # Если и точка, и запятая присутствуют, предполагаем, что запятая используется для разделения тысяч, если запятая стоит раньше
+    if ',' in numeric_value_without_spaces and '.' in numeric_value_without_spaces:
+        if numeric_value_without_spaces.index(',') < numeric_value_without_spaces.index('.'):
+            # Запятая для разделения тысяч, удаляем запятые
+            numeric_value_without_spaces = numeric_value_without_spaces.replace(",", "")
+        else:
+            # Точка для разделения тысяч, удаляем точки и заменяем запятую на точку
+            numeric_value_without_spaces = numeric_value_without_spaces.replace(".", "").replace(",", ".")
+    elif ',' in numeric_value_without_spaces:
+        # Запятая в качестве десятичного разделителя
+        numeric_value_without_spaces = numeric_value_without_spaces.replace(",", ".")
+    # В этот момент все запятые уже заменены на точки, если они использовались как десятичные разделители
+    return float(numeric_value_without_spaces)
 
 
 def format_date(date_str):
@@ -120,7 +135,7 @@ def format_date(date_str):
     for month_number, month_names in month_mapping.items():
         for month_name in month_names:
             if month_name in date_str_processed:
-                replace_with = month_number + "."  # Добавляем точку после числа месяца
+                replace_with = "." + month_number + "."  # Добавляем точку после числа месяца
                 date_str_processed = re.sub(month_name, replace_with, date_str_processed, flags=re.IGNORECASE)
                 date_str_processed = date_str_processed.replace("..", ".")  # Удаляем двойные точки, если они есть
                 break
@@ -151,8 +166,67 @@ def parse_date_from_common_formats(date_str):
     return None
 
 
+def auto_adjust_column_width(sheet):
+    for col in sheet.columns:
+        max_length = 0
+        column = col[0].column  # Получаем номер столбца
+        for cell in col:
+            try:  # Необходимо для обработки текста и None-значений
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                pass
+        adjusted_width = (max_length + 2) * 1.2  # Добавляем немного дополнительного пространства
+        sheet.column_dimensions[get_column_letter(column)].width = adjusted_width
 
-def write_to_excel(output_dict, excel_file_name, predefined_keys):
+
+def add_table_to_sheet(sheet, table_name="Table1"):
+    # Проверяем, существует ли уже таблица с таким именем
+    existing_tables = [table.displayName for table in sheet.tables.values()]
+    unique_name = table_name
+    counter = 1
+    while unique_name in existing_tables:
+        unique_name = f"{table_name}_{counter}"
+        counter += 1
+
+    # Определяем диапазон таблицы
+    max_column = sheet.max_column
+    max_row = sheet.max_row
+    ref = f"A1:{get_column_letter(max_column)}{max_row}"
+
+    # Создаем объект таблицы
+    table = Table(displayName=unique_name, ref=ref)
+
+    # Создаем и применяем стиль таблицы
+    style = TableStyleInfo(name="TableStyleLight14", showFirstColumn=False,
+                           showLastColumn=False, showRowStripes=True, showColumnStripes=True)
+    table.tableStyleInfo = style
+
+    # Добавляем таблицу на лист
+    sheet.add_table(table)
+
+    # После добавления таблицы на лист, применяем форматирование к столбцам
+    column_names_to_format = ["sum", "km", "kokku"]
+    format_string = '#,##0.00'
+    apply_format_to_columns(sheet, column_names_to_format, format_string)
+
+
+
+def apply_format_to_columns(sheet, column_names_to_format, format_string):
+    max_row = sheet.max_row
+    # Получаем заголовки столбцов
+    headers = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True))
+    # Итерируемся по заголовкам для нахождения индексов нужных столбцов
+    for index, column_name in enumerate(headers):
+        if column_name in column_names_to_format:
+            column_letter = get_column_letter(index + 1)  # Преобразуем индекс в букву столбца
+            # Применяем формат ко всем ячейкам в столбце
+            for row in range(2, max_row + 1):  # Начинаем с 2, чтобы пропустить заголовок
+                cell = sheet[f"{column_letter}{row}"]
+                cell.number_format = format_string
+
+
+def write_to_excel(output_dict, excel_file_name, predefined_keys, new_filename):
     # Проверка и инициализация рабочей книги Excel
     try:
         wb = load_workbook(excel_file_name)
@@ -174,6 +248,12 @@ def write_to_excel(output_dict, excel_file_name, predefined_keys):
             sheet.cell(row=next_row, column=idx, value=value)
         else:
             sheet.cell(row=next_row, column=idx, value=str(value))
+
+    # Добавление гиперссылки на файл PDF
+    hyperlink_column = len(predefined_keys) + 1  # Следующий столбец после последнего ключа
+    sheet.cell(row=1, column=hyperlink_column, value="Link")  # Называем столбец "Link"
+    hyperlink_formula = f'=HYPERLINK("{new_filename}","{new_filename}")'
+    sheet.cell(row=next_row, column=hyperlink_column, value=hyperlink_formula)
 
     wb.save(excel_file_name)
 
@@ -204,6 +284,7 @@ def rename_pdf_file(original_path, date_str, firma, invoice, is_kres_auto=False)
         print(f"Файл '{original_path}' был переименован в '{new_filename}'")
     except OSError as error:
         print(f"Ошибка при переименовании файла: {error}")
+    return new_filename
 
 
 def sanitize_filename(filename):
@@ -235,8 +316,7 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
             if none_keys:
                 print(f"Нет данных для ключей: {none_keys}")
 
-            # Теперь правильно вызываем функцию записи в Excel
-            write_to_excel(output_dict, excel_file_name, predefined_keys)
+
 
             # Интеграция функции переименования
             # Предположим, что `output_dict` содержит ключи 'date', 'firma', и 'invoice'
@@ -247,9 +327,26 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
             if date_str and firma and arve:
                 # Переименовываем файл
                 is_kres_auto = "Kres" in output_dict.get("our", "")
-                rename_pdf_file(full_path, date_str, firma, arve, is_kres_auto)
+                new_filename = rename_pdf_file(full_path, date_str, firma, arve, is_kres_auto)
             else:
                 print(f"Не удалось переименовать файл {file}, так как не все данные доступны.")
+
+            # Теперь правильно вызываем функцию записи в Excel
+            write_to_excel(output_dict, excel_file_name, predefined_keys, new_filename)
+
+    # Загружаем рабочую книгу и лист
+    wb = load_workbook(excel_file_name)
+    sheet = wb.active
+
+    # Добавляем умную таблицу
+    add_table_to_sheet(sheet)
+
+    # После добавления всех данных вызываем функцию auto_adjust_column_width
+    auto_adjust_column_width(sheet)
+
+
+    # Сохраняем изменения
+    wb.save(excel_file_name)
 
 
 
