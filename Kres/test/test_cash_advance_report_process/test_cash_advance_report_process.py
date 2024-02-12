@@ -5,7 +5,7 @@ from Kres.cash_advance_report_process import read_excel, create_new_sheet_with_h
 class TestExcelFileReader(unittest.TestCase):
     def setUp(self):
         # Этот метод будет вызываться перед каждым тестом
-        self.file_path = "/Users/docha/PycharmProjects/Tools_for_buh/Kres/test/_svod_2312.xlsx"
+        self.file_path = "/Kres/test/_svod_2312.xlsx"
         self.sheet_name = "svod"
         self.new_sheet_name = "zagruzka"
 

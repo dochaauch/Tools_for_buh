@@ -21,6 +21,9 @@ class TestFormatDate(unittest.TestCase):
         # Test with a date string in the format "day-month-year"
         self.assertEqual(format_date("01-01-2022"), "01.01.2022")
 
+        # Test with a date string in the format "year-month-doy"
+        self.assertEqual(format_date("2022-01-01"), "01.01.2022")
+
         # Test with a date string in the format "day month_name year" in English
         self.assertEqual(format_date("01 january 2022"), "01.01.2022")
 

@@ -73,22 +73,26 @@ def process_sheet_data_for_new_sheet(svod_data, column_mappings, headers, kaibem
 
             zagruzka_data.append(new_row)
 
-        if recalculate_tax_and_total:
-            # Пересчитываем сумму НСО
-            if km_o_total_for_row != round(row.get('km', 0), 2):
-                correct_values(zagruzka_data, document_start_index, km_o_total_for_row, row, 'Сумма НСО',
-                               'km', "Старый налог")
-
-            # Пересчитываем общую сумму после корректировки НСО
-            recalculated_total_sum = sum(float(r['Сумма с НСО']) for r in zagruzka_data[document_start_index:])
-
-            if round(recalculated_total_sum,2) != round(row.get('summa kokku', 0), 2):
-                correct_values(zagruzka_data, document_start_index, recalculated_total_sum, row, 'Сумма с НСО',
-                               'summa kokku', "Старая сумма")
+        recalculate_sum(document_start_index, km_o_total_for_row, recalculate_tax_and_total, row, zagruzka_data)
 
         document_start_index = len(zagruzka_data)
 
     return zagruzka_data
+
+
+def recalculate_sum(document_start_index, km_o_total_for_row, recalculate_tax_and_total, row, zagruzka_data):
+    if recalculate_tax_and_total:
+        # Пересчитываем сумму НСО
+        if km_o_total_for_row != round(row.get('km', 0), 2):
+            correct_values(zagruzka_data, document_start_index, km_o_total_for_row, row, 'Сумма НСО',
+                           'km', "Старый налог")
+
+        # Пересчитываем общую сумму после корректировки НСО
+        recalculated_total_sum = sum(float(r['Сумма с НСО']) for r in zagruzka_data[document_start_index:])
+
+        if round(recalculated_total_sum, 2) != round(row.get('summa kokku', 0), 2):
+            correct_values(zagruzka_data, document_start_index, recalculated_total_sum, row, 'Сумма с НСО',
+                           'summa kokku', "Старая сумма")
 
 
 def create_row_for_zagruzka(row, account, account_desc, sum_value, kaibemaks, kaibemaksuta_desc, headers,
@@ -149,7 +153,9 @@ def correct_values(zagruzka_data, document_start_index, total_for_row, row, valu
         existing_value = float(correction_row[value_key]) if correction_row[value_key] else 0
         if existing_value != 0:
             correction = total_value - total_for_row
+            print(f"correction: {correction}")
             corrected_value = existing_value + correction
+            print(f"corrected_value: {corrected_value}")
             correction_row[value_key] = f"{corrected_value:.2f}"
             print(f"Документ {document_id}, {row.get('firma', )}: {message} {existing_value:.2f},"
                   f" новое значение {corrected_value:.2f}")
@@ -171,10 +177,10 @@ def write_data_to_sheet(file_name, sheet_name, data, headers):
 if __name__ == '__main__':
     #file_path = "/Users/docha/PycharmProjects/Tools_for_buh/Kres/test/_svod_2312.xlsx"
     #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-12/avansiaruanned/_svod_2312.xlsx"
-    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-12/kaart/_svod_2312_1.xlsx"
+    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-01/avansiaruanned/_svod_2401.xlsx"
     sheet_name = "svod"
     new_sheet_name = "zagruzka"
-    kaibemaks = 0.2
+    kaibemaks = 0.22
     expense_account_prefix = '4'
 
     headers = [
@@ -240,7 +246,7 @@ if __name__ == '__main__':
     }
 
     # Выбор нужных настроек в зависимости от значения recalculate_tax_and_total
-    recalculate_tax_and_total = False
+    recalculate_tax_and_total = True
     additional_settings = additional_settings_false if not recalculate_tax_and_total else additional_settings_true
 
     # Объединение общих настроек с дополнительными

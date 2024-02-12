@@ -26,9 +26,9 @@ def main():
     in_or_out = 0  # 1 - входящие, 0 - исходящие; тут только как в образце r1
 
     subkonto_yes = 0  # 1 создавать новые субконто. 0 не создавать новые субконто
-    year_arve = '2023'
-    begin_date = '01.12.23'
-    end_date = '31.12.23'
+    year_arve = '2024'
+    begin_date = '01.01.24'
+    end_date = '31.01.24'
     period_arve = f'{begin_date},{end_date},"H1"' + '\r\n'
 
 

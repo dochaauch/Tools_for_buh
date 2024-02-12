@@ -157,7 +157,7 @@ def parse_date_from_common_formats(date_str):
     Пытается разобрать дату из строки, используя список стандартных форматов.
     Возвращает форматированную строку даты "%d.%m.%Y" или None, если разбор не удался.
     """
-    for fmt in ("%d-%m-%Y", "%d/%m/%Y", "%d.%m.%Y", "%d-%m-%y", "%d/%m/%y", "%d.%m.%y"):
+    for fmt in ("%d-%m-%Y", "%d/%m/%Y", "%d.%m.%Y", "%d-%m-%y", "%d/%m/%y", "%d.%m.%y", "%Y-%m-%d", "%y-%m-%d"):
         try:
             parsed_date = datetime.strptime(date_str, fmt)
             return parsed_date.strftime("%d.%m.%Y")
@@ -329,7 +329,7 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
                 is_kres_auto = "Kres" in output_dict.get("our", "")
                 new_filename = rename_pdf_file(full_path, date_str, firma, arve, is_kres_auto)
             else:
-                print(f"Не удалось переименовать файл {file}, так как не все данные доступны.")
+                print(f"*** Не удалось переименовать файл {file}, так как не все данные доступны.")
 
             # Теперь правильно вызываем функцию записи в Excel
             write_to_excel(output_dict, excel_file_name, predefined_keys, new_filename)
