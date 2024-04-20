@@ -28,6 +28,7 @@ def read_highlighted_texts_and_comments(pdf_path):
                         highlighted_texts.append(highlighted_text)
                         # Чтение комментария, если он есть
                         comment = annot.info['content'] if 'content' in annot.info else ''
+                        print(f"Найден текст: {highlighted_text}, комментарий: {comment}")
                         comments.append(comment)
 
     doc.close()
@@ -351,7 +352,7 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
 
 
 def main():
-    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-01"
+    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-02"
     predefined_keys = ["firma", "date", "arve", "sum", "km", "kokku", "date2", "cur", "our"]
 
     # Формирование пути к файлу Excel внутри обрабатываемой папки

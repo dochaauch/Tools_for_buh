@@ -5,8 +5,8 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
 from M10 import confid
 
-prefix = '2401'
-body = "Arve on lisatud. Счет в приложении"
+prefix = '2403'
+body = "Arve on lisatud. Счет в приложении."
 
 # перебор файла
 with open('/Users/docha/Dropbox/python/Metsa10/name.csv') as file:

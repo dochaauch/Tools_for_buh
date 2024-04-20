@@ -27,7 +27,9 @@ def convert_pdf_to_single_jpeg(pdf_path, output_folder):
 
 def main():
     """Основная функция для преобразования всех PDF в папке."""
-    folder_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-01/kaart'  # Замените на путь к вашей папке
+    #folder_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-02/avansi_val'  # Замените на путь к вашей папке
+    #folder_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansiaruanned'  # Замените на путь к вашей папке
+    folder_path = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansi_val'  # Замените на путь к вашей папке
     print(f'Начинается обработка папки: {folder_path}')
 
     for file in os.listdir(folder_path):

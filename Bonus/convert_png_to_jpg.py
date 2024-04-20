@@ -20,10 +20,10 @@ def search_all_png_files(your_target_folder):
 
 def main():
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Metsa10/_cheki'
-    #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/_cheki'
+    your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/_cheki'
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-talleke.kakkumae@gmail.com/Мой диск/Talleke/_cheki'
     #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/231130'
-    your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-01/own'
+    #your_target_folder = '/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-02/avansiaruanned'
 
     file_dict = search_all_png_files(your_target_folder)
     for old_path, file_date in file_dict.items():

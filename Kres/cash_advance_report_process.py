@@ -55,6 +55,7 @@ def process_sheet_data_for_new_sheet(svod_data, column_mappings, headers, kaibem
 
     for row in svod_data:
         expense_accounts = extract_expence_accs_by_prefix(row, expense_account_prefix)  # Извлекает счета расходов
+        print(expense_accounts)
         km_o_total_for_row = 0
         total_sum_for_doc = 0
 
@@ -151,11 +152,10 @@ def correct_values(zagruzka_data, document_start_index, total_for_row, row, valu
 
     for correction_row in reversed(zagruzka_data[document_start_index:]):
         existing_value = float(correction_row[value_key]) if correction_row[value_key] else 0
-        if existing_value != 0:
+        check_km = float(correction_row.get('Сумма НСО', 0))
+        if check_km != 0.00 and existing_value != 0:
             correction = total_value - total_for_row
-            print(f"correction: {correction}")
             corrected_value = existing_value + correction
-            print(f"corrected_value: {corrected_value}")
             correction_row[value_key] = f"{corrected_value:.2f}"
             print(f"Документ {document_id}, {row.get('firma', )}: {message} {existing_value:.2f},"
                   f" новое значение {corrected_value:.2f}")
@@ -175,9 +175,10 @@ def write_data_to_sheet(file_name, sheet_name, data, headers):
 
 
 if __name__ == '__main__':
-    #file_path = "/Users/docha/PycharmProjects/Tools_for_buh/Kres/test/_svod_2312.xlsx"
-    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2023-12/avansiaruanned/_svod_2312.xlsx"
-    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-01/avansiaruanned/_svod_2401.xlsx"
+
+    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansiaruanned/_svod_2403.xlsx"
+    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansi_val/_svod_2403_1.xlsx"
+    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/own/_svod_2403_2.xlsx"
     sheet_name = "svod"
     new_sheet_name = "zagruzka"
     kaibemaks = 0.22
@@ -246,7 +247,7 @@ if __name__ == '__main__':
     }
 
     # Выбор нужных настроек в зависимости от значения recalculate_tax_and_total
-    recalculate_tax_and_total = True
+    recalculate_tax_and_total = False
     additional_settings = additional_settings_false if not recalculate_tax_and_total else additional_settings_true
 
     # Объединение общих настроек с дополнительными
