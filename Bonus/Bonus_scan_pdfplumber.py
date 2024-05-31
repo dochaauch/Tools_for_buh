@@ -18,6 +18,8 @@ def read_csv_to_dict_template(path):
     with open(path, newline='') as inp:
         reader = csv.DictReader(inp)
         template_dict = {row.pop('firma'): row for row in reader}
+    for td in template_dict:
+        print(td, template_dict[td])
     return template_dict
 
 
@@ -84,12 +86,14 @@ def find_template_sum(v, str_):
 
 
 def find_template_arve(v, str_):  # строка из словаря, возможный пробел, группа: непробельные символы
-    #print(re.findall(fr'{str_}\s*(\S+\b)', v))
+    #print("проверяю наличие шаблона",re.findall(fr'{str_}\s*(\S+\b)', v))
     try:
         return re.findall(fr'{str_}\s*(\S+\b)', v)[0]
     except:
         print('')
-        print('*** не могу подобрать шаблон счета', v, str_)
+        print('*** не могу подобрать шаблон счета')
+        print('*** v', v)
+        print('*** str_', str_)
 
 
 def find_template_date(v, str_, arve_kuup='', second_=''):
@@ -317,13 +321,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-03"
+    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-05"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2024'
-    period_arve = f'"01.03.24","31.03.24","6H"' + '\r\n'
+    period_arve = f'"01.05.24","31.05.24","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 

@@ -200,7 +200,8 @@ def create_work_time_sheet(aggregated_data, month):
 
 
 def main():
-    folder_path = '/Users/docha/Library/CloudStorage/OneDrive-Личная/Leka/Maalaus/Ermail'
+    #folder_path = '/Users/docha/Library/CloudStorage/OneDrive-Личная/Leka/Maalaus/Ermail'
+    folder_path = '/Users/docha/Library/CloudStorage/OneDrive-Личная/Leka/Maalaus/240522'
     read_excel_files_in_folder(folder_path)
 
 if __name__ == '__main__':

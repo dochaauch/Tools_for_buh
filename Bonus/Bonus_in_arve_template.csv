@@ -25,5 +25,6 @@ Eesti Gaas,Summa käibemaksuta 20%,Käibemaks 20%,Summa käibemaksuga,ARVE nr ,K
 BTA Baltic Insurance,Summa kokku \(Total amount\):,Käibemaks \(20%\),Summa kokku \(Total amount\):,Arve Nr. \(Invoice No.\):,Kuupäev \(Date\):,\(Date\) \(Amount\) \(Currency\),,60,1,6:163,26,,8:6:25:1,kindlustus,1
 If P&C Insurance AS,Kokku €\s?,Käibemaks \(20%\),Summa kokku \(Total amount\):,[a|A]rve nr\s?,Arve kuupäev ,Maksetähtaeg,,60,1,6:163,26,,8:6:25:1,kindlustus,1
 EKAR WorkForces,Kokku  EUR:,KM 20% :,Tasumiseks :,Arve nr.:,Kuupäev:,Tähtaeg:,Maksetingimused:,60,1,6:184,26,,8:6:1:4,remont,1
+Päikesemees OÜ,kokku:,"kokku: \d+[.,]\d{2}",Tasumisele kuulub:,Arve nr ,Kuupäev:,Makse tähtpäev:,Maksetingimused:,60,1,6:200,26,,8:6:1:4,el.tood,1
 MFSceiling,Summa km-ta 20%.,Käibemaks 20%.,Kokku :,Arve,Kuupäev :,Maksetähtpäe :,,60,1,6:185,26,,8:6:1:4,remont,1
 

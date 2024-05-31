@@ -138,11 +138,12 @@ def format_date(date_str):
             if month_name in date_str_processed:
                 replace_with = "." + month_number + "."  # Добавляем точку после числа месяца
                 date_str_processed = re.sub(month_name, replace_with, date_str_processed, flags=re.IGNORECASE)
-                date_str_processed = date_str_processed.replace("..", ".")  # Удаляем двойные точки, если они есть
+                date_str_processed = date_str_processed.replace(". .", ".")  # Удаляем двойные точки, если они есть
                 break
 
     # Удаление лишних пробелов
     date_str_processed = re.sub(r'\s+', '', date_str_processed).strip()
+
 
     # Пытаемся разобрать обработанную строку даты
     formatted_date = parse_date_from_common_formats(date_str_processed)
@@ -304,7 +305,7 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
     initialize_excel_file(excel_file_name, predefined_keys)
 
     for file in os.listdir(folder_path):
-        if file.endswith(".pdf"):
+        if file.endswith(".pdf") or file.endswith(".PDF"):
             full_path = os.path.join(folder_path, file)
             print(f"Обрабатываем файл: {file}")
             highlighted_texts, comments = read_highlighted_texts_and_comments(full_path)
@@ -352,7 +353,7 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
 
 
 def main():
-    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-02"
+    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-04"
     predefined_keys = ["firma", "date", "arve", "sum", "km", "kokku", "date2", "cur", "our"]
 
     # Формирование пути к файлу Excel внутри обрабатываемой папки

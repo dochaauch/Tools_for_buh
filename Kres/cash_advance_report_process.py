@@ -176,9 +176,9 @@ def write_data_to_sheet(file_name, sheet_name, data, headers):
 
 if __name__ == '__main__':
 
-    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansiaruanned/_svod_2403.xlsx"
-    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/avansi_val/_svod_2403_1.xlsx"
-    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/own/_svod_2403_2.xlsx"
+    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-04/avansiaruanned/_svod_2404.xlsx"
+    file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-04/avansi_val/_svod_2404_1.xlsx"
+    #file_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-03/own/_svod_2403_2.xlsx"
     sheet_name = "svod"
     new_sheet_name = "zagruzka"
     kaibemaks = 0.22
