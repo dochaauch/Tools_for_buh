@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<E_Invoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://arvepesa.ee/e-invoice_ver1.2.xsd">
+  <Header>
+    <Date>2024-07-29</Date>
+    <FileId>125454202407293</FileId>
+    <AppId>EARVE</AppId>
+    <Version>1.2</Version>
+  </Header>
+  <Invoice invoiceId="020724" regNumber="10156832" invoiceGlobUniqId="12545420020724" sellerRegnumber="12545420">
+    <InvoiceParties>
+      <SellerParty>
+        <Name>BONUS TÕLKEBÜROO OÜ</Name>
+        <RegNumber>12545420</RegNumber>
+        <VATRegNumber>EE101667290</VATRegNumber>
+        <ContactData>
+          <PhoneNumber>5103672</PhoneNumber>
+          <E-mailAddress>sergei@bonus.ee</E-mailAddress>
+          <LegalAddress>
+            <PostalAddress1>Estonia pst 5-308</PostalAddress1>
+            <City>Tallinn</City>
+            <PostalCode>10143</PostalCode>
+          </LegalAddress>
+        </ContactData>
+        <AccountInfo>
+          <AccountNumber>10220224298222</AccountNumber>
+          <IBAN>EE781010220224298222</IBAN>
+          <BankName>SEB Pank</BankName>
+        </AccountInfo>
+      </SellerParty>
+      <BuyerParty>
+        <Name>Maag Eesti AS</Name>
+        <RegNumber>10156832</RegNumber>
+        <VATRegNumber>EE100464481</VATRegNumber>
+        <ContactData>
+          <ContactName>Karina Kruusimäe</ContactName>
+          <E-mailAddress>arved@maagfood.com</E-mailAddress>
+          <LegalAddress>
+            <PostalAddress1>Rakvere lihakombinaat</PostalAddress1>
+            <City>Rakvere vald, Lääne-Viru maakond</City>
+            <PostalCode>44207</PostalCode>
+          </LegalAddress>
+        </ContactData>
+      </BuyerParty>
+    </InvoiceParties>
+    <InvoiceInformation>
+      <Type type="DEB"/>
+      <DocumentName>Arve</DocumentName>
+      <InvoiceNumber>020724</InvoiceNumber>
+      <InvoiceDate>2024-07-29</InvoiceDate>
+      <DueDate>2024-08-10</DueDate>
+    </InvoiceInformation>
+    <InvoiceSumGroup>
+      <InvoiceSum>1899.25</InvoiceSum>
+      <VAT>
+        <VATRate>22.00</VATRate>
+        <VATSum>417.84</VATSum>
+      </VAT>
+      <TotalVATSum>417.84</TotalVATSum>
+      <TotalSum>2317.09</TotalSum>
+      <TotalToPay>2317.09</TotalToPay>
+      <Currency>EUR</Currency>
+    </InvoiceSumGroup>
+    <InvoiceItem>
+      <InvoiceItemGroup>
+        <ItemEntry>
+          <Description>01.07.2024: Tõlkida - Rakevre</Description>
+          
+          <ItemSum>132.20</ItemSum>
+
+        </ItemEntry>
+        <ItemEntry>
+          <Description>22.07.2024: Tõlge vene keelde - Tallegg AW24
+sortiment kodulehele</Description>
+
+          <ItemSum>839.50</ItemSum>
+
+        </ItemEntry>
+        <ItemEntry>
+          <Description>22.07.2024: Korr. vene keelde - Tallegg AW24
+sortiment kodulehele</Description>
+
+          <ItemSum>149.50</ItemSum>
+
+        </ItemEntry>
+        <ItemEntry>
+          <Description>29.07.2024: Tõlge vene keelde - Rakvere AW24
+sortiment kodulehele</Description>
+
+          <ItemSum>655.90</ItemSum>
+
+        </ItemEntry>
+        <ItemEntry>
+          <Description>29.07.2024: Korr. vene keelde - Rakvere AW24
+sortiment kodulehele</Description>
+
+          <ItemSum>122.15</ItemSum>
+
+        </ItemEntry>
+      </InvoiceItemGroup>
+    </InvoiceItem>
+    <AdditionalInformation id="Note">
+        <InformationName></InformationName>
+        <InformationContent>Tõlketeenus, eesti-vene adapteerimine.&#10;
+            Projektide tundide arvestus perioodil 01.07.2024 - 31.07.2024.a.&#10;
+            TELLIJA: Karina Kruusimäe
+        </InformationContent>
+    </AdditionalInformation>
+    <PaymentInfo>
+      <Currency>EUR</Currency>
+      <PaymentDescription>Arve nr.020724 tasumine</PaymentDescription>
+      <Payable>YES</Payable>
+      <PayDueDate>2024-08-10</PayDueDate>
+      <PaymentTotalSum>2317.09</PaymentTotalSum>
+      <PayerName>Maag Eesti AS</PayerName>
+      <PaymentId>020724</PaymentId>
+      <PayToAccount>EE781010220224298222</PayToAccount>
+      <PayToName>BONUS TÕLKEBÜROO OÜ</PayToName>
+    </PaymentInfo>
+  </Invoice>
+  <Footer>
+    <TotalNumberInvoices>1</TotalNumberInvoices>
+    <TotalAmount>2317.09</TotalAmount>
+  </Footer>
+</E_Invoice>

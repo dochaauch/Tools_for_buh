@@ -1,6 +1,6 @@
 firma,d_total,d_arve,d_date,d_date_maks,d_days,d_konto,d_subschet,d_subkonto,dkulud_konto,dkulud_subschet,dkulud_subkonto,d_kulud,d_komm,d_vol
 Eesti Energia,Arve summa:,Arve nr,Arve kuupäev:,Maksetähtaeg:,,76,,3:2,21,,5:5:1,energia vork,komm,,
-11399985,Summa \(EUR\),Arve number,Arve kuupäev,Maksetähtpäev,,76,,3:21,21,,5:5:1,energia,komm,,
+Elektrum,Summa \(EUR\),Arve number,Arve kuupäev,Maksetähtpäev,,76,,3:21,21,,5:5:1,energia,komm,,
 Enefit,Arve summa:,Arve nr,Arve kuupäev:,Maksetähtaeg:,,76,,3:2,21,,5:5:1,energia vork,komm,,
 Enefit AS,Arve summa:,Arve nr,Arve kuupäev:,Maksetähtaeg:,,76,,3:2,21,,5:5:1,energia vork,komm,,
 LAHEVESI,[Kk]okku:?\s*\(EUR\),Arve nr\.,Kuupäev:,Maksetähtaeg:,,76,,3:1,22,,7:1:1,vesi,komm,kanalisatsioon,

@@ -21,7 +21,7 @@ EESTI KIIRTOIT OÜ,Итого \(EUR\):,НДС:,"Итого\, включая НД
 Hobby Hall GROUP OÜ,Summa KM-ta,Käibemaks 20%,Kokku koos KM-ga,MÜÜGIARVE NR. ,Kuupäev: ,Kuupäev: ,,60,1,6:158,26,,8:6:26:5,muud,1
 Tele2 Eesti,ARVE KOKKU:,"ARVE KOKKU: \d+[.,]\d{2}","ARVE KOKKU: \d+[.,]\d{2}\s*\d+[.,]\d{2}",Arve nr: ,kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1
 TELE2 EESTI,Arve kokku:,"Arve kokku: \d+[.,]\d{2}\s?€?\s","Arve kokku: \d+[.,]\d{2}\s?€?\s\d+[.,]\d{2}\s?€?\s",Arve nr: ,Arve kuupäev: ,Maksetähtaeg:,,60,1,6:158,26,,8:6:11:17,telefon,1
-Eesti Gaas,Summa käibemaksuta 20%,Käibemaks 20%,Summa käibemaksuga,ARVE nr ,Kuupäev,Maksetähtaeg,,60,1,6:182,26,,8:6:1:9,gaasikatlaholdus,1
+Eesti Gaas,Summa käibemaksuta 22%,Käibemaks 22%,Summa käibemaksuga,ARVE nr ,Kuupäev,Maksetähtaeg,,60,1,6:182,26,,8:6:1:9,gaasikatlaholdus,1
 BTA Baltic Insurance,Summa kokku \(Total amount\):,Käibemaks \(20%\),Summa kokku \(Total amount\):,Arve Nr. \(Invoice No.\):,Kuupäev \(Date\):,\(Date\) \(Amount\) \(Currency\),,60,1,6:163,26,,8:6:25:1,kindlustus,1
 If P&C Insurance AS,Kokku €\s?,Käibemaks \(20%\),Summa kokku \(Total amount\):,[a|A]rve nr\s?,Arve kuupäev ,Maksetähtaeg,,60,1,6:163,26,,8:6:25:1,kindlustus,1
 EKAR WorkForces,Kokku  EUR:,KM 20% :,Tasumiseks :,Arve nr.:,Kuupäev:,Tähtaeg:,Maksetingimused:,60,1,6:184,26,,8:6:1:4,remont,1

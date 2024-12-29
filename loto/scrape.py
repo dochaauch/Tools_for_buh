@@ -35,7 +35,7 @@ def scrape_eurojackpot_results(year):
 def main():
     # specify the range of years for which you want to scrape the results
     all_results = []
-    for year in range(2023, 2011, -1):
+    for year in range(2024, 2011, -1):
         all_results.extend(scrape_eurojackpot_results(year))
     print(all_results)
 

@@ -1,0 +1,133 @@
+<E_Invoice>
+    <Header>
+        <Date>2024-07-29</Date>
+        <FileId>020724</FileId>
+        <Version>1.2</Version>
+    </Header>
+    <Invoice invoiceId="020724" regNumber="10156832" sellerRegnumber="12545420">
+        <InvoiceParties>
+            <SellerParty>
+                <Name>BONUS TÕLKEBÜROO OÜ</Name>
+                <RegNumber>12545420</RegNumber>
+                <VATRegNumber>EE101667290</VATRegNumber>
+                <ContactData>
+                    <PhoneNumber>5103672</PhoneNumber>
+                    <LegalAddress>
+                        <PostalAddress1>Estonia pst 5-308</PostalAddress1>
+                        <City>Tallinn</City>
+                        <PostalCode>10143</PostalCode>
+                    </LegalAddress>
+                </ContactData>
+                <AccountInfo>
+                    <AccountNumber>EE781010220224298222</AccountNumber>
+                    <BankName>SEB Pank</BankName>
+                </AccountInfo>
+            </SellerParty>
+            <BuyerParty>
+                <Name>Maag Eesti AS</Name>
+                <RegNumber>10156832</RegNumber>
+                <VATRegNumber>EE100464481</VATRegNumber>
+                <ContactData>
+                    <ContactName>Karina Kruusimäe</ContactName>
+                    <E-mailAddress>arved@maagfood.com</E-mailAddress>
+                    <LegalAddress>
+                        <PostalAddress1>Rakvere lihakombinaat</PostalAddress1>
+                        <PostalAddress2>Roodevälja küla</PostalAddress2>
+                        <City>Rakvere vald, Lääne-Viru maakond</City>
+                        <PostalCode>44207</PostalCode>
+                    </LegalAddress>
+                </ContactData>
+            </BuyerParty>
+        </InvoiceParties>
+        <InvoiceInformation>
+            <Type type="DEB"/>
+            <DocumentName>Invoice</DocumentName>
+            <InvoiceNumber>020724</InvoiceNumber>
+            <InvoiceDate>2024-07-29</InvoiceDate>
+            <DueDate>2024-08-10</DueDate>
+        </InvoiceInformation>
+        <InvoiceSumGroup>
+            <VAT>
+                <SumBeforeVAT>1899.25</SumBeforeVAT>
+                <VATRate>22</VATRate>
+                <VATSum>417.84</VATSum>
+                <Currency>EUR</Currency>
+                </VAT>
+            <TotalVATSum>417.84</TotalVATSum>
+            <TotalSum>1899.25</TotalSum>
+            <TotalToPay>2317.09</TotalToPay>
+            <Currency>EUR</Currency>
+        </InvoiceSumGroup>
+        <InvoiceItem>
+            <InvoiceItemGroup>
+                <ItemEntry>
+                    <RowNo>1</RowNo>
+                    <Description>Tõlkida - Rakevre</Description>
+                    <ItemDetailInfo>
+                        <ItemUnit>TA</ItemUnit>
+                        <ItemAmount>3174</ItemAmount>
+                    </ItemDetailInfo>
+                    <ItemTotal>132.20</ItemTotal>
+                </ItemEntry>
+                <ItemEntry>
+                    <RowNo>2</RowNo>
+                    <Description>Tõlge vene keelde - Tallegg AW24
+sortiment kodulehele</Description>
+                    <ItemDetailInfo>
+                        <ItemUnit>TA</ItemUnit>
+                        <ItemAmount>20150</ItemAmount>
+                    </ItemDetailInfo>
+
+                    <ItemTotal>839.50</ItemTotal>
+                </ItemEntry>
+                <ItemEntry>
+                    <RowNo>3</RowNo>
+                    <Description>Korr. vene keelde - Tallegg AW24
+sortiment kodulehele</Description>
+                    <ItemDetailInfo>
+                        <ItemUnit>TA</ItemUnit>
+                        <ItemAmount>10767</ItemAmount>
+                    </ItemDetailInfo>
+
+                    <ItemTotal>149.50</ItemTotal>
+                </ItemEntry>
+                <ItemEntry>
+                    <RowNo>4</RowNo>
+                    <Description>Tõlge vene keelde - Rakvere AW24
+sortiment kodulehele</Description>
+                    <ItemDetailInfo>
+                        <ItemUnit>TA</ItemUnit>
+                        <ItemAmount>15743</ItemAmount>
+                    </ItemDetailInfo>
+
+                    <ItemTotal>655.90</ItemTotal>
+                </ItemEntry>
+                <ItemEntry>
+                    <RowNo>5</RowNo>
+                    <Description>Korr. vene keelde - Rakvere AW24
+sortiment kodulehele</Description>
+                    <ItemDetailInfo>
+                        <ItemUnit>TA</ItemUnit>
+                        <ItemAmount>8867</ItemAmount>
+                    </ItemDetailInfo>
+
+                    <ItemTotal>122.15</ItemTotal>
+                </ItemEntry>
+            </InvoiceItemGroup>
+        </InvoiceItem>
+        <PaymentInfo>
+            <Currency>EUR</Currency>
+            <PaymentDescription>Arve nr020724 tasumine</PaymentDescription>
+            <Payable>YES</Payable>
+            <PaymentTotalSum>2317.09</PaymentTotalSum>
+            <PayerName>Maag Eesti AS</PayerName>
+            <PaymentId>020724</PaymentId>
+            <PayToAccount>EE781010220224298222</PayToAccount>
+            <PayToName>BONUS TÕLKEBÜROO OÜ</PayToName>
+        </PaymentInfo>
+    </Invoice>
+    <Footer>
+        <TotalNumberInvoices>1</TotalNumberInvoices>
+        <TotalAmount>2317.09</TotalAmount>
+    </Footer>
+</E_Invoice>

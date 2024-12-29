@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<Invoice invoiceId="020724" sellerRegnumber="12545420">
+  <InvoiceNumber>020724</InvoiceNumber>
+  <InvoiceDate>29.07.2024.a.</InvoiceDate>
+  <DueDate>10.08.2024.a.</DueDate>
+  <DocumentCurrencyCode>EUR</DocumentCurrencyCode>
+  <InvoiceParties>
+    <SellerParty>
+      <PartyName>BONUS TÕLKEBÜROO OÜ</PartyName>
+      <PostalAddress>Estonia pst 5 -308, Tallinn, Harju maakond, 10143</PostalAddress>
+      <CompanyID>12545420</CompanyID>
+      <TaxScheme>
+        <ID>EE101667290</ID>
+      </TaxScheme>
+      <Telephone>5103672</Telephone>
+      <FinancialInstitution>SEB Pank</FinancialInstitution>
+      <IBAN>EE781010220224298222</IBAN>
+    </SellerParty>
+    <BuyerParty>
+      <PartyName>Maag Eesti AS, Lääne -Viru maakond, Rakvere vald, Roodevälja küla, Rakvere lihakombinaat, 44207</PartyName>
+      <Contact>Karina  Kruusimäe</Contact>
+    </BuyerParty>
+  </InvoiceParties>
+  <ServiceDescription>Tõlketeenus, eesti -vene adapteerimine</ServiceDescription>
+  <ServicePeriod>Projektide tundide arvestus perioodil 01.07.2024 - 31.07.2024.a.</ServicePeriod>
+  <InvoiceLine>
+    <LineItem>
+      <Description>Karina Tõlkida - Rakevre</Description>
+      <Quantity unitCode="EA">1</Quantity>
+      <Price>132.20</Price>
+    </LineItem>
+    <LineExtensionAmount currencyID="EUR">132.20</LineExtensionAmount>
+  </InvoiceLine>
+  <InvoiceLine>
+    <LineItem>
+      <Description>Karina Tõlge vene keelde - Tallegg AW24 sortiment kodulehele</Description>
+      <Quantity unitCode="EA">1</Quantity>
+      <Price>839.50</Price>
+    </LineItem>
+    <LineExtensionAmount currencyID="EUR">839.50</LineExtensionAmount>
+  </InvoiceLine>
+  <InvoiceLine>
+    <LineItem>
+      <Description>Karina Korr. vene keelde - Tallegg AW24 sortiment kodulehele</Description>
+      <Quantity unitCode="EA">1</Quantity>
+      <Price>149.50</Price>
+    </LineItem>
+    <LineExtensionAmount currencyID="EUR">149.50</LineExtensionAmount>
+  </InvoiceLine>
+  <InvoiceLine>
+    <LineItem>
+      <Description>Karina Tõlge vene keelde - Rakvere AW24 sortiment kodulehele</Description>
+      <Quantity unitCode="EA">1</Quantity>
+      <Price>655.90</Price>
+    </LineItem>
+    <LineExtensionAmount currencyID="EUR">655.90</LineExtensionAmount>
+  </InvoiceLine>
+  <InvoiceLine>
+    <LineItem>
+      <Description>Karina Korr. vene keelde - Rakvere AW24 sortiment kodulehele</Description>
+      <Quantity unitCode="EA">1</Quantity>
+      <Price>122.15</Price>
+    </LineItem>
+    <LineExtensionAmount currencyID="EUR">122.15</LineExtensionAmount>
+  </InvoiceLine>
+  <LegalMonetaryTotal>
+    <LineExtensionAmount currencyID="EUR">1899.25</LineExtensionAmount>
+    <TaxExclusiveAmount currencyID="EUR">1899.25</TaxExclusiveAmount>
+    <TaxInclusiveAmount currencyID="EUR">2317.09</TaxInclusiveAmount>
+    <PayableAmount currencyID="EUR">2317.09</PayableAmount>
+  </LegalMonetaryTotal>
+</Invoice>

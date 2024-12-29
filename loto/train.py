@@ -29,7 +29,7 @@ def divide_to_train_and_test(df):
 
 
 def main():
-    file_path = '/Users/docha/PycharmProjects/Tools_for_buh/loto/eurojackpot_results.csv'
+    file_path = '/loto/eurojackpot_results1.csv'
     df = read_dataset_from_csv(file_path)
     print(df.to_string)
     train_data, test_data = divide_to_train_and_test(df)

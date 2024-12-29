@@ -5,6 +5,9 @@ import re
 from datetime import datetime
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
+from colorama import Fore, Style, init
+
+init(autoreset=True)  # Инициализация colorama для автоматического сброса цвета после каждого вывода
 
 
 def read_highlighted_texts_and_comments(pdf_path):
@@ -28,7 +31,7 @@ def read_highlighted_texts_and_comments(pdf_path):
                         highlighted_texts.append(highlighted_text)
                         # Чтение комментария, если он есть
                         comment = annot.info['content'] if 'content' in annot.info else ''
-                        print(f"Найден текст: {highlighted_text}, комментарий: {comment}")
+                        print(Fore.GREEN + f"Найден текст: {highlighted_text}, комментарий: {comment}")
                         comments.append(comment)
 
     doc.close()
@@ -283,22 +286,57 @@ def rename_pdf_file(original_path, date_str, firma, invoice, is_kres_auto=False)
 
     try:
         os.rename(original_path, new_path)
-        print(f"Файл '{original_path}' был переименован в '{new_filename}'")
+        print(Fore.LIGHTMAGENTA_EX + f"Файл '{original_path}' был переименован в '{new_filename}'")
     except OSError as error:
-        print(f"Ошибка при переименовании файла: {error}")
+        print(Fore.RED + f"Ошибка при переименовании файла: {error}")
     return new_filename
 
 
 def sanitize_filename(filename):
     """
-    Удаляет недопустимые символы из имени файла и возвращает очищенное имя.
+    Удаляет недопустимые символы из имени файла, заменяет табуляции на обычные пробелы,
+    объединяет разделенные пробелом аббревиатуры типа O Ü в OÜ,
+    и перемещает OÜ, AS, MTÜ из начала строки в конец, если они там находятся.
     """
+    # Заменяем табуляции на обычные пробелы
+    if "\t" in filename:
+        print("Обнаружена табуляция в имени файла. Заменяем на обычный пробел.")
+    filename = filename.replace("\t", " ")
+
+    # Исправляем ошибочные разделения пробелом в аббревиатурах
+    filename = filename.replace("O Ü", "OÜ")
+    filename = filename.replace("A S", "AS")
+
+    # Список аббревиатур для переноса в конец
+    prefixes = ["OÜ", "AS", "MTÜ"]
+
+    # Проверяем, начинается ли строка с одной из аббревиатур
+    for prefix in prefixes:
+        if filename.startswith(prefix):
+            # Удаляем аббревиатуру с начала строки
+            filename = filename[len(prefix):].strip()
+            # Добавляем аббревиатуру в конец строки
+            filename = f"{filename} {prefix}"
+            break  # Прекращаем цикл после первой найденной аббревиатуры
+
+    # Удаляем недопустимые символы
     invalid_chars = '<>:"/\\|?*'
     for char in invalid_chars:
         filename = filename.replace(char, '')
+
     # Удаление конечных пробелов и точек из имени файла
     filename = filename.rstrip('. ')
+
     return filename
+
+
+
+
+
+def detect_spaces_in_string(s):
+    for idx, char in enumerate(s):
+        if char.isspace():
+            print(f"Символ пробела найден на позиции {idx}: '{char}' (код: {ord(char)})")
 
 
 def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
@@ -309,32 +347,39 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
             full_path = os.path.join(folder_path, file)
             print(f"Обрабатываем файл: {file}")
             highlighted_texts, comments = read_highlighted_texts_and_comments(full_path)
-            output_dict, unmatched_comments = process_highlighted_texts_and_comments(highlighted_texts, comments, predefined_keys)
+            output_dict, unmatched_comments = process_highlighted_texts_and_comments(highlighted_texts, comments,
+                                                                                     predefined_keys)
 
             if unmatched_comments:
-                print(f"Несоответствующие комментарии: {unmatched_comments}")
+                print(Fore.LIGHTRED_EX + f"Несоответствующие комментарии: {unmatched_comments}")
 
             none_keys = [key for key, value in output_dict.items() if value is None]
             if none_keys:
-                print(f"Нет данных для ключей: {none_keys}")
+                print(Fore.LIGHTRED_EX + f"Нет данных для ключей: {none_keys}")
 
-
-
-            # Интеграция функции переименования
-            # Предположим, что `output_dict` содержит ключи 'date', 'firma', и 'invoice'
+            # Переименовываем файл
             date_str = output_dict.get('date')  # Например, '01.01.2024'
             firma = output_dict.get('firma')  # Например, 'YourCompany'
             arve = output_dict.get('arve')  # Например, '12345'
 
             if date_str and firma and arve:
-                # Переименовываем файл
                 is_kres_auto = "Kres" in output_dict.get("our", "")
-                new_filename = rename_pdf_file(full_path, date_str, firma, arve, is_kres_auto)
-            else:
-                print(f"*** Не удалось переименовать файл {file}, так как не все данные доступны.")
 
-            # Теперь правильно вызываем функцию записи в Excel
-            write_to_excel(output_dict, excel_file_name, predefined_keys, new_filename)
+                # Обновляем значение firma с учетом изменений (например, перемещение аббревиатур)
+                sanitized_firma = sanitize_filename(firma)
+
+                # Переименовываем файл с обновленным значением firma
+                new_filename = rename_pdf_file(full_path, date_str, sanitized_firma, arve, is_kres_auto)
+
+                # Обновляем поля 'filename' и 'firma' в output_dict
+                output_dict['filename'] = new_filename
+                output_dict['firma'] = sanitized_firma
+            else:
+                print(Fore.RED + f"*** Не удалось переименовать файл {file}, так как не все данные доступны.")
+                output_dict['filename'] = file  # Оставляем старое имя файла, если переименование не удалось
+
+            # Записываем в Excel с обновленными значениями
+            write_to_excel(output_dict, excel_file_name, predefined_keys, output_dict['filename'])
 
     # Загружаем рабочую книгу и лист
     wb = load_workbook(excel_file_name)
@@ -346,14 +391,12 @@ def process_all_pdfs_in_folder(folder_path, excel_file_name, predefined_keys):
     # После добавления всех данных вызываем функцию auto_adjust_column_width
     auto_adjust_column_width(sheet)
 
-
     # Сохраняем изменения
     wb.save(excel_file_name)
 
 
-
 def main():
-    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-04"
+    folder_path = "/Users/docha/Library/CloudStorage/GoogleDrive-kres.auto79@gmail.com/Мой диск/2024-11"
     predefined_keys = ["firma", "date", "arve", "sum", "km", "kokku", "date2", "cur", "our"]
 
     # Формирование пути к файлу Excel внутри обрабатываемой папки

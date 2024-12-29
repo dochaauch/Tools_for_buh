@@ -5,7 +5,7 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 import os
 from M10 import confid
 
-prefix = '2404'
+prefix = '2411'
 body = "Arve on lisatud. Счет в приложении."
 
 # перебор файла

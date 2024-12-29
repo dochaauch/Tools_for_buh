@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the dataset
-df = pd.read_csv('eurojackpot_results.csv')
+df = pd.read_csv('eurojackpot_results1.csv')
 
 # Check the basic statistics of the dataset
 print(df.describe())

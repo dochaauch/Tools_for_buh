@@ -18,8 +18,8 @@ def read_csv_to_dict_template(path):
     with open(path, newline='') as inp:
         reader = csv.DictReader(inp)
         template_dict = {row.pop('firma'): row for row in reader}
-    for td in template_dict:
-        print(td, template_dict[td])
+    #for td in template_dict:
+    #    print(td, template_dict[td])
     return template_dict
 
 
@@ -36,6 +36,7 @@ def find_all_files(your_target_folder, r1, in_or_out):
             else:
                 pass
     pdf_files.sort(key=str.lower)
+    #print('find all files: ')
     #pprint.pprint(pdf_files)
     if in_or_out == 1:
         file_list = list(set(full_list) - set(pdf_files))
@@ -125,7 +126,7 @@ def find_template_date(v, str_, arve_kuup='', second_=''):
 def parse_invoice_data(arve_content, template_dict):
     #print('arve_content')
     #вывести скан счета
-    pprint.pprint(arve_content)
+    #pprint.pprint(arve_content)
     arve_data = {}
     folder_dict = {}
     for k, v in arve_content.items():
@@ -238,8 +239,8 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
     #print(nimi_arve, nimi_my['SPSKNO'], nimi_my['SPSKNO'].max())
     nomer_subkonto = nimi_my['SPSKNO'].max()  # определяем из строки номер субконто
-    #print('proverka', year_arve, nomer_subkonto,
-    #          df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'])
+    print('proverka', year_arve, nomer_subkonto,
+              df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'])
 
     mnr = df_sub[(df_sub['SPSKIM'] == year_arve) & (df_sub['year'] == nomer_subkonto)]['SPSKNO'].max()
     #print('mnr', mnr)
@@ -321,13 +322,13 @@ def find_subkonto_in_db(hank_subk, df_sub, nimi_df,
 
 
 def main():
-    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-05"
+    your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-11"
     path = 'Bonus_in_arve_template.csv'
     in_or_out = 1  # 1 - входящие, 0 - исходящие
 
     subkonto_yes = 1  # 1 создавать новые субконто. 0 не создавать новые субконто
     year_arve = '2024'
-    period_arve = f'"01.05.24","31.05.24","6H"' + '\r\n'
+    period_arve = f'"01.11.24","30.11.24","6H"' + '\r\n'
 
     r1 = re.compile(r'/\d{6}.*.pdf$')  # вводим паттерн, который будем искать (название 6 цифр +,) исходящие
 

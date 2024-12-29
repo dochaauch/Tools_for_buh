@@ -23,7 +23,7 @@ def find_most_probable_numbers(main_numbers, add_numbers):
 
 # Основной блок кода
 if __name__ == '__main__':
-    main_numbers, add_numbers = read_csv('eurojackpot_results.csv')
+    main_numbers, add_numbers = read_csv('eurojackpot_results1.csv')
     most_probable_main, most_probable_add = find_most_probable_numbers(main_numbers, add_numbers)
     print(f'Наиболее вероятные основные номера: {most_probable_main}')
     print(f'Наиболее вероятные дополнительные номера: {most_probable_add}')

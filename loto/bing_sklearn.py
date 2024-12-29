@@ -41,7 +41,7 @@ def train_ml_model(X_train, y_train_main, y_train_add):
 
 # Основной блок кода
 if __name__ == '__main__':
-    data = read_csv('eurojackpot_results.csv')
+    data = read_csv('eurojackpot_results1.csv')
     X, y_main, y_add = prepare_data_for_ml(data)
     X_train, X_test, y_train_main, y_test_main, y_train_add, y_test_add = train_test_split(X, y_main, y_add,
                                                                                            test_size=0.2,

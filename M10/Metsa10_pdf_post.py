@@ -11,7 +11,7 @@ def scale_to_size(reader, unit_size):
     # Scale and merge pages from reader, centered, onto these pages.
     # return open BytesIO object written to by writer
 
-    # For now, just write to aux.pdf
+    # For now, just write to pechat.pdf
 
     # determine scaling factor:
     unit_size = reader.pages[3].mediaBox.upperRight
@@ -27,9 +27,9 @@ def scale_to_size(reader, unit_size):
         out_page.mergeScaledTranslatedPage(in_page, 0.9, 40, -10, expand=True)
 
 
-    with open("aux.pdf", "wb") as f:
+    with open("pechat.pdf", "wb") as f:
         writer.write(f)
 
-reader = PdfFileReader(open('/Users/docha/Dropbox/arhiiv_arve_byuh/Metsa10/2404_Metsa10.pdf', 'rb'))
+reader = PdfFileReader(open('/Users/docha/Dropbox/arhiiv_arve_byuh/Metsa10/2411_Metsa10.pdf', 'rb'))
 
 scale_to_size(reader, unit_size=reader.pages[3].mediaBox.upperRight)

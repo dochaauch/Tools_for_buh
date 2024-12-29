@@ -23,7 +23,7 @@ def str_to_float(str):
     return float(str.replace(',', '.'))
 
 
-your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-05"
+your_target_folder = "/Users/docha/Library/CloudStorage/GoogleDrive-mob37256213753@gmail.com/Мой диск/Bonus/2024-11"
 
 pdf_files = []
 
@@ -91,7 +91,7 @@ safe_text = raw.encode('ascii', errors='ignore')
 lists = re.split(r'\n', raw)
 pprint.pprint(lists)
 
-#работающий код
+#работающий код   
 # patterns = ['KLIENT',
 #             'ARVE',
 #             'Summa KM-ta:',
